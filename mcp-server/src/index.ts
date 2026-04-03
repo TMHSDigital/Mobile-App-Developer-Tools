@@ -18,10 +18,14 @@ import { register as registerResetDevEnvironment } from "./tools/resetDevEnviron
 import { register as registerBuildForStore } from "./tools/buildForStore.js";
 import { register as registerValidateStoreMetadata } from "./tools/validateStoreMetadata.js";
 import { register as registerSubmitToAppStore } from "./tools/submitToAppStore.js";
+import { register as registerSubmitToPlayStore } from "./tools/submitToPlayStore.js";
+import { register as registerGenerateScreenshots } from "./tools/generateScreenshots.js";
+import { register as registerAnalyzeBundle } from "./tools/analyzeBundle.js";
+import { register as registerConfigureOTA } from "./tools/configureOTA.js";
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.6.0",
+  version: "0.7.0",
 });
 
 registerCheckDevEnvironment(server);
@@ -39,6 +43,10 @@ registerResetDevEnvironment(server);
 registerBuildForStore(server);
 registerValidateStoreMetadata(server);
 registerSubmitToAppStore(server);
+registerSubmitToPlayStore(server);
+registerGenerateScreenshots(server);
+registerAnalyzeBundle(server);
+registerConfigureOTA(server);
 
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();

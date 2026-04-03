@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.6.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **20 skills**, **6 rules**, and a companion MCP server exposing **15 tools**.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.7.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **24 skills**, **7 rules**, and a companion MCP server exposing **19 tools**.
 
 ## Demo App
 
@@ -16,11 +16,11 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.6.0**. It helps deve
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 15 tools
+mcp-server/                  - MCP server with 19 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (20 total)
+## Skills (24 total)
 
 ### React Native / Expo
 
@@ -56,8 +56,12 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | Skill | Purpose |
 | --- | --- |
 | mobile-app-store-prep | App icons, screenshots, metadata, privacy policy, age ratings, review guidelines |
+| mobile-monetization | In-app purchases, subscriptions, RevenueCat, StoreKit 2, sandbox testing |
+| mobile-deep-links | Universal links, app links, URL schemes, deferred deep links, attribution |
+| mobile-analytics | Crash reporting (Sentry, Crashlytics), event tracking (PostHog), source maps |
+| mobile-ota-updates | EAS Update channels, runtime versions, staged rollouts, rollback, Shorebird |
 
-## Rules (6 total)
+## Rules (7 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
@@ -67,12 +71,13 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-env-safety.mdc | `.ts`, `.tsx`, `.json` | Flags hardcoded production endpoints, missing EXPO_PUBLIC_ prefix, server-only secrets in client code |
 | mobile-performance.mdc | `.ts`, `.tsx`, `.dart` | Flags inline styles, missing list keys, unnecessary re-renders (RN); missing const constructors, inline widgets (Flutter) |
 | mobile-accessibility.mdc | `.ts`, `.tsx`, `.dart` | Flags missing a11y labels, small touch targets, images without alt text, color-only indicators |
+| mobile-bundle-size.mdc | `.ts`, `.tsx`, `.json`, `.dart` | Flags large dependencies, unoptimized imports, heavy packages with lighter alternatives |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (15 total)
+### Tools (19 total)
 
 | Tool | Description |
 | --- | --- |
@@ -91,6 +96,10 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 | mobile_buildForStore | Create a production build for app store submission via EAS Build |
 | mobile_validateStoreMetadata | Check app.json for all required store listing fields (name, bundle ID, icon, etc.) |
 | mobile_submitToAppStore | Submit latest iOS production build to App Store Connect via EAS Submit |
+| mobile_submitToPlayStore | Submit latest Android production build to Google Play Console via EAS Submit |
+| mobile_generateScreenshots | Generate screenshot capture script and list required store dimensions |
+| mobile_analyzeBundle | Analyze app bundle for large dependencies, heavy assets, and optimization opportunities |
+| mobile_configureOTA | Configure EAS Update for over-the-air JavaScript updates with channels and runtime versions |
 
 ## Development Workflow
 

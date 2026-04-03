@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.7.0] - 2026-04-03
+
+### Added
+
+- **4 new skills**: `mobile-monetization` (in-app purchases, subscriptions, RevenueCat, StoreKit 2), `mobile-deep-links` (universal links, app links, URL schemes, deferred deep links), `mobile-analytics` (Sentry, Firebase Crashlytics, PostHog, source maps, GDPR), `mobile-ota-updates` (EAS Update, channels, staged rollouts, rollback, Shorebird)
+- **1 new rule**: `mobile-bundle-size` (flags large dependencies, unoptimized imports, heavy packages with lighter alternatives)
+- **4 new MCP tools**: `mobile_submitToPlayStore`, `mobile_generateScreenshots`, `mobile_analyzeBundle`, `mobile_configureOTA`
+- Totals: 24 skills, 7 rules, 19 MCP tools
+
 ## [0.6.0] - 2026-04-03
 
 ### Added

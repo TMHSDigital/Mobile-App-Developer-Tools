@@ -1,0 +1,129 @@
+---
+description: Flag large dependencies, unoptimized imports, and bloated assets that inflate the app bundle. Catches full-library imports when tree-shakeable alternatives exist, heavy packages with lighter replacements, and oversized embedded data files.
+alwaysApply: false
+globs:
+  - "*.ts"
+  - "*.tsx"
+  - "*.json"
+  - "*.dart"
+---
+
+# Bundle Size
+
+When reviewing or writing code in a React Native/Expo or Flutter project, flag these bundle size issues:
+
+## Patterns to Flag
+
+### 1. Full lodash import
+
+Flag importing the entire lodash library instead of individual functions:
+
+```tsx
+// BAD: imports the entire 70KB+ library
+import _ from "lodash";
+import { debounce } from "lodash";
+
+// GOOD: import only what you need (2-5KB each)
+import debounce from "lodash/debounce";
+import groupBy from "lodash/groupBy";
+
+// BETTER: use lodash-es for proper tree shaking
+import { debounce } from "lodash-es";
+```
+
+### 2. moment.js (suggest lighter alternatives)
+
+Flag any import of `moment` or `moment-timezone`. The library is 300KB+ with locale data.
+
+```tsx
+// BAD: 300KB+ gzipped
+import moment from "moment";
+
+// GOOD: date-fns (tree-shakeable, ~2KB per function)
+import { format, parseISO } from "date-fns";
+
+// GOOD: dayjs (2KB, moment-compatible API)
+import dayjs from "dayjs";
+```
+
+### 3. Full AWS SDK import
+
+Flag importing the entire AWS SDK v2 or the full v3 client package:
+
+```tsx
+// BAD: imports the entire AWS SDK (>50MB uncompressed)
+import AWS from "aws-sdk";
+
+// GOOD: import only the client you need
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+```
+
+### 4. Large embedded JSON or data files
+
+Flag JSON files larger than 100KB imported directly in source code:
+
+```tsx
+// BAD: 500KB JSON embedded in the JS bundle
+import cities from "./data/all-cities.json";
+
+// GOOD: load from API at runtime or use expo-asset
+import { Asset } from "expo-asset";
+const asset = Asset.fromModule(require("./data/all-cities.json"));
+await asset.downloadAsync();
+```
+
+### 5. Unoptimized icon library imports
+
+Flag importing the entire icon set instead of specific icons:
+
+```tsx
+// BAD: imports all 3,000+ icons
+import * as Icons from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+
+// GOOD: Expo vector icons are tree-shaken at build time,
+// but avoid importing * as Icons which bypasses tree shaking
+```
+
+For react-native-vector-icons (non-Expo), each icon family adds 1-2MB. Only include families you use.
+
+### 6. Duplicate functionality packages
+
+Flag when multiple packages serve the same purpose:
+
+- `axios` + `fetch` (use fetch, it is built-in)
+- `moment` + `date-fns` (pick one)
+- `lodash` + `underscore` (pick one)
+- `redux` + `zustand` + `jotai` (pick one state manager)
+
+### 7. Dev dependencies in production bundle
+
+Flag dev-only packages imported in production code:
+
+```tsx
+// BAD: storybook or testing libs imported in app code
+import { storiesOf } from "@storybook/react-native";
+import { render } from "@testing-library/react-native";
+```
+
+### 8. Flutter: unnecessary plugin dependencies
+
+Flag Flutter packages that pull in heavy native SDKs when lighter alternatives exist:
+
+```yaml
+# BAD: full Google Maps SDK (~15MB) for simple location display
+google_maps_flutter: ^2.0.0
+
+# CONSIDER: if you only need geocoding or a static map
+geocoding: ^2.0.0
+```
+
+## Recommendations
+
+When flagging a bundle size issue, suggest:
+
+1. **Measure first**: Run `npx expo export` and check the output bundle size, or use `mobile_analyzeBundle`
+2. **Tree shaking**: Use named imports from ES module packages
+3. **Lazy loading**: Use `React.lazy()` and `Suspense` for screens not needed at startup
+4. **Asset optimization**: Use WebP for images, compress fonts, externalize large data files
+5. **Dependency audit**: Run `npx depcheck` to find unused dependencies
