@@ -37,21 +37,13 @@
 
 Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, build, and ship mobile apps without leaving the IDE. Currently at **v0.6.0** with twenty skills (React Native/Expo + Flutter), six rules, and fifteen live MCP tools.
 
-<br>
-<table>
-<tr>
-<td>
-
 **What you get**
 
 | Layer | Role |
 | --- | --- |
 | **Skills** | 20 guided workflows for React Native/Expo and Flutter: project setup through app store submission |
 | **Rules** | 6 guardrails: secrets, platform guards, image bloat, env safety, performance, accessibility |
-| **MCP** | Fifteen tools for environment checks, project creation, device connection, screen/component generation, dependency install, permissions, AI, build health, push, deep links, dev reset, store builds, metadata validation, App Store submission |
-
-</td>
-<td>
+| **MCP** | 15 tools: env checks, scaffolding, device deploy, screen/component gen, permissions, AI, build health, push, deep links, store builds, metadata validation, App Store submission |
 
 **Quick facts**
 
@@ -62,11 +54,6 @@ Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packag
 | **Repository** | [github.com/TMHSDigital/Mobile-App-Developer-Tools](https://github.com/TMHSDigital/Mobile-App-Developer-Tools) |
 | **Runtime** | Node 20+ for MCP server |
 | **Framework** | Expo (React Native) + Flutter |
-
-</td>
-</tr>
-</table>
-<br>
 
 ### How it works
 
