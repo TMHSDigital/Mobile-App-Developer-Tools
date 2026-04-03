@@ -2,24 +2,34 @@
   <img src="assets/logo.png" alt="Mobile App Developer Tools" width="120">
 </p>
 
-# Mobile App Developer Tools
+<h1 align="center">Mobile App Developer Tools</h1>
 
-**Go from zero to a running mobile app on your phone.**
+<p align="center">
+  <em>Go from zero to a running mobile app on your phone.</em>
+</p>
 
-[![Version](https://img.shields.io/badge/version-0.1.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+)](https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases)
-[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-[![CI](https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&label=CI&logo=githubactions&style=for-the-badge)](https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml)
-[![Validate](https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&label=Validate&logo=githubactions&style=for-the-badge)](https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml)
-[![CodeQL](https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/codeql.yml?branch=main&label=CodeQL&logo=githubactions&style=for-the-badge)](https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/codeql.yml)
+<p align="center">
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.1.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
+  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&label=CI&logo=githubactions&style=for-the-badge" alt="CI"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&label=Validate&logo=githubactions&style=for-the-badge" alt="Validate"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/codeql.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/codeql.yml?branch=main&label=CodeQL&logo=githubactions&style=for-the-badge" alt="CodeQL"></a>
+</p>
 
-[![npm: mobile-mcp](https://img.shields.io/npm/v/@tmhs/mobile-mcp?style=for-the-badge&logo=npm&label=mobile-mcp)](https://www.npmjs.com/package/@tmhs/mobile-mcp)
-[![npm: mobile-dev-tools](https://img.shields.io/npm/v/@tmhs/mobile-dev-tools?style=for-the-badge&logo=npm&label=mobile-dev-tools)](https://www.npmjs.com/package/@tmhs/mobile-dev-tools)
+<p align="center">
+  <a href="https://www.npmjs.com/package/@tmhs/mobile-mcp"><img src="https://img.shields.io/npm/v/@tmhs/mobile-mcp?style=for-the-badge&logo=npm&label=mobile-mcp" alt="npm: mobile-mcp"></a>
+  <a href="https://www.npmjs.com/package/@tmhs/mobile-dev-tools"><img src="https://img.shields.io/npm/v/@tmhs/mobile-dev-tools?style=for-the-badge&logo=npm&label=mobile-dev-tools" alt="npm: mobile-dev-tools"></a>
+</p>
 
-**3 skills** · **1 rule** · **3 MCP tools**
+---
 
-[Skills](#skills) · [Rules](#rules) · [MCP Tools](#companion-mobile-mcp-server) · [Install](#installation) · [Roadmap](#roadmap)
+<p align="center">
+  <strong>3 skills</strong> &nbsp;&bull;&nbsp; <strong>1 rule</strong> &nbsp;&bull;&nbsp; <strong>3 MCP tools</strong>
+</p>
 
-<br>
+<p align="center">
+  <a href="#skills">Skills</a> · <a href="#rules">Rules</a> · <a href="#companion-mobile-mcp-server">MCP Tools</a> · <a href="#installation">Install</a> · <a href="#roadmap">Roadmap</a>
+</p>
 
 ---
 
