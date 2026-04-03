@@ -1,0 +1,54 @@
+# Cursor Rules
+
+## Writing Style
+
+- **No em dashes.** Never use `—` (em dash). Use a hyphen `-`, a comma, a period, or rewrite the sentence.
+- **No filler words.** Cut "basically", "simply", "just", "actually", "in order to", "leverage", "utilize". Say what you mean.
+- **No hedge stacking.** One qualifier max. Not "it might potentially possibly help" but "it may help".
+- **Active voice.** "The server returns X" not "X is returned by the server".
+- **Short sentences.** If a sentence has more than one comma-separated clause, split it.
+- **No marketing tone.** Don't say "powerful", "seamless", "robust", "comprehensive", "elegant". Describe what it does, not how great it is.
+- **Parallel structure in lists.** Every item in a bullet list or table column should use the same grammatical form (all verb phrases, all noun phrases, etc.).
+- **Code over prose.** When explaining how something works, show a code example first. Add prose only if the code isn't self-explanatory.
+
+## Skill File Conventions
+
+- Every skill lives in `skills/<skill-name>/SKILL.md`
+- YAML frontmatter is required with `name` (matching the directory name) and `description` (one line, when-to-use guidance)
+- Required sections in order: Trigger, Required Inputs, Workflow, Key References (if applicable), Example Interaction, MCP Usage, Common Pitfalls, See Also
+- Keep `## MCP Usage` present even for non-MCP skills (state that no MCP tool exists yet)
+
+## Rule File Conventions
+
+- Rules use `.mdc` extension in the `rules/` directory
+- YAML frontmatter must include `description` and `alwaysApply` (boolean)
+- If `alwaysApply` is false, include `globs` to scope when the rule activates
+
+## Mobile Development Conventions
+
+- Default framework: Expo (React Native) with TypeScript
+- Flutter support is planned but not yet implemented
+- Prefer Expo SDK libraries over raw React Native community packages when available
+- Use file-based routing (Expo Router) over React Navigation stack-based routing
+- Always include platform checks (`Platform.OS`) when writing platform-specific code
+- Never hardcode API keys, signing credentials, or tokens in source files
+
+## MCP Tool Naming
+
+- All MCP tool names use `mobile_camelCase` prefix (e.g. `mobile_checkDevEnvironment`, `mobile_scaffoldProject`)
+- Each tool lives in its own file under `mcp-server/src/tools/`
+- Each tool file exports `register(server: McpServer): void`
+- Use `.js` extension on all imports (ESM)
+
+## Release Checklist
+
+When preparing a release:
+1. Update version in `.cursor-plugin/plugin.json`
+2. Update version in `mcp-server/package.json`
+3. Update version in `packages/mobile-dev-tools/package.json`
+4. Update `CHANGELOG.md` with new entry
+5. Update `ROADMAP.md` current version marker
+6. Update `CLAUDE.md` version reference
+7. Verify counts in `plugin.json` description match disk
+8. Run `pytest tests/ -v` to verify all tests pass
+9. Build MCP server: `cd mcp-server && npm run build`

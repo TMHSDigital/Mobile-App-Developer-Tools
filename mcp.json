@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mobile": {
+      "command": "node",
+      "args": ["mcp-server/dist/index.js"]
+    }
+  }
+}

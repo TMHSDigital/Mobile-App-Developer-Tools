@@ -1,0 +1,42 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# IDE (allow .cursor-plugin/)
+.vscode/
+.claude/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+dist/
+build/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Mobile build artifacts
+*.apk
+*.aab
+*.ipa
+*.app
+*.jks
+*.keystore
+*.p12
+*.p8
+*.mobileprovision
+*.provisionprofile

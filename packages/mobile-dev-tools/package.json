@@ -1,0 +1,49 @@
+{
+  "name": "@tmhsdigital/mobile-dev-tools",
+  "version": "0.1.0",
+  "description": "CLI and utilities for mobile app development - environment checks, project scaffolding, store metadata validation.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "mobile-dev": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">= 20.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "license": "CC-BY-NC-ND-4.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TMHSDigital/Mobile-App-Developer-Tools.git",
+    "directory": "packages/mobile-dev-tools"
+  },
+  "homepage": "https://github.com/TMHSDigital/Mobile-App-Developer-Tools",
+  "bugs": {
+    "url": "https://github.com/TMHSDigital/Mobile-App-Developer-Tools/issues"
+  },
+  "author": "TMHSDigital",
+  "keywords": [
+    "mobile",
+    "react-native",
+    "expo",
+    "flutter",
+    "mobile-dev",
+    "cli",
+    "developer-tools"
+  ]
+}

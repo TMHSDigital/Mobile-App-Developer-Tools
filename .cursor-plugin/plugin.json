@@ -1,0 +1,34 @@
+{
+  "name": "mobile-app-developer-tools",
+  "displayName": "Mobile App Developer Tools",
+  "version": "0.1.0",
+  "description": "Mobile app development for Cursor, Claude Code, and MCP-compatible editors. 3 skills covering project setup, environment detection, and device deployment for React Native/Expo - plus 1 rule. Companion MCP server provides 3 tools for environment checks, project scaffolding, and device connection.",
+  "author": {
+    "name": "TMHSDigital",
+    "url": "https://github.com/TMHSDigital"
+  },
+  "homepage": "https://github.com/TMHSDigital/Mobile-App-Developer-Tools",
+  "repository": "https://github.com/TMHSDigital/Mobile-App-Developer-Tools",
+  "license": "CC-BY-NC-ND-4.0",
+  "keywords": [
+    "mobile",
+    "react-native",
+    "expo",
+    "flutter",
+    "ios",
+    "android",
+    "app-development",
+    "mobile-dev",
+    "cursor-plugin",
+    "mcp"
+  ],
+  "category": "developer-tools",
+  "tags": [
+    "mobile",
+    "expo",
+    "react-native"
+  ],
+  "logo": "assets/logo.png",
+  "skills": "./skills/",
+  "rules": "./rules/"
+}

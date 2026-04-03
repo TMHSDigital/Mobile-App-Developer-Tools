@@ -1,0 +1,127 @@
+name: Validate Plugin Structure
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate plugin.json
+        run: |
+          echo "Checking plugin.json is valid JSON..."
+          python3 -c "import json; json.load(open('.cursor-plugin/plugin.json'))"
+          echo "plugin.json is valid."
+
+      - name: Check referenced paths exist
+        run: |
+          echo "Checking referenced paths..."
+          test -d skills || { echo "ERROR: skills/ directory missing"; exit 1; }
+          test -d rules || { echo "ERROR: rules/ directory missing"; exit 1; }
+          test -f assets/logo.png || { echo "ERROR: assets/logo.png missing"; exit 1; }
+          echo "All referenced paths exist."
+
+      - name: Validate skill frontmatter
+        run: |
+          echo "Checking skill YAML frontmatter..."
+          errors=0
+          for skill in skills/*/SKILL.md; do
+            name=$(echo "$skill" | sed 's|skills/\(.*\)/SKILL.md|\1|')
+            if ! head -1 "$skill" | grep -q "^---$"; then
+              echo "ERROR: $skill missing YAML frontmatter opening ---"
+              errors=$((errors + 1))
+              continue
+            fi
+            frontmatter=$(sed -n '/^---$/,/^---$/p' "$skill" | sed '1d;$d')
+            if ! echo "$frontmatter" | grep -q "^name:"; then
+              echo "ERROR: $skill missing 'name' in frontmatter"
+              errors=$((errors + 1))
+            fi
+            if ! echo "$frontmatter" | grep -q "^description:"; then
+              echo "ERROR: $skill missing 'description' in frontmatter"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "$errors frontmatter error(s) found."
+            exit 1
+          fi
+          echo "All skill frontmatter valid."
+
+      - name: Check skill name matches directory
+        run: |
+          echo "Checking skill names match directory names..."
+          errors=0
+          for skill in skills/*/SKILL.md; do
+            dir_name=$(echo "$skill" | sed 's|skills/\(.*\)/SKILL.md|\1|')
+            fm_name=$(sed -n '/^---$/,/^---$/p' "$skill" | sed '1d;$d' | grep "^name:" | sed 's/^name: *//')
+            if [ "$dir_name" != "$fm_name" ]; then
+              echo "ERROR: $skill has name '$fm_name' but directory is '$dir_name'"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "$errors name mismatch(es) found."
+            exit 1
+          fi
+          echo "All skill names match their directories."
+
+      - name: Validate rule frontmatter
+        run: |
+          echo "Checking rule YAML frontmatter..."
+          errors=0
+          for rule in rules/*.mdc; do
+            if ! head -1 "$rule" | grep -q "^---$"; then
+              echo "ERROR: $rule missing YAML frontmatter opening ---"
+              errors=$((errors + 1))
+              continue
+            fi
+            frontmatter=$(sed -n '/^---$/,/^---$/p' "$rule" | sed '1d;$d')
+            if ! echo "$frontmatter" | grep -q "^description:"; then
+              echo "ERROR: $rule missing 'description' in frontmatter"
+              errors=$((errors + 1))
+            fi
+            if ! echo "$frontmatter" | grep -q "^alwaysApply:"; then
+              echo "ERROR: $rule missing 'alwaysApply' in frontmatter"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "$errors frontmatter error(s) found."
+            exit 1
+          fi
+          echo "All rule frontmatter valid."
+
+      - name: Check version consistency
+        run: |
+          plugin_ver=$(python3 -c "import json; print(json.load(open('.cursor-plugin/plugin.json'))['version'])")
+          pkg_ver=$(python3 -c "import json; print(json.load(open('mcp-server/package.json'))['version'])")
+          index_ver=$(grep -oP 'version:\s*"\K[^"]+' mcp-server/src/index.ts)
+          echo "plugin.json: $plugin_ver"
+          echo "package.json: $pkg_ver"
+          echo "index.ts: $index_ver"
+          errors=0
+          if [ "$plugin_ver" != "$pkg_ver" ]; then
+            echo "ERROR: plugin.json ($plugin_ver) != package.json ($pkg_ver)"
+            errors=$((errors + 1))
+          fi
+          if [ "$plugin_ver" != "$index_ver" ]; then
+            echo "ERROR: plugin.json ($plugin_ver) != index.ts ($index_ver)"
+            errors=$((errors + 1))
+          fi
+          if [ $errors -gt 0 ]; then
+            exit 1
+          fi
+          echo "All versions match: $plugin_ver"
+
+      - name: Count components
+        run: |
+          skill_count=$(ls -d skills/*/SKILL.md 2>/dev/null | wc -l)
+          rule_count=$(ls rules/*.mdc 2>/dev/null | wc -l)
+          echo "Skills: $skill_count"
+          echo "Rules: $rule_count"
