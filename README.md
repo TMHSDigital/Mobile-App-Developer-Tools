@@ -107,6 +107,9 @@ flowchart LR
 
 ## Quick Start
 
+<details>
+<summary><strong>Clone, symlink, build, and try it</strong></summary>
+
 **1. Clone**
 
 ```bash
@@ -147,6 +150,8 @@ Open Cursor and ask:
 "Check if my dev environment is ready for mobile development"
 "How do I run this app on my phone?"
 ```
+
+</details>
 
 ---
 
@@ -206,7 +211,8 @@ All 20 skills are production-ready. Names match the folder under `skills/`.
 
 </details>
 
-**Example prompts** - one per skill:
+<details>
+<summary><strong>Example prompts</strong> - one per skill</summary>
 
 | Skill | Try this |
 | --- | --- |
@@ -230,6 +236,8 @@ All 20 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-flutter-navigation` | "Add tab navigation with GoRouter in my Flutter app" |
 | `mobile-flutter-run-on-device` | "My Android phone doesn't show up in flutter devices" |
 | `mobile-flutter-state-management` | "Should I use Riverpod or Bloc for my Flutter app?" |
+
+</details>
 
 ---
 
@@ -350,7 +358,10 @@ Future versions may use:
 
 ## Roadmap
 
-Summary aligned with [ROADMAP.md](ROADMAP.md):
+<details>
+<summary><strong>Release history and upcoming versions</strong></summary>
+
+Full details in [ROADMAP.md](ROADMAP.md).
 
 | Version | Theme | Highlights | Status |
 | --- | --- | --- | --- |
@@ -362,6 +373,8 @@ Summary aligned with [ROADMAP.md](ROADMAP.md):
 | **v0.6.0** | Ship It | 20 skills, 6 rules, 15 MCP tools | **Current** |
 | **v0.7.0** | Grow | Monetization, deep links, bundle analysis | |
 | **v1.0.0** | Stable | 22 skills, 7 rules, 18 MCP tools | |
+
+</details>
 
 ---
 
