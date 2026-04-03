@@ -51,11 +51,16 @@ jobs:
 
       - name: Smoke test (server starts without crashing)
         run: |
-          timeout 5 node dist/index.js || code=$?
-          if [ "${code:-0}" -eq 124 ]; then
-            echo "Server started and ran for 5s without crashing."
+          sleep 5 | node dist/index.js &
+          PID=$!
+          sleep 3
+          if kill -0 "$PID" 2>/dev/null; then
+            echo "Server still running after 3s. Smoke test passed."
+            kill "$PID" 2>/dev/null || true
+            wait "$PID" 2>/dev/null || true
           else
-            echo "Server exited with code $code"
+            wait "$PID" 2>/dev/null
+            echo "Server exited early."
             exit 1
           fi
 
