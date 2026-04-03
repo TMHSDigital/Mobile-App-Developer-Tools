@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.4.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.5.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&label=CI&logo=githubactions&style=for-the-badge" alt="CI"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&label=Validate&logo=githubactions&style=for-the-badge" alt="Validate"></a>
@@ -24,7 +24,7 @@
 ---
 
 <p align="center">
-  <strong>13 skills</strong> &nbsp;&bull;&nbsp; <strong>4 rules</strong> &nbsp;&bull;&nbsp; <strong>12 MCP tools</strong>
+  <strong>17 skills</strong> &nbsp;&bull;&nbsp; <strong>5 rules</strong> &nbsp;&bull;&nbsp; <strong>12 MCP tools</strong>
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@
 
 ## Overview
 
-Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, run, and debug mobile apps without leaving the IDE. Currently at **v0.4.0** with thirteen skills, four rules, and twelve live MCP tools. Flutter support is planned for v0.5.0.
+Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, run, and debug mobile apps without leaving the IDE. Currently at **v0.5.0** with seventeen skills (React Native/Expo + Flutter), five rules, and twelve live MCP tools.
 
 <br>
 <table>
@@ -46,8 +46,8 @@ Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packag
 
 | Layer | Role |
 | --- | --- |
-| **Skills** | Guided workflows: project scaffolding, environment setup, device deployment, navigation, state, components, camera, AI, permissions, auth, push, storage, APIs |
-| **Rules** | Guardrails: `mobile-secrets` catches hardcoded secrets; `mobile-platform-check` flags missing guards; `mobile-image-assets` flags bloat; `mobile-env-safety` flags env issues |
+| **Skills** | 17 guided workflows for React Native/Expo and Flutter: project setup, navigation, device deploy, state, components, camera, AI, permissions, auth, push, storage, APIs |
+| **Rules** | 5 guardrails: secrets, platform guards, image bloat, env safety, performance anti-patterns (RN + Flutter) |
 | **MCP** | Twelve tools for environment checks, project creation, device connection, screen/component generation, dependency install, permissions, AI, build health, push, deep links, dev reset |
 
 </td>
@@ -61,7 +61,7 @@ Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packag
 | **Author** | [TMHSDigital](https://github.com/TMHSDigital) |
 | **Repository** | [github.com/TMHSDigital/Mobile-App-Developer-Tools](https://github.com/TMHSDigital/Mobile-App-Developer-Tools) |
 | **Runtime** | Node 20+ for MCP server |
-| **Framework** | Expo (React Native) + TypeScript |
+| **Framework** | Expo (React Native) + Flutter |
 
 </td>
 </tr>
@@ -152,10 +152,10 @@ Open Cursor and ask:
 
 ## Skills
 
-All 13 skills are production-ready. Names match the folder under `skills/`.
+All 17 skills are production-ready. Names match the folder under `skills/`.
 
 <details>
-<summary><strong>All 13 skills</strong></summary>
+<summary><strong>React Native / Expo skills (13)</strong></summary>
 
 | Skill | Framework | What it does |
 | --- | --- | --- |
@@ -172,6 +172,18 @@ All 13 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-push-notifications` | Expo | expo-notifications, EAS Push, Android channels, deep link on tap, local notifications |
 | `mobile-local-storage` | Shared | AsyncStorage, expo-sqlite, expo-secure-store, MMKV; migrations and data cleanup |
 | `mobile-api-integration` | Shared | REST/GraphQL clients, React Query, auth headers, retry, offline queue, optimistic updates |
+
+</details>
+
+<details>
+<summary><strong>Flutter skills (4)</strong></summary>
+
+| Skill | What it does |
+| --- | --- |
+| `mobile-flutter-project-setup` | Guided `flutter create` with feature-first structure, linting, packages, flavors |
+| `mobile-flutter-navigation` | GoRouter: declarative routing, shell routes for tabs, auth guards, deep linking |
+| `mobile-flutter-run-on-device` | USB/wireless debugging, hot reload vs restart, build modes, troubleshooting |
+| `mobile-flutter-state-management` | Riverpod (recommended), Bloc, Provider, setState; async data, code generation |
 
 </details>
 
@@ -192,15 +204,19 @@ All 13 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-push-notifications` | "Set up push notifications that open a specific screen on tap" |
 | `mobile-local-storage` | "I need offline storage for a todo list with secure login" |
 | `mobile-api-integration` | "Connect to my REST API with auth headers and offline support" |
+| `mobile-flutter-project-setup` | "Create a new Flutter app with Riverpod and GoRouter" |
+| `mobile-flutter-navigation` | "Add tab navigation with GoRouter in my Flutter app" |
+| `mobile-flutter-run-on-device` | "My Android phone doesn't show up in flutter devices" |
+| `mobile-flutter-state-management` | "Should I use Riverpod or Bloc for my Flutter app?" |
 
 ---
 
 ## Rules
 
-All 4 rules are production-ready.
+All 5 rules are production-ready.
 
 <details>
-<summary><strong>All 4 rules</strong></summary>
+<summary><strong>All 5 rules</strong></summary>
 
 | Rule | Scope | What it catches |
 | --- | --- | --- |
@@ -208,6 +224,7 @@ All 4 rules are production-ready.
 | `mobile-platform-check` | `.ts`, `.tsx` | Platform-specific APIs (BackHandler, ToastAndroid, StatusBar methods) used without `Platform.OS` or `Platform.select()` guards |
 | `mobile-image-assets` | `.ts`, `.tsx`, `.json` | Oversized images (>500KB), unoptimized formats (BMP, TIFF), missing `@2x`/`@3x` variants, uncached remote images |
 | `mobile-env-safety` | `.ts`, `.tsx`, `.json` | Hardcoded production endpoints, missing `EXPO_PUBLIC_` prefix, server-only secrets in client code |
+| `mobile-performance` | `.ts`, `.tsx`, `.dart` | Inline styles, missing list keys, ScrollView for long lists (RN); missing const constructors, inline widgets (Flutter) |
 
 </details>
 
@@ -293,7 +310,7 @@ Plugin manifest: [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json).
 
 ## Configuration
 
-No API keys are required for v0.4.0. All tools work locally.
+No API keys are required for v0.5.0. All tools work locally.
 
 Future versions may use:
 
@@ -314,8 +331,8 @@ Summary aligned with [ROADMAP.md](ROADMAP.md):
 | **v0.1.0** | Zero to Phone | 3 skills, 1 rule, 3 MCP tools | |
 | **v0.2.0** | Navigate & State | 6 skills, 2 rules, 6 MCP tools | |
 | **v0.3.0** | Camera & AI | 9 skills, 3 rules, 9 MCP tools | |
-| **v0.4.0** | Users & Data | 13 skills, 4 rules, 12 MCP tools | **Current** |
-| **v0.5.0** | Flutter | Flutter project setup, navigation, device deploy, state management | |
+| **v0.4.0** | Users & Data | 13 skills, 4 rules, 12 MCP tools | |
+| **v0.5.0** | Flutter | 17 skills, 5 rules, 12 MCP tools | **Current** |
 | **v0.6.0** | Ship It | App store prep, iOS and Android submission | |
 | **v0.7.0** | Grow | Monetization, deep links, bundle analysis | |
 | **v1.0.0** | Stable | 22 skills, 7 rules, 18 MCP tools | |

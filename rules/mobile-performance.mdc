@@ -1,0 +1,166 @@
+---
+description: Flag common performance anti-patterns in React Native and Flutter code. Catches inline styles, missing list keys, unnecessary re-renders, missing const constructors, and heavy computation in build methods.
+alwaysApply: false
+globs:
+  - "*.ts"
+  - "*.tsx"
+  - "*.dart"
+---
+
+# Performance Anti-Patterns
+
+When reviewing or writing code in a React Native or Flutter project, flag these performance issues:
+
+## React Native / Expo
+
+### 1. Inline style objects in render
+
+Flag style objects created inside the render function or JSX:
+
+```tsx
+// BAD: creates a new object every render, triggers re-layout
+<View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
+
+// GOOD: defined once outside the component
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16, backgroundColor: '#fff' },
+});
+<View style={styles.container}>
+```
+
+**Exception:** Dynamic styles that depend on props or state are acceptable, but should use `useMemo` if expensive.
+
+### 2. ScrollView for long lists
+
+Flag `ScrollView` rendering a dynamic array of items:
+
+```tsx
+// BAD: renders all items at once, kills performance on large lists
+<ScrollView>
+  {items.map(item => <ItemRow key={item.id} item={item} />)}
+</ScrollView>
+
+// GOOD: virtualizes off-screen items
+<FlatList
+  data={items}
+  keyExtractor={(item) => item.id}
+  renderItem={({ item }) => <ItemRow item={item} />}
+/>
+```
+
+Use `FlatList`, `SectionList`, or `FlashList` (from Shopify) for lists with more than ~20 items.
+
+### 3. Missing key prop on list items
+
+Flag `.map()` calls rendering components without a `key` prop, or using array index as key for dynamic lists.
+
+### 4. Image instead of expo-image
+
+Flag usage of `Image` from `react-native` when `expo-image` is available:
+
+```tsx
+// BAD: no disk caching, no blur placeholder, no transitions
+import { Image } from 'react-native';
+
+// GOOD: disk caching, blur hash, content-fit, transitions
+import { Image } from 'expo-image';
+```
+
+### 5. Unnecessary re-renders
+
+Flag components that receive new object/array/function references on every render:
+
+- Object/array literals in props: `data={[1, 2, 3]}` (creates new array each render)
+- Inline arrow functions in props: `onPress={() => handlePress(id)}` (creates new function each render)
+
+**Suggest:** `React.memo` for pure components, `useCallback` for function props, `useMemo` for computed values.
+
+## Flutter / Dart
+
+### 1. Missing const constructors
+
+Flag widget instantiations that could use `const` but don't:
+
+```dart
+// BAD: creates a new instance every rebuild
+child: Text('Hello')
+child: SizedBox(height: 16)
+child: Icon(Icons.home)
+
+// GOOD: compile-time constant, skipped during rebuild
+child: const Text('Hello')
+child: const SizedBox(height: 16)
+child: const Icon(Icons.home)
+```
+
+Any widget whose constructor arguments are all compile-time constants should be prefixed with `const`.
+
+### 2. Building widgets inline instead of extracting
+
+Flag deeply nested widget trees that should be extracted into separate widget classes:
+
+```dart
+// BAD: entire subtree rebuilds when parent rebuilds
+Widget build(BuildContext context) {
+  return Column(
+    children: [
+      Container(
+        child: Row(
+          children: [
+            // 50+ lines of nested widgets...
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+// GOOD: extracted widget only rebuilds when its own state changes
+class _HeaderSection extends StatelessWidget {
+  const _HeaderSection();
+  // ...
+}
+```
+
+### 3. setState on large widget trees
+
+Flag `setState()` calls in StatefulWidgets that rebuild a large subtree. Suggest narrowing the rebuild scope by extracting the stateful part into a smaller widget.
+
+### 4. ListView without builder
+
+Flag `ListView(children: [...])` for dynamic or large lists:
+
+```dart
+// BAD: builds all children upfront
+ListView(
+  children: items.map((item) => ItemTile(item: item)).toList(),
+)
+
+// GOOD: lazily builds only visible items
+ListView.builder(
+  itemCount: items.length,
+  itemBuilder: (context, index) => ItemTile(item: items[index]),
+)
+```
+
+### 5. Heavy computation in build()
+
+Flag API calls, database queries, or expensive calculations inside `build()`:
+
+```dart
+// BAD: runs on every rebuild
+Widget build(BuildContext context) {
+  final sorted = items.toList()..sort((a, b) => a.name.compareTo(b.name));
+  // ...
+}
+```
+
+**Suggest:** Move computation to `initState`, a provider, or cache with `late final`.
+
+## What to Do
+
+When any of these patterns are detected:
+
+- **Warn**: "`{pattern}` detected. This can cause performance issues: `{explanation}`."
+- **Suggest** the correct pattern with a code example.
+- **Do not flag** patterns in test files (`*.test.ts`, `*.test.dart`, `*_test.dart`).

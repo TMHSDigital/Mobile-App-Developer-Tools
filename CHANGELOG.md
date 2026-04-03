@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.0] - 2026-04-03
+
+### Added
+
+- **4 new Flutter skills**: `mobile-flutter-project-setup` (guided flutter create with structure, linting, packages, flavors), `mobile-flutter-navigation` (GoRouter, shell routes, auth guards, deep links), `mobile-flutter-run-on-device` (USB/wireless debugging, hot reload, build modes), `mobile-flutter-state-management` (Riverpod, Bloc, Provider patterns)
+- **1 new rule**: `mobile-performance` (cross-framework performance anti-patterns for React Native and Flutter)
+- Totals: 17 skills, 5 rules, 12 MCP tools
+
 ## [0.4.0] - 2026-04-03
 
 ### Added

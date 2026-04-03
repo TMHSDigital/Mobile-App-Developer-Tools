@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.4.0**. It helps developers go from zero to a running mobile app on their phone. Currently supports React Native/Expo with **13 skills**, **4 rules**, and a companion MCP server exposing **12 tools**. Flutter support is planned for v0.5.0.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.5.0**. It helps developers go from zero to a running mobile app on their phone. Supports React Native/Expo and Flutter with **17 skills**, **5 rules**, and a companion MCP server exposing **12 tools**.
 
 ## Plugin Architecture
 
@@ -16,7 +16,9 @@ mcp-server/                  - MCP server with 12 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (13 total)
+## Skills (17 total)
+
+### React Native / Expo
 
 | Skill | Purpose |
 | --- | --- |
@@ -34,7 +36,16 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-local-storage | AsyncStorage, expo-sqlite, expo-secure-store, MMKV; migrations and data cleanup |
 | mobile-api-integration | REST/GraphQL clients, React Query, auth headers, retry, offline queue, optimistic updates |
 
-## Rules (4 total)
+### Flutter
+
+| Skill | Purpose |
+| --- | --- |
+| mobile-flutter-project-setup | Guided flutter create with structure, linting, packages, flavors |
+| mobile-flutter-navigation | GoRouter: declarative routing, shell routes for tabs, auth guards, deep linking |
+| mobile-flutter-run-on-device | USB/wireless debugging, hot reload vs restart, build modes, troubleshooting |
+| mobile-flutter-state-management | Riverpod (recommended), Bloc, Provider, setState; async data, code generation |
+
+## Rules (5 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
@@ -42,6 +53,7 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-platform-check.mdc | `.ts`, `.tsx` | Flags platform-specific APIs used without Platform.OS or Platform.select() guards |
 | mobile-image-assets.mdc | `.ts`, `.tsx`, `.json` | Flags oversized images, unoptimized formats, missing density variants, uncached remote images |
 | mobile-env-safety.mdc | `.ts`, `.tsx`, `.json` | Flags hardcoded production endpoints, missing EXPO_PUBLIC_ prefix, server-only secrets in client code |
+| mobile-performance.mdc | `.ts`, `.tsx`, `.dart` | Flags inline styles, missing list keys, unnecessary re-renders (RN); missing const constructors, inline widgets (Flutter) |
 
 ## Companion MCP Server
 

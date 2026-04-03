@@ -18,7 +18,7 @@ import { register as registerResetDevEnvironment } from "./tools/resetDevEnviron
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.4.0",
+  version: "0.5.0",
 });
 
 registerCheckDevEnvironment(server);
