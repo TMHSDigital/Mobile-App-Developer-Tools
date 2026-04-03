@@ -17,6 +17,12 @@
 | **v0.11.0** | Design & Adapt | +3 | +1 | +3 | Theming/dark mode, feature flags/remote config, accessibility testing automation |
 | **v0.12.0** | Extend & Evolve | +3 | +1 | +3 | Native module authoring, config plugins, SDK upgrade migration |
 | **v1.0.0** | Stable | +0 | +0 | +0 | Polish, docs, production release: 43 skills, 12 rules, 36 MCP tools |
+| **v1.1.0** | Polish & Platform | +5 | +1 | +3 | Media handling, social sharing, biometrics, haptics, app lifecycle; privacy-compliance rule |
+| **v1.2.0** | Data & Payments | +5 | +1 | +4 | Payments/checkout, data visualization, widgets/shortcuts, error boundaries, network awareness |
+| **v1.3.0** | Engage & Comply | +5 | +1 | +3 | Onboarding, advanced notifications, privacy compliance, file management, multi-environment |
+| **v1.4.0** | Connect & Input | +4 | +1 | +3 | WebView/hybrid, keyboard/input, audio playback, contacts/calendar; input-validation rule |
+| **v1.5.0** | Specialize | +3 | +1 | +3 | Bluetooth/IoT, data model generation, EAS Workflows; deprecated-api rule |
+| **v2.0.0** | Complete | +0 | +0 | +0 | Polish, docs, production release: 65 skills, 17 rules, 52 MCP tools |
 
 ## v0.1.0 - Zero to Phone
 
@@ -208,3 +214,98 @@
 Production release. All skills polished, all MCP tools tested, documentation complete.
 
 **Final counts:** 43 skills, 12 rules, 36 MCP tools.
+
+---
+
+# Post-1.0 Roadmap
+
+Based on gap analysis against the full mobile development landscape and competitor tooling.
+
+## v1.1.0 - Polish & Platform
+
+**Skills:**
+- `mobile-media-handling` (Shared) - Image/video picker from gallery, compression, thumbnails, resumable file uploads, expo-image-picker, image_picker (Flutter)
+- `mobile-social-sharing` (Shared) - Native share sheet, share extensions (iOS), share targets (Android), social login (Apple, Google), expo-sharing, share_plus
+- `mobile-biometrics` (Shared) - Face ID, Touch ID, fingerprint, expo-local-authentication, local_auth (Flutter), biometric-gated storage, passcode fallback
+- `mobile-haptics` (Shared) - Haptic feedback patterns (impact, notification, selection), expo-haptics, HapticFeedback (Flutter), vibration, UX guidelines
+- `mobile-app-lifecycle` (Shared) - App state transitions (foreground/background/inactive), splash config, versioning strategy, force-update prompts, in-app review API, minimum OS targeting
+
+**Rules:**
+- `mobile-privacy-compliance` - Missing ATT prompt, absent privacy manifest, user data collected without consent declaration, tracking without consent
+
+**MCP Tools:**
+- `mobile_setupBiometrics` - Add biometric authentication with fallback to passcode and secure storage gating
+- `mobile_addShareSheet` - Configure native share sheet with content types and social login providers
+- `mobile_setupMediaPicker` - Add image/video picker with compression, cropping, and upload helpers
+
+## v1.2.0 - Data & Payments
+
+**Skills:**
+- `mobile-payments-checkout` (Shared) - Stripe mobile SDK, Apple Pay, Google Pay, payment sheets, one-time payments, PCI compliance, checkout flows
+- `mobile-data-visualization` (Shared) - Charts (line, bar, pie, area), victory-native, fl_chart, react-native-skia, sparklines, dashboard patterns
+- `mobile-widgets-shortcuts` (Shared) - iOS WidgetKit, Android Glance/AppWidget, Quick Actions (3D Touch), App Clips (iOS), Instant Apps (Android), Siri Shortcuts
+- `mobile-error-boundaries` (Shared) - Global error boundaries, ErrorWidget.builder (Flutter), crash recovery UI, retry patterns, fallback screens, graceful degradation
+- `mobile-network-awareness` (Shared) - Online/offline UI indicators, bandwidth detection, adaptive quality, timeout strategies, retry with exponential backoff, airplane mode handling
+
+**Rules:**
+- `mobile-error-handling` - Unhandled promise rejections, missing error boundaries around async operations, catch blocks that swallow errors silently
+
+**MCP Tools:**
+- `mobile_setupPayments` - Configure Stripe SDK with Apple Pay/Google Pay and generate a checkout flow
+- `mobile_addChart` - Scaffold a chart component with typed data series and theming
+- `mobile_setupWidget` - Generate iOS WidgetKit or Android Glance widget with shared data bridge
+- `mobile_addErrorBoundary` - Wrap app sections with error boundaries, fallback UI, and recovery actions
+
+## v1.3.0 - Engage & Comply
+
+**Skills:**
+- `mobile-onboarding` (Shared) - Walkthrough/intro screens, progressive disclosure, permission priming (pre-permission dialogs), feature tooltips, first-run experience, skip/defer patterns
+- `mobile-notifications-advanced` (Shared) - Scheduled/recurring local notifications, notification actions, badge management, grouping, Do Not Disturb awareness, in-app notification center
+- `mobile-privacy-compliance` (Shared) - GDPR consent banners, App Tracking Transparency (ATT), Privacy Manifests (iOS), CCPA, COPPA, data deletion requests, consent management platforms
+- `mobile-file-management` (Shared) - File system access, document picker, PDF viewing, file downloads, expo-file-system, expo-document-picker, path_provider, file caching strategies
+- `mobile-multi-environment` (Shared) - Dev/staging/prod environment management, EAS profiles, build variants (Android flavors, iOS schemes), .env per environment, API base URL switching
+
+**Rules:**
+- `mobile-data-retention` - User data stored without expiration, missing data deletion endpoints, PII in logs, analytics events with identifiable data
+
+**MCP Tools:**
+- `mobile_setupOnboarding` - Generate walkthrough screens with permission priming and skip logic
+- `mobile_setupEnvironments` - Configure multi-environment setup with EAS profiles and typed env config
+- `mobile_validatePrivacy` - Audit project for privacy compliance: ATT, Privacy Manifests, consent flows
+
+## v1.4.0 - Connect & Input
+
+**Skills:**
+- `mobile-webview-hybrid` (Shared) - WebView integration, JS bridge communication, cookie/session sharing, embedded browsers, OAuth in WebView, react-native-webview, webview_flutter
+- `mobile-keyboard-input` (Shared) - Custom keyboard accessories, input accessory views, keyboard-aware scroll, OTP auto-fill, autofill (password, address), input masking, numeric/email keyboard types
+- `mobile-audio-playback` (Shared) - Background audio, audio session management (iOS), audio focus (Android), lock screen/control center controls, expo-av advanced, just_audio (Flutter), text-to-speech
+- `mobile-contacts-calendar` (Shared) - Contacts API, calendar integration, expo-contacts, expo-calendar, event creation, contact picker, reminder sync
+
+**Rules:**
+- `mobile-input-validation` - User input rendered without sanitization, missing keyboard type for data format, text fields without maxLength on free-form input
+
+**MCP Tools:**
+- `mobile_addWebView` - Configure WebView with JS bridge, cookie sharing, and navigation controls
+- `mobile_setupAudio` - Add audio playback with background mode, media controls, and session management
+- `mobile_addContactsPicker` - Wire up contacts/calendar access with permission handling and picker UI
+
+## v1.5.0 - Specialize
+
+**Skills:**
+- `mobile-bluetooth-iot` (Shared) - BLE scanning/connecting, react-native-ble-plx, flutter_blue_plus, peripheral communication, NFC, IoT device management, health device protocols
+- `mobile-data-models` (Shared) - JSON-to-typed model generation, data class patterns, serialization (TypeScript interfaces, Dart freezed/json_serializable), schema-first development
+- `mobile-eas-workflows` (Expo) - EAS Workflows YAML authoring, pre-packaged jobs (build, submit, update, maestro), fingerprint-based skip logic, Slack notifications, workflow monitoring
+
+**Rules:**
+- `mobile-deprecated-api` - Usage of deprecated Expo SDK APIs, removed React Native APIs, sunset Flutter packages, APIs with known replacements
+
+**MCP Tools:**
+- `mobile_setupBluetooth` - Configure BLE scanning and connection with permission handling and device discovery
+- `mobile_generateModel` - Generate typed data models from JSON schema or sample data with serialization
+- `mobile_setupEASWorkflow` - Generate .eas/workflows/*.yml with build, test, and deploy jobs
+
+## v2.0.0 - Complete
+
+Full-coverage production release. All skills polished, all MCP tools tested, documentation complete.
+
+**Final counts:** 65 skills, 17 rules, 52 MCP tools.

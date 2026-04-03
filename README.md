@@ -418,6 +418,12 @@ Full details in [ROADMAP.md](ROADMAP.md).
 | **v0.11.0** | Design & Adapt | 40 skills, 11 rules, 33 MCP tools | |
 | **v0.12.0** | Extend & Evolve | 43 skills, 12 rules, 36 MCP tools | |
 | **v1.0.0** | Stable | 43 skills, 12 rules, 36 MCP tools | |
+| **v1.1.0** | Polish & Platform | 48 skills, 13 rules, 39 MCP tools | |
+| **v1.2.0** | Data & Payments | 53 skills, 14 rules, 43 MCP tools | |
+| **v1.3.0** | Engage & Comply | 58 skills, 15 rules, 46 MCP tools | |
+| **v1.4.0** | Connect & Input | 62 skills, 16 rules, 49 MCP tools | |
+| **v1.5.0** | Specialize | 65 skills, 17 rules, 52 MCP tools | |
+| **v2.0.0** | Complete | 65 skills, 17 rules, 52 MCP tools | |
 
 </details>
 

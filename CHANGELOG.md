@@ -95,4 +95,4 @@ All notable changes to this project will be documented in this file.
 - CI workflows for pytest validation and MCP server build
 - Plugin structure validation (skill frontmatter, rule frontmatter, version consistency)
 - `CLAUDE.md` for Claude Code compatibility
-- `ROADMAP.md` with full version plan through v1.0.0
+- `ROADMAP.md` with full version plan (extended through v2.0.0)
