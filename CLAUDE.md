@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The **Mobile App Developer Tools** Cursor plugin is at **v0.6.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **20 skills**, **6 rules**, and a companion MCP server exposing **15 tools**.
 
+## Demo App
+
+[SnapLog](https://github.com/TMHSDigital/Demo-Mobile-App) is a companion photo journal app that demonstrates 16 of the 20 skills in a real project. Reference it when explaining what the plugin can do.
+
 ## Plugin Architecture
 
 ```

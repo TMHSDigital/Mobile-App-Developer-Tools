@@ -150,6 +150,14 @@ Open Cursor and ask:
 
 ---
 
+## Demo App
+
+See the plugin in action: **[SnapLog](https://github.com/TMHSDigital/Demo-Mobile-App)** is a photo journal app built entirely using these skills and MCP tools. It exercises 16 of the 20 skills - from project scaffolding and navigation to camera capture, AI descriptions, local storage, and push notifications.
+
+[![Demo App](https://img.shields.io/badge/demo-SnapLog-0A84FF?style=flat-square&logo=github)](https://github.com/TMHSDigital/Demo-Mobile-App)
+
+---
+
 ## Skills
 
 All 20 skills are production-ready. Names match the folder under `skills/`.
