@@ -9,10 +9,13 @@ import { register as registerRunOnDevice } from "./tools/runOnDevice.js";
 import { register as registerGenerateScreen } from "./tools/generateScreen.js";
 import { register as registerGenerateComponent } from "./tools/generateComponent.js";
 import { register as registerInstallDependency } from "./tools/installDependency.js";
+import { register as registerAddPermission } from "./tools/addPermission.js";
+import { register as registerIntegrateAI } from "./tools/integrateAI.js";
+import { register as registerCheckBuildHealth } from "./tools/checkBuildHealth.js";
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.2.0",
+  version: "0.3.0",
 });
 
 registerCheckDevEnvironment(server);
@@ -21,6 +24,9 @@ registerRunOnDevice(server);
 registerGenerateScreen(server);
 registerGenerateComponent(server);
 registerInstallDependency(server);
+registerAddPermission(server);
+registerIntegrateAI(server);
+registerCheckBuildHealth(server);
 
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();

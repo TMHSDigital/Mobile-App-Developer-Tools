@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.2.0**. It helps developers go from zero to a running mobile app on their phone. Currently supports React Native/Expo with **6 skills**, **2 rules**, and a companion MCP server exposing **6 tools** for environment checks, project scaffolding, device deployment, screen generation, component generation, and dependency installation. Flutter support is planned for v0.5.0.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.3.0**. It helps developers go from zero to a running mobile app on their phone. Currently supports React Native/Expo with **9 skills**, **3 rules**, and a companion MCP server exposing **9 tools** for environment checks, project scaffolding, device deployment, screen/component generation, dependency installation, permissions, AI integration, and build health checks. Flutter support is planned for v0.5.0.
 
 ## Plugin Architecture
 
@@ -12,11 +12,11 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.2.0**. It helps deve
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 6 tools
+mcp-server/                  - MCP server with 9 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (6 total)
+## Skills (9 total)
 
 | Skill | Purpose |
 | --- | --- |
@@ -26,19 +26,23 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-navigation-setup | Expo Router file-based navigation: tabs, stack, drawer, typed routes, deep linking |
 | mobile-state-management | When to use React state vs Zustand vs Jotai vs React Query; patterns and examples |
 | mobile-component-patterns | Reusable component architecture, compound components, StyleSheet vs NativeWind, testing |
+| mobile-camera-integration | expo-camera setup, permissions, photo capture, barcode scanning, video recording |
+| mobile-ai-features | AI API integration (OpenAI, Anthropic, Google) with backend proxy, vision, text, audio |
+| mobile-permissions | Cross-platform permission request patterns, rationale strings, denied/blocked handling |
 
-## Rules (2 total)
+## Rules (3 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
 | mobile-secrets.mdc | Global | Flags API keys, signing credentials, keystore passwords, Firebase config, EAS tokens |
 | mobile-platform-check.mdc | `.ts`, `.tsx` | Flags platform-specific APIs used without Platform.OS or Platform.select() guards |
+| mobile-image-assets.mdc | `.ts`, `.tsx`, `.json` | Flags oversized images, unoptimized formats, missing density variants, uncached remote images |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (6 total)
+### Tools (9 total)
 
 | Tool | Description |
 | --- | --- |
@@ -48,6 +52,9 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 | mobile_generateScreen | Create a new Expo Router screen file with navigation wiring and boilerplate |
 | mobile_generateComponent | Create a React Native component with typed props, StyleSheet, and optional tests |
 | mobile_installDependency | Install a package via npx expo install with native module detection and warnings |
+| mobile_addPermission | Add platform permission with iOS rationale string to app.json config plugins |
+| mobile_integrateAI | Scaffold AI API client with provider config, error handling, and TypeScript types |
+| mobile_checkBuildHealth | Validate app.json, check dependencies, verify TypeScript, detect native module issues |
 
 ## Development Workflow
 

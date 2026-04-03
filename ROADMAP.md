@@ -5,8 +5,8 @@
 | Version | Theme | Skills | Rules | MCP Tools | Highlights |
 |---------|-------|--------|-------|-----------|------------|
 | **v0.1.0** | Zero to Phone | 3 | 1 | 3 | Project scaffolding, env check, run-on-device, secrets rule |
-| **v0.2.0** | Navigate & State | +3 | +1 | +3 | Navigation setup, state management, component generation, platform-check rule **(current)** |
-| **v0.3.0** | Camera & AI | +3 | +1 | +3 | Camera integration, AI features, permissions skill, image-assets rule |
+| **v0.2.0** | Navigate & State | +3 | +1 | +3 | Navigation setup, state management, component generation, platform-check rule |
+| **v0.3.0** | Camera & AI | +3 | +1 | +3 | Camera integration, AI features, permissions skill, image-assets rule **(current)** |
 | **v0.4.0** | Users & Data | +4 | +1 | +3 | Auth, push notifications, local storage, API integration, env-safety rule |
 | **v0.5.0** | Flutter | +4 | +1 | +0 | Flutter project setup, navigation, run-on-device, state management, performance rule |
 | **v0.6.0** | Ship It | +3 | +1 | +3 | App store prep, iOS submission, Android submission, accessibility rule |
@@ -28,7 +28,7 @@
 - `mobile_scaffoldProject` - Generate a new Expo project from templates
 - `mobile_runOnDevice` - Start dev server and connect to a device
 
-## v0.2.0 - Navigate & State (current)
+## v0.2.0 - Navigate & State
 
 **Skills:**
 - `mobile-navigation-setup` (Expo) - Expo Router file-based navigation patterns
@@ -43,7 +43,7 @@
 - `mobile_generateComponent` - Create a component with props, styles, tests
 - `mobile_installDependency` - Add and configure a library with linking and pod install
 
-## v0.3.0 - Camera & AI
+## v0.3.0 - Camera & AI (current)
 
 **Skills:**
 - `mobile-camera-integration` (Expo) - expo-camera setup, permissions, photo capture

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-04-03
+
+### Added
+
+- **3 new skills**: `mobile-camera-integration` (expo-camera, photo capture, barcode scanning), `mobile-ai-features` (AI API integration with backend proxy patterns), `mobile-permissions` (cross-platform permission handling)
+- **1 new rule**: `mobile-image-assets` (flags oversized images, unoptimized formats, missing density variants)
+- **3 new MCP tools**: `mobile_addPermission`, `mobile_integrateAI`, `mobile_checkBuildHealth`
+- Totals: 9 skills, 3 rules, 9 MCP tools
+
 ## [0.2.0] - 2026-04-03
 
 ### Added

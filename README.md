@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.2.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.3.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&label=CI&logo=githubactions&style=for-the-badge" alt="CI"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&label=Validate&logo=githubactions&style=for-the-badge" alt="Validate"></a>
@@ -24,7 +24,7 @@
 ---
 
 <p align="center">
-  <strong>6 skills</strong> &nbsp;&bull;&nbsp; <strong>2 rules</strong> &nbsp;&bull;&nbsp; <strong>6 MCP tools</strong>
+  <strong>9 skills</strong> &nbsp;&bull;&nbsp; <strong>3 rules</strong> &nbsp;&bull;&nbsp; <strong>9 MCP tools</strong>
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@
 
 ## Overview
 
-Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, run, and debug mobile apps without leaving the IDE. Currently at **v0.2.0** with six skills, two rules, and six live MCP tools. Flutter support is planned for v0.5.0.
+Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, run, and debug mobile apps without leaving the IDE. Currently at **v0.3.0** with nine skills, three rules, and nine live MCP tools. Flutter support is planned for v0.5.0.
 
 <br>
 <table>
@@ -46,9 +46,9 @@ Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packag
 
 | Layer | Role |
 | --- | --- |
-| **Skills** | Guided workflows: project scaffolding, environment setup, device deployment, navigation, state management, component patterns |
-| **Rules** | Guardrails: `mobile-secrets` catches hardcoded secrets; `mobile-platform-check` flags missing platform guards |
-| **MCP** | Six tools for environment checks, project creation, device connection, screen/component generation, dependency installation |
+| **Skills** | Guided workflows: project scaffolding, environment setup, device deployment, navigation, state management, component patterns, camera, AI, permissions |
+| **Rules** | Guardrails: `mobile-secrets` catches hardcoded secrets; `mobile-platform-check` flags missing platform guards; `mobile-image-assets` flags bundle bloat |
+| **MCP** | Nine tools for environment checks, project creation, device connection, screen/component generation, dependency installation, permissions, AI integration, build health |
 
 </td>
 <td>
@@ -74,7 +74,7 @@ Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packag
 flowchart LR
     A[User asks mobile dev question] --> B[Cursor loads a Skill]
     B --> C{MCP server configured?}
-    C -->|Yes| D["mobile-mcp tools (6)"]
+    C -->|Yes| D["mobile-mcp tools (9)"]
     C -->|No| E[Docs-only guidance]
     D --> F[Local env checks / scaffolding]
     E --> G[Answer in chat or code edits]
@@ -152,10 +152,10 @@ Open Cursor and ask:
 
 ## Skills
 
-All 6 skills are production-ready. Names match the folder under `skills/`.
+All 9 skills are production-ready. Names match the folder under `skills/`.
 
 <details>
-<summary><strong>All 6 skills</strong></summary>
+<summary><strong>All 9 skills</strong></summary>
 
 | Skill | Framework | What it does |
 | --- | --- | --- |
@@ -165,6 +165,9 @@ All 6 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-navigation-setup` | Expo | Expo Router file-based navigation: tabs, stack, drawer, typed routes, deep linking |
 | `mobile-state-management` | Shared | When to use React state vs Zustand vs Jotai vs React Query with code examples |
 | `mobile-component-patterns` | Shared | Reusable component architecture, compound components, StyleSheet vs NativeWind, testing |
+| `mobile-camera-integration` | Expo | expo-camera setup, permissions, photo capture, barcode scanning, video recording |
+| `mobile-ai-features` | Shared | AI API integration (OpenAI, Anthropic, Google) with backend proxy, vision, text, audio |
+| `mobile-permissions` | Shared | Cross-platform permission requests, iOS rationale strings, denied/blocked state handling |
 
 </details>
 
@@ -178,20 +181,24 @@ All 6 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-navigation-setup` | "Add tab navigation with Home, Search, and Profile tabs" |
 | `mobile-state-management` | "What state management should I use for my Expo app?" |
 | `mobile-component-patterns` | "Create a reusable Card component with header and footer" |
+| `mobile-camera-integration` | "Add a QR code scanner to my app" |
+| `mobile-ai-features` | "I want to take a photo and have AI describe what's in it" |
+| `mobile-permissions` | "How do I handle camera permission properly on iOS and Android?" |
 
 ---
 
 ## Rules
 
-Both rules are production-ready.
+All 3 rules are production-ready.
 
 <details>
-<summary><strong>All 2 rules</strong></summary>
+<summary><strong>All 3 rules</strong></summary>
 
 | Rule | Scope | What it catches |
 | --- | --- | --- |
 | `mobile-secrets` | Always on | API keys, signing credentials, keystore passwords, Firebase config, `.p8`/`.p12` files, EAS tokens |
 | `mobile-platform-check` | `.ts`, `.tsx` | Platform-specific APIs (BackHandler, ToastAndroid, StatusBar methods) used without `Platform.OS` or `Platform.select()` guards |
+| `mobile-image-assets` | `.ts`, `.tsx`, `.json` | Oversized images (>500KB), unoptimized formats (BMP, TIFF), missing `@2x`/`@3x` variants, uncached remote images |
 
 </details>
 
@@ -226,7 +233,7 @@ npx @tmhs/mobile-mcp
 ```
 
 <details>
-<summary><strong>All 6 MCP tools</strong></summary>
+<summary><strong>All 9 MCP tools</strong></summary>
 
 | Tool | Purpose |
 | --- | --- |
@@ -236,6 +243,9 @@ npx @tmhs/mobile-mcp
 | `mobile_generateScreen` | Create a new Expo Router screen file with correct convention, navigation wiring, and boilerplate. |
 | `mobile_generateComponent` | Create a React Native component with typed props interface, StyleSheet, and optional test file. |
 | `mobile_installDependency` | Install a package via `npx expo install` with native module detection and Expo Go compatibility warnings. |
+| `mobile_addPermission` | Add a platform permission to app.json with iOS rationale string via Expo config plugins. |
+| `mobile_integrateAI` | Scaffold an AI API client with provider config, error handling, timeout, and TypeScript types. |
+| `mobile_checkBuildHealth` | Validate app.json, check dependencies, verify TypeScript compiles, detect native module issues. |
 
 </details>
 
@@ -271,7 +281,7 @@ Plugin manifest: [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json).
 
 ## Configuration
 
-No API keys are required for v0.2.0. All tools work locally.
+No API keys are required for v0.3.0. All tools work locally.
 
 Future versions may use:
 
@@ -290,8 +300,8 @@ Summary aligned with [ROADMAP.md](ROADMAP.md):
 | Version | Theme | Highlights | Status |
 | --- | --- | --- | --- |
 | **v0.1.0** | Zero to Phone | 3 skills, 1 rule, 3 MCP tools | |
-| **v0.2.0** | Navigate & State | 6 skills, 2 rules, 6 MCP tools | **Current** |
-| **v0.3.0** | Camera & AI | Camera integration, AI features, permissions | |
+| **v0.2.0** | Navigate & State | 6 skills, 2 rules, 6 MCP tools | |
+| **v0.3.0** | Camera & AI | 9 skills, 3 rules, 9 MCP tools | **Current** |
 | **v0.4.0** | Users & Data | Auth, push notifications, local storage, API integration | |
 | **v0.5.0** | Flutter | Flutter project setup, navigation, device deploy, state management | |
 | **v0.6.0** | Ship It | App store prep, iOS and Android submission | |

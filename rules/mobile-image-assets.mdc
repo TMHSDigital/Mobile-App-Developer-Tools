@@ -1,0 +1,102 @@
+---
+description: Flag oversized image assets, unoptimized formats, missing density variants, and uncached remote images in React Native/Expo projects. Prevents app bundle bloat and poor image performance.
+alwaysApply: false
+globs:
+  - "*.ts"
+  - "*.tsx"
+  - "*.json"
+---
+
+# Image Asset Optimization
+
+When reviewing or writing code in a React Native/Expo project, flag these image-related issues:
+
+## Patterns to Flag
+
+### 1. Oversized local images
+
+Files over 500KB referenced via `require()` or `import`:
+
+- PNG files that should be JPEG (photos, gradients)
+- Uncompressed assets shipped in the bundle
+- Full-resolution photos used as thumbnails
+
+**Suggest:** Compress with tools like `sharp`, `imagemin`, or [squoosh.app](https://squoosh.app). Use JPEG for photos, PNG only for transparency, WebP for both.
+
+### 2. Unoptimized formats
+
+Flag usage of these formats in mobile apps:
+
+- `.bmp` - uncompressed, massive file size
+- `.tiff` / `.tif` - not supported natively on Android
+- `.svg` used as `<Image>` source (requires `react-native-svg` to render properly)
+
+**Suggest:** Convert to PNG, JPEG, or WebP. For icons, use `@expo/vector-icons` or `react-native-svg`.
+
+### 3. Missing density variants
+
+Images referenced without `@2x` and `@3x` variants:
+
+```
+assets/
+  icon.png        # 1x only - will look blurry on high-DPI screens
+```
+
+**Suggest:** Provide all three variants:
+
+```
+assets/
+  icon.png        # 1x (base)
+  icon@2x.png     # 2x (most phones)
+  icon@3x.png     # 3x (iPhone Pro, flagship Android)
+```
+
+React Native automatically picks the correct variant based on screen density.
+
+### 4. Uncached remote images
+
+Using `<Image source={{ uri: "https://..." }}>` from `react-native` without caching:
+
+- The built-in `Image` component does not cache images on Android
+- Repeated renders re-download the same image
+- No placeholder or progressive loading
+
+**Suggest:** Replace with `expo-image`:
+
+```tsx
+import { Image } from "expo-image";
+
+<Image
+  source={{ uri: "https://example.com/photo.jpg" }}
+  placeholder={blurhash}
+  contentFit="cover"
+  transition={200}
+/>
+```
+
+`expo-image` provides automatic disk caching, blurhash placeholders, and better performance than the built-in `Image` component.
+
+### 5. Base64 images in source code
+
+Images encoded as base64 strings directly in `.ts`/`.tsx` files:
+
+- Bloats the JavaScript bundle
+- Cannot be cached separately
+- Increases parse time on app startup
+
+**Suggest:** Save as a file in `assets/` and use `require()` or host remotely with `expo-image`.
+
+## What to Do
+
+When any of these patterns are detected:
+
+- **Warn**: "`{pattern}` detected. This impacts app size / performance."
+- **Suggest the fix** with the alternatives listed above
+- **For remote images**: recommend `npx expo install expo-image` and show the replacement pattern
+
+## Acceptable Patterns (Do Not Flag)
+
+- Small icons under 10KB as inline base64 (splash screen config, for example)
+- SVG files used with `react-native-svg` and `SvgXml` component (not `<Image>`)
+- Images in `assets/` with proper `@2x`/`@3x` variants
+- Remote images loaded through `expo-image` with caching
