@@ -22,10 +22,17 @@ import { register as registerSubmitToPlayStore } from "./tools/submitToPlayStore
 import { register as registerGenerateScreenshots } from "./tools/generateScreenshots.js";
 import { register as registerAnalyzeBundle } from "./tools/analyzeBundle.js";
 import { register as registerConfigureOTA } from "./tools/configureOTA.js";
+import { register as registerRunTests } from "./tools/runTests.js";
+import { register as registerSetupCI } from "./tools/setupCI.js";
+import { register as registerGenerateTestFile } from "./tools/generateTestFile.js";
+import { register as registerSetupI18n } from "./tools/setupI18n.js";
+import { register as registerAddMap } from "./tools/addMap.js";
+import { register as registerGenerateForm } from "./tools/generateForm.js";
+import { register as registerSetupRealtime } from "./tools/setupRealtime.js";
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.7.0",
+  version: "0.9.0",
 });
 
 registerCheckDevEnvironment(server);
@@ -47,6 +54,13 @@ registerSubmitToPlayStore(server);
 registerGenerateScreenshots(server);
 registerAnalyzeBundle(server);
 registerConfigureOTA(server);
+registerRunTests(server);
+registerSetupCI(server);
+registerGenerateTestFile(server);
+registerSetupI18n(server);
+registerAddMap(server);
+registerGenerateForm(server);
+registerSetupRealtime(server);
 
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();

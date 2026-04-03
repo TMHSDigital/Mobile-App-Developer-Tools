@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.7.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.9.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&label=CI&logo=githubactions&style=for-the-badge" alt="CI"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&label=Validate&logo=githubactions&style=for-the-badge" alt="Validate"></a>
@@ -24,7 +24,7 @@
 ---
 
 <p align="center">
-  <strong>24 skills</strong> &nbsp;&bull;&nbsp; <strong>7 rules</strong> &nbsp;&bull;&nbsp; <strong>19 MCP tools</strong>
+  <strong>32 skills</strong> &nbsp;&bull;&nbsp; <strong>9 rules</strong> &nbsp;&bull;&nbsp; <strong>26 MCP tools</strong>
 </p>
 
 <p align="center">
@@ -35,15 +35,15 @@
 
 ## Overview
 
-Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, build, and ship mobile apps without leaving the IDE. Currently at **v0.7.0** with twenty-four skills (React Native/Expo + Flutter), seven rules, and nineteen live MCP tools.
+Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, build, and ship mobile apps without leaving the IDE. Currently at **v0.9.0** with thirty-two skills (React Native/Expo + Flutter), nine rules, and twenty-six live MCP tools.
 
 **What you get**
 
 | Layer | Role |
 | --- | --- |
-| **Skills** | 24 guided workflows for React Native/Expo and Flutter: project setup through monetization, analytics, and OTA updates |
-| **Rules** | 7 guardrails: secrets, platform guards, image bloat, env safety, performance, accessibility, bundle size |
-| **MCP** | 19 tools: env checks, scaffolding, device deploy, screen/component gen, permissions, AI, build health, push, deep links, store builds, metadata validation, App Store + Play Store submission, screenshots, bundle analysis, OTA config |
+| **Skills** | 32 guided workflows for React Native/Expo and Flutter: project setup through monetization, analytics, OTA updates, testing, CI/CD, animations, maps, i18n, forms, and real-time |
+| **Rules** | 9 guardrails: secrets, platform guards, image bloat, env safety, performance, accessibility, bundle size, test coverage, i18n strings |
+| **MCP** | 26 tools: env checks, scaffolding, device deploy, screen/component gen, permissions, AI, build health, push, deep links, store builds, metadata validation, App Store + Play Store submission, screenshots, bundle analysis, OTA config, test runner, CI setup, test file generation, i18n setup, map integration, form generation, real-time client |
 
 **Quick facts**
 
@@ -61,7 +61,7 @@ Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packag
 flowchart LR
     A[User asks mobile dev question] --> B[Cursor loads a Skill]
     B --> C{MCP server configured?}
-    C -->|Yes| D["mobile-mcp tools (19)"]
+    C -->|Yes| D["mobile-mcp tools (26)"]
     C -->|No| E[Docs-only guidance]
     D --> F[Local env checks / scaffolding]
     E --> G[Answer in chat or code edits]
@@ -144,7 +144,7 @@ Open Cursor and ask:
 
 ## Demo App
 
-See the plugin in action: **[SnapLog](https://github.com/TMHSDigital/Demo-Mobile-App)** is a photo journal app built entirely using these skills and MCP tools. It exercises 16 of the 24 skills - from project scaffolding and navigation to camera capture, AI descriptions, local storage, and push notifications.
+See the plugin in action: **[SnapLog](https://github.com/TMHSDigital/Demo-Mobile-App)** is a photo journal app built entirely using these skills and MCP tools. It exercises 16 of the 32 skills - from project scaffolding and navigation to camera capture, AI descriptions, local storage, and push notifications.
 
 [![Demo App](https://img.shields.io/badge/demo-SnapLog-0A84FF?style=flat-square&logo=github)](https://github.com/TMHSDigital/Demo-Mobile-App)
 
@@ -152,7 +152,7 @@ See the plugin in action: **[SnapLog](https://github.com/TMHSDigital/Demo-Mobile
 
 ## Skills
 
-All 24 skills are production-ready. Names match the folder under `skills/`.
+All 32 skills are production-ready. Names match the folder under `skills/`.
 
 <details>
 <summary><strong>React Native / Expo skills (15)</strong></summary>
@@ -190,7 +190,7 @@ All 24 skills are production-ready. Names match the folder under `skills/`.
 </details>
 
 <details>
-<summary><strong>Shared skills (5)</strong></summary>
+<summary><strong>Shared skills (13)</strong></summary>
 
 | Skill | What it does |
 | --- | --- |
@@ -199,6 +199,14 @@ All 24 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-deep-links` | Universal links (iOS), app links (Android), URL schemes, deferred deep links, install attribution |
 | `mobile-analytics` | Crash reporting (Sentry, Firebase Crashlytics), event tracking (PostHog), source maps, GDPR compliance |
 | `mobile-ota-updates` | EAS Update channels, runtime versions, staged rollouts, rollback, Shorebird for Flutter |
+| `mobile-testing` | Unit and integration testing with Jest, React Native Testing Library, flutter_test, snapshot testing |
+| `mobile-e2e-testing` | End-to-end testing with Detox, Maestro, Patrol; device farm setup (BrowserStack, AWS Device Farm) |
+| `mobile-ci-cd` | GitHub Actions workflows, EAS Build pipelines, build caching, code signing in CI, PR preview builds |
+| `mobile-animations` | Reanimated 3, Lottie, Rive for React Native; implicit/explicit animations, Hero transitions for Flutter |
+| `mobile-maps-location` | react-native-maps, google_maps_flutter, expo-location, geofencing, background location tracking |
+| `mobile-i18n` | i18next, flutter_localizations, locale detection, RTL layout, pluralization, date/number formatting |
+| `mobile-forms-validation` | React Hook Form + Zod, Form + TextFormField, keyboard avoidance, multi-step wizard forms |
+| `mobile-real-time` | WebSockets, Supabase Realtime, Socket.IO, SSE, reconnection, presence indicators |
 
 </details>
 
@@ -231,6 +239,14 @@ All 24 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-deep-links` | "Make shared links like example.com/recipe/42 open in my app" |
 | `mobile-analytics` | "Set up crash reporting with Sentry and event tracking with PostHog" |
 | `mobile-ota-updates` | "Push a bug fix to production without going through app review" |
+| `mobile-testing` | "Add unit tests for my components and hooks" |
+| `mobile-e2e-testing` | "Set up Maestro E2E tests for my login flow" |
+| `mobile-ci-cd` | "Create a GitHub Actions workflow that tests on PR and builds on merge" |
+| `mobile-animations` | "Add a fade-in animation when cards appear and swipe-to-dismiss" |
+| `mobile-maps-location` | "Show a map with the user's location and let them drop pins" |
+| `mobile-i18n` | "Add English and Spanish language support with proper pluralization" |
+| `mobile-forms-validation` | "Build a registration form with email, password, and validation" |
+| `mobile-real-time` | "Add live chat with typing indicators using Supabase Realtime" |
 
 </details>
 
@@ -238,10 +254,10 @@ All 24 skills are production-ready. Names match the folder under `skills/`.
 
 ## Rules
 
-All 7 rules are production-ready.
+All 9 rules are production-ready.
 
 <details>
-<summary><strong>All 7 rules</strong></summary>
+<summary><strong>All 9 rules</strong></summary>
 
 | Rule | Scope | What it catches |
 | --- | --- | --- |
@@ -252,6 +268,8 @@ All 7 rules are production-ready.
 | `mobile-performance` | `.ts`, `.tsx`, `.dart` | Inline styles, missing list keys, ScrollView for long lists (RN); missing const constructors, inline widgets (Flutter) |
 | `mobile-accessibility` | `.ts`, `.tsx`, `.dart` | Missing a11y labels on interactive elements, small touch targets, images without alt text, color-only indicators |
 | `mobile-bundle-size` | `.ts`, `.tsx`, `.json`, `.dart` | Large dependencies (moment, lodash, aws-sdk), unoptimized imports, heavy packages with lighter alternatives |
+| `mobile-test-coverage` | `.ts`, `.tsx`, `.dart` | Untested components and screens, missing test files, low coverage thresholds, snapshot-only testing |
+| `mobile-i18n-strings` | `.ts`, `.tsx`, `.dart` | Hardcoded user-facing strings not wrapped in a translation function, string concatenation for sentences, missing plural forms |
 
 </details>
 
@@ -286,7 +304,7 @@ npx @tmhs/mobile-mcp
 ```
 
 <details>
-<summary><strong>All 19 MCP tools</strong></summary>
+<summary><strong>All 26 MCP tools</strong></summary>
 
 | Tool | Purpose |
 | --- | --- |
@@ -309,6 +327,13 @@ npx @tmhs/mobile-mcp
 | `mobile_generateScreenshots` | Generate a screenshot capture helper script and list required store dimensions for iOS and Android. |
 | `mobile_analyzeBundle` | Analyze app bundle for large dependencies, heavy assets, and optimization opportunities. |
 | `mobile_configureOTA` | Configure EAS Update for over-the-air JavaScript updates with channels and runtime version policy. |
+| `mobile_runTests` | Execute test suite (Jest for Expo, flutter test for Flutter) and return structured pass/fail summary with failure details. |
+| `mobile_setupCI` | Generate a GitHub Actions CI workflow for build, test, and optional EAS Build deployment. |
+| `mobile_generateTestFile` | Scaffold a test file for an existing component or module with imports and placeholder test cases. |
+| `mobile_setupI18n` | Initialize i18n config with locale files, translation structure, and language detection. |
+| `mobile_addMap` | Add a map view with provider config, location permissions, and marker support. |
+| `mobile_generateForm` | Scaffold a validated form component with typed fields, Zod schema, and error handling. |
+| `mobile_setupRealtime` | Add a real-time client module with connection management, reconnection, and typed events. |
 
 </details>
 
@@ -371,9 +396,9 @@ Full details in [ROADMAP.md](ROADMAP.md).
 | **v0.4.0** | Users & Data | 13 skills, 4 rules, 12 MCP tools | |
 | **v0.5.0** | Flutter | 17 skills, 5 rules, 12 MCP tools | |
 | **v0.6.0** | Ship It | 20 skills, 6 rules, 15 MCP tools | |
-| **v0.7.0** | Grow & Measure | 24 skills, 7 rules, 19 MCP tools | **Current** |
+| **v0.7.0** | Grow & Measure | 24 skills, 7 rules, 19 MCP tools | |
 | **v0.8.0** | Test & Automate | 27 skills, 8 rules, 22 MCP tools | |
-| **v0.9.0** | Rich Features | 32 skills, 9 rules, 26 MCP tools | |
+| **v0.9.0** | Rich Features | 32 skills, 9 rules, 26 MCP tools | **Current** |
 | **v0.10.0** | Harden | 37 skills, 10 rules, 30 MCP tools | |
 | **v0.11.0** | Design & Adapt | 40 skills, 11 rules, 33 MCP tools | |
 | **v0.12.0** | Extend & Evolve | 43 skills, 12 rules, 36 MCP tools | |
