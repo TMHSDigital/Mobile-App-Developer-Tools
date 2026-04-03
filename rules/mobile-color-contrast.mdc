@@ -1,0 +1,106 @@
+---
+description: Flag insufficient color contrast, missing dark mode support, and non-semantic color usage
+globs: ["*.ts", "*.tsx", "*.dart"]
+alwaysApply: false
+---
+
+# Color Contrast & Theme Compliance
+
+## Purpose
+
+Detect color usage patterns that cause accessibility issues or break in dark mode. WCAG 2.1 AA requires 4.5:1 contrast for normal text and 3:1 for large text (≥18pt or 14pt bold).
+
+## Flagged Patterns
+
+### 1. Hardcoded Colors Without Theme Tokens
+
+```tsx
+// ❌ Raw hex values — break in dark mode
+<View style={{ backgroundColor: "#FFFFFF" }}>
+  <Text style={{ color: "#333333" }}>Hello</Text>
+</View>
+
+// ✅ Use theme tokens
+const { colors } = useTheme();
+<View style={{ backgroundColor: colors.surface }}>
+  <Text style={{ color: colors.text }}>Hello</Text>
+</View>
+```
+
+```dart
+// ❌ Hardcoded colors
+Container(color: Color(0xFFFFFFFF))
+
+// ✅ Theme-aware colors
+Container(color: Theme.of(context).colorScheme.surface)
+```
+
+### 2. Known Low-Contrast Pairs
+
+Flag when both background and foreground are specified with insufficient contrast:
+
+- Light gray text (`#999`, `#AAA`, `#BBB`, `#CCC`) on white (`#FFF`, `#FAFAFA`)
+- Dark gray text (`#333`, `#444`) on dark backgrounds (`#1C1C1E`, `#000`)
+- Red (`#FF0000`) or green (`#00FF00`) on any background below 3:1
+- Placeholder text colors below 4.5:1 against their input background
+
+### 3. Missing Dark Mode Handling (React Native)
+
+Flag when `color` or `backgroundColor` is set without either:
+- Using `useColorScheme()` or `useTheme()`
+- Using a theme token / design token reference
+- Being inside a `Platform.select()` or conditional on color scheme
+
+```tsx
+// ❌ No dark mode awareness
+const styles = StyleSheet.create({
+  container: { backgroundColor: "#FFFFFF" },
+  text: { color: "#000000" },
+});
+
+// ✅ Theme-aware
+const { colors } = useTheme();
+const styles = {
+  container: { backgroundColor: colors.background },
+  text: { color: colors.text },
+};
+```
+
+### 4. Missing Dark Mode Handling (Flutter)
+
+Flag when `Color(0x...)` or `Colors.white`/`Colors.black` is used outside of `ThemeData` without `Theme.of(context)`:
+
+```dart
+// ❌ Hardcoded — invisible in dark mode
+Text('Hello', style: TextStyle(color: Colors.black))
+
+// ✅ Theme-aware
+Text('Hello', style: TextStyle(color: Theme.of(context).colorScheme.onSurface))
+```
+
+### 5. Non-Semantic Color Names
+
+Flag variables or tokens using visual color names instead of semantic names:
+
+```tsx
+// ❌ Visual name — meaning unclear, hard to maintain across themes
+const blueColor = "#0A84FF";
+const darkGray = "#333333";
+
+// ✅ Semantic name — intent is clear
+const primaryColor = "#0A84FF";
+const textSecondary = "#333333";
+```
+
+## Exceptions
+
+- Colors inside `ThemeData`, `ColorScheme`, or token definition files are expected to be raw values
+- Decorative gradients and illustration colors that don't carry meaning
+- Third-party component props that require specific color values
+- Debug/development-only styling
+
+## Resources
+
+- [WCAG 2.1 Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [Material Design Color System](https://m3.material.io/styles/color/system/overview)

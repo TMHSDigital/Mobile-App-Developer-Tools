@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.11.0] - 2026-04-03
+
+### Added
+
+- **3 new skills**: `mobile-theming` (design tokens, dark mode, system appearance detection, NativeWind, Material 3, persistent theme preference), `mobile-feature-flags` (PostHog, LaunchDarkly, Firebase Remote Config, A/B testing, staged rollouts, kill switches), `mobile-accessibility-testing` (automated a11y audits, WCAG compliance, screen reader testing, CI integration)
+- **1 new rule**: `mobile-color-contrast` (flags insufficient color contrast, missing dark mode variants, non-semantic color usage, hardcoded colors without theme tokens)
+- **3 new MCP tools**: `mobile_setupTheming`, `mobile_auditAccessibility`, `mobile_setupFeatureFlags`
+- Totals: 40 skills, 11 rules, 33 MCP tools
+
 ## [0.10.0] - 2026-04-03
 
 ### Added

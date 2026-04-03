@@ -33,10 +33,13 @@ import { register as registerSecurityAudit } from "./tools/securityAudit.js";
 import { register as registerProfilePerformance } from "./tools/profilePerformance.js";
 import { register as registerCheckOfflineReady } from "./tools/checkOfflineReady.js";
 import { register as registerSetupMonitoring } from "./tools/setupMonitoring.js";
+import { register as registerSetupTheming } from "./tools/setupTheming.js";
+import { register as registerAuditAccessibility } from "./tools/auditAccessibility.js";
+import { register as registerSetupFeatureFlags } from "./tools/setupFeatureFlags.js";
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.10.0",
+  version: "0.11.0",
 });
 
 registerCheckDevEnvironment(server);
@@ -69,6 +72,9 @@ registerSecurityAudit(server);
 registerProfilePerformance(server);
 registerCheckOfflineReady(server);
 registerSetupMonitoring(server);
+registerSetupTheming(server);
+registerAuditAccessibility(server);
+registerSetupFeatureFlags(server);
 
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.10.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **37 skills**, **10 rules**, and a companion MCP server exposing **30 tools**.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.11.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **40 skills**, **11 rules**, and a companion MCP server exposing **33 tools**.
 
 ## Demo App
 
@@ -16,11 +16,11 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.10.0**. It helps dev
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 30 tools
+mcp-server/                  - MCP server with 33 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (37 total)
+## Skills (40 total)
 
 ### React Native / Expo
 
@@ -73,8 +73,11 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-background-tasks | Background fetch, WorkManager (Android), BGTaskScheduler (iOS), headless JS |
 | mobile-debugging | Flipper, React DevTools, Flutter DevTools, memory leak detection, network inspection |
 | mobile-app-monitoring | Production APM with Sentry Performance, Datadog, Instabug; OpenTelemetry spans, Apdex scoring |
+| mobile-theming | Design tokens, dark mode, system appearance detection, NativeWind, Material 3, persistent preference |
+| mobile-feature-flags | Feature toggles with PostHog, LaunchDarkly, Firebase Remote Config; A/B testing, staged rollouts |
+| mobile-accessibility-testing | Automated a11y audits, WCAG compliance, screen reader testing, CI integration |
 
-## Rules (10 total)
+## Rules (11 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
@@ -88,12 +91,13 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-test-coverage.mdc | `.ts`, `.tsx`, `.dart` | Flags untested components, missing test files, low coverage thresholds, snapshot-only tests |
 | mobile-i18n-strings.mdc | `.ts`, `.tsx`, `.dart` | Flags hardcoded user-facing strings not wrapped in a translation function |
 | mobile-security-audit.mdc | `.ts`, `.tsx`, `.dart`, `.json`, `.xml` | Flags insecure storage, missing SSL pinning, debug flags in release builds, cleartext traffic |
+| mobile-color-contrast.mdc | `.ts`, `.tsx`, `.dart` | Flags insufficient color contrast, missing dark mode variants, non-semantic color usage |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (30 total)
+### Tools (33 total)
 
 | Tool | Description |
 | --- | --- |
@@ -127,6 +131,9 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 | mobile_profilePerformance | Analyze project for performance anti-patterns and flag jank, slow renders, memory issues |
 | mobile_checkOfflineReady | Validate offline-first setup: local DB, network listener, query cache, mutation queue |
 | mobile_setupMonitoring | Configure APM with Sentry Performance or Datadog RUM; error capture, tracing, release health |
+| mobile_setupTheming | Initialize design token system with light/dark themes, semantic colors, and persistent preference |
+| mobile_auditAccessibility | Scan project for a11y violations: missing labels, small touch targets, images without alt text |
+| mobile_setupFeatureFlags | Add typed feature flag provider with default values, remote sync, and provider integration |
 
 ## Development Workflow
 
