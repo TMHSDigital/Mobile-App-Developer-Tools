@@ -53,7 +53,7 @@ Use this skill when the user:
    );
    ```
 
-   AsyncStorage with Zustand persist (from v0.2.0):
+   AsyncStorage with Zustand persist:
 
    ```tsx
    import { create } from "zustand";

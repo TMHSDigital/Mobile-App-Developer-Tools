@@ -171,7 +171,25 @@ Use this skill when the user:
 
    Review typically takes 24-48 hours. Expedited reviews are available for critical bug fixes.
 
-8. **Common rejection reasons and fixes.**
+8. **SDK and Xcode requirements.** Apple enforces minimum SDK versions:
+
+   | Deadline | Requirement |
+   |----------|-------------|
+   | April 24, 2025 | iOS 18 SDK, Xcode 16 |
+   | April 28, 2026 | iOS 26 SDK, Xcode 26 |
+
+   Apps uploaded after the deadline must be built with the required Xcode version. Expo SDK 55+ with EAS Build handles this automatically.
+
+9. **AI disclosure.** If the app uses AI features, Apple requires:
+   - Clear explanation of what the AI does
+   - Disclosure of what data the AI uses
+   - User controls for AI behavior
+   
+   Add this information in the App Store Connect app description and in-app where AI features are used.
+
+10. **Age rating.** Apple updated the age rating system in January 2026. Review and update responses in App Store Connect to avoid submission delays.
+
+11. **Common rejection reasons and fixes.**
 
    | Rejection | Fix |
    |-----------|-----|

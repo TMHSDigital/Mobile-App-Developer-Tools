@@ -15,7 +15,7 @@ Thanks for your interest in contributing to Mobile App Developer Tools.
 
 1. Create a directory under `skills/` matching your skill name (e.g. `skills/mobile-my-skill/`)
 2. Add a `SKILL.md` file with YAML frontmatter containing `name` (must match directory) and `description`
-3. Include these sections in order: Trigger, Required Inputs, Workflow, Key References, Example Interaction, MCP Usage, Common Pitfalls, See Also
+3. Include these required sections in order: Trigger, Required Inputs, Workflow, Example Interaction, MCP Usage, Common Pitfalls. Optional sections: Key References, See Also
 4. Run `pytest tests/test_skills.py -v` to verify frontmatter and structure
 
 ## Adding a Rule

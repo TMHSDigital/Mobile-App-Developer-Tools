@@ -170,10 +170,10 @@ Use this skill when the user:
 
 8. **Target API level.** Google Play requires targeting recent API levels:
 
-   | Date | Minimum targetSdkVersion |
-   |------|-------------------------|
-   | 2024+ | API 34 (Android 14) |
-   | 2025+ | API 35 (Android 15) |
+   | Deadline | Minimum targetSdkVersion |
+   |----------|-------------------------|
+   | Aug 2025 | API 35 (Android 15) |
+   | Aug 2026 | API 36 (Android 16) |
 
    Expo SDK handles this automatically. Check with:
 

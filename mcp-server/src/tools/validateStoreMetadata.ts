@@ -25,7 +25,7 @@ interface CheckResult {
 export function register(server: McpServer): void {
   server.tool(
     "mobile_validateStoreMetadata",
-    "Check that an Expo project has all required app store listing fields: name, bundle ID, version, icon, splash, privacy policy. Returns a pass/fail checklist.",
+    "Check that an Expo project has all required app store listing fields: name, bundle ID, version, icon, splash screen. Returns a pass/fail checklist.",
     inputSchema,
     async (args) => {
       try {

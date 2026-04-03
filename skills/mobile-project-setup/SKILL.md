@@ -23,7 +23,7 @@ Use this skill when the user:
 
 ## Workflow
 
-1. **Verify environment.** Before scaffolding, confirm Node.js 18+ is installed:
+1. **Verify environment.** Before scaffolding, confirm Node.js 20+ is installed (required for SDK 55+):
 
    ```bash
    node --version
@@ -37,7 +37,7 @@ Use this skill when the user:
    npx create-expo-app@latest my-app
    ```
 
-   This creates a project with Expo Router (file-based routing), TypeScript, and the default template.
+   This creates a project with Expo Router (file-based routing), TypeScript, and the default template. SDK 55+ uses the New Architecture by default (Legacy Architecture is no longer supported).
 
 3. **Recommended project structure.** After creation, the project should look like:
 
@@ -95,9 +95,9 @@ Use this skill when the user:
    ```
 
 6. **Suggest next steps.** Based on the user's stated goals:
-   - Camera app: recommend `expo-camera`, point to `mobile-camera-integration` skill (v0.3.0)
-   - Auth: recommend Supabase or Firebase, point to `mobile-auth-setup` skill (v0.4.0)
-   - Navigation: Expo Router is already included. Point to `mobile-navigation-setup` skill (v0.2.0)
+   - Camera app: recommend `expo-camera`, point to `mobile-camera-integration` skill
+   - Auth: recommend Supabase or Firebase, point to `mobile-auth-setup` skill
+   - Navigation: Expo Router is already included. Point to `mobile-navigation-setup` skill
 
 ## Key References
 
@@ -113,7 +113,7 @@ Use this skill when the user:
 1. Checks environment with `mobile_checkDevEnvironment`
 2. Scaffolds a new Expo project with `mobile_scaffoldProject` using name "camera-app"
 3. Explains the file-based routing structure
-4. Notes that `expo-camera` will be added later (v0.3.0 skill)
+4. Notes that `expo-camera` can be added with the `mobile-camera-integration` skill
 5. Runs the dev server and helps connect to a physical device
 
 ## MCP Usage

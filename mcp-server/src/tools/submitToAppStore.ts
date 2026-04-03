@@ -23,7 +23,7 @@ const inputSchema = {
 export function register(server: McpServer): void {
   server.tool(
     "mobile_submitToAppStore",
-    "Submit the latest iOS production build to App Store Connect via EAS Submit. Validates that EAS CLI is available and a recent build exists.",
+    "Submit the latest iOS production build to App Store Connect via EAS Submit. Validates that EAS CLI is available.",
     inputSchema,
     async (args) => {
       try {

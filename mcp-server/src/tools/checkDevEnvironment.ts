@@ -57,7 +57,7 @@ const inputSchema = {
 export function register(server: McpServer): void {
   server.tool(
     "mobile_checkDevEnvironment",
-    "Detect installed mobile development tools, SDKs, and simulators. Report what is installed and what is missing with install instructions.",
+    "Detect installed mobile development tools and SDKs (Node, Expo CLI, Watchman, Xcode, Android Studio, JDK). Report what is installed and what is missing with install instructions.",
     inputSchema,
     async (args) => {
       try {

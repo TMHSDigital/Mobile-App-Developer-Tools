@@ -32,7 +32,7 @@ Use this skill when the user:
    | GraphQL | urql or Apollo Client | Built-in cache |
    | Real-time GraphQL | urql with subscriptions | Built-in |
 
-   React Query (from v0.2.0 state-management skill) is the cache/state layer for REST. GraphQL clients have their own cache.
+   React Query (from the state-management skill) is the cache/state layer for REST. GraphQL clients have their own cache.
 
 2. **Create a typed API client.** In `lib/api.ts`:
 

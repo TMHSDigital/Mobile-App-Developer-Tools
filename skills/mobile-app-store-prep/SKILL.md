@@ -117,7 +117,7 @@ Use this skill when the user:
    And provide the URL in App Store Connect / Play Console.
 
 5. **Age rating / content rating.**
-   - **iOS**: Fill the age rating questionnaire in App Store Connect (violence, language, etc.)
+   - **iOS**: Fill the age rating questionnaire in App Store Connect (violence, language, etc.). Apple updated the age rating system in January 2026; review your responses.
    - **Android**: Complete the content rating questionnaire in Play Console (uses IARC system)
 
    Both are required before the first submission.
@@ -133,7 +133,8 @@ Use this skill when the user:
    | Misleading metadata | Both | Screenshots must show actual app UI |
    | External payment links | iOS | Do not link to web payment outside IAP |
    | Missing App Tracking Transparency | iOS | Add ATT prompt if using IDFA |
-   | Target API too low | Android | Must target latest or latest-1 API level |
+   | Missing AI disclosure | iOS | If using AI, explain what it does and what data it uses |
+   | Target API too low | Android | Must target latest or latest-1 API level (API 36 from Aug 2026) |
 
 7. **Version numbering.**
 

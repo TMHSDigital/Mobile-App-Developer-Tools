@@ -21,7 +21,7 @@ const inputSchema = {
 export function register(server: McpServer): void {
   server.tool(
     "mobile_scaffoldProject",
-    "Generate a new Expo project with TypeScript and recommended configuration.",
+    "Generate a new Expo project using create-expo-app with the default or specified template.",
     inputSchema,
     async (args) => {
       try {

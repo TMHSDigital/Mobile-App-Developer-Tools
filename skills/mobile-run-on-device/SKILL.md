@@ -54,7 +54,7 @@ Use this skill when the user:
    npx expo start --tunnel
    ```
 
-   This requires `@expo/ngrok` (installed automatically on first use). Tunnel mode is slower but works when:
+   This requires `@expo/ngrok` (installed automatically on first use). Tunnel mode is slower and has known connectivity issues in 2026. LAN mode is the recommended default. Use tunnel only when:
    - The phone and computer are on different networks
    - Corporate firewalls block local connections
    - You're developing on a VPN
@@ -124,7 +124,7 @@ Use this skill when the user:
 
 ## Common Pitfalls
 
-1. **Phone and computer on different networks** - The most common connection failure. Use `--tunnel` to work around it.
+1. **Phone and computer on different networks** - The most common connection failure. Use `--tunnel` to work around it, but note that `@expo/ngrok` has known reliability issues. LAN mode is preferred when possible.
 2. **Firewall blocking port 8081** - The Expo dev server runs on port 8081 by default. Allow it through your firewall.
 3. **Using Expo Go with native modules** - Expo Go only supports the Expo SDK built-in modules. For custom native code, you need a dev build.
 4. **Outdated Expo Go** - The Expo Go app version must match your Expo SDK version. Update Expo Go from the app store.

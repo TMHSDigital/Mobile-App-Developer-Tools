@@ -10,7 +10,7 @@
 | **v0.4.0** | Users & Data | +4 | +1 | +3 | Auth, push notifications, local storage, API integration, env-safety rule |
 | **v0.5.0** | Flutter | +4 | +1 | +0 | Flutter project setup, navigation, run-on-device, state management, performance rule |
 | **v0.6.0** | Ship It | +3 | +1 | +3 | App store prep, iOS submission, Android submission, accessibility rule **(current)** |
-| **v0.7.0** | Grow | +2 | +0 | +3 | Monetization, deep links, build-for-store, screenshots, bundle analysis |
+| **v0.7.0** | Grow | +2 | +0 | +3 | Monetization, deep links, screenshots, bundle analysis |
 | **v1.0.0** | Stable | +0 | +0 | +0 | Polish, docs, production release: 22 skills, 7 rules, 18 MCP tools |
 
 ## v0.1.0 - Zero to Phone

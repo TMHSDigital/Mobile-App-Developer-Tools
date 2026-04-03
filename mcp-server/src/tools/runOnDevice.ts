@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { platform } from "node:os";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { textResponse } from "../types.js";
+import { textResponse, errorResponse } from "../types.js";
 
 const inputSchema = {
   project_path: z
@@ -22,9 +22,10 @@ const inputSchema = {
 export function register(server: McpServer): void {
   server.tool(
     "mobile_runOnDevice",
-    "Start the Expo dev server and provide step-by-step instructions for connecting a physical device.",
+    "Provide step-by-step instructions for connecting a physical device to the Expo dev server via LAN, tunnel, or USB.",
     inputSchema,
     async (args) => {
+      try {
       const os = platform();
       const connection = args.connection;
       const targetPlatform = args.target_platform;
@@ -114,6 +115,9 @@ export function register(server: McpServer): void {
       };
 
       return textResponse(JSON.stringify(result, null, 2));
+      } catch (err) {
+        return errorResponse(err);
+      }
     },
   );
 }

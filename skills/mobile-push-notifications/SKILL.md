@@ -29,7 +29,7 @@ Use this skill when the user:
    npx expo install expo-notifications expo-device expo-constants
    ```
 
-   This requires a development build. Push notifications do not work in Expo Go.
+   This requires a development build. Push notifications do not work in Expo Go (SDK 55+ throws an error instead of a warning).
 
 2. **Configure app.json.** Add the notification plugin:
 
@@ -222,10 +222,11 @@ Use this skill when the user:
 
 ## Common Pitfalls
 
-1. **Testing in Expo Go** - Push notifications require a development build. Expo Go does not support them.
-2. **Testing on simulators** - Push tokens require a physical device. iOS Simulator does not generate real push tokens.
-3. **Missing Android channel** - Android 8+ requires a notification channel. Without one, notifications are silently dropped.
-4. **Not sending token to backend** - The push token is generated on the device. You must send it to your server and store it per user for targeted notifications.
+1. **Testing in Expo Go** - Push notifications require a development build. Expo Go does not support them. In SDK 55+, `expo-notifications` throws an error (not a warning) when used in Expo Go.
+2. **iOS/tvOS minimum** - SDK 55 raises the minimum deployment target for `expo-notifications` to iOS/tvOS 16.4. Older devices will not receive notifications.
+3. **Testing on simulators** - Push tokens require a physical device. iOS Simulator does not generate real push tokens.
+4. **Missing Android channel** - Android 8+ requires a notification channel. Without one, notifications are silently dropped.
+5. **Not sending token to backend** - The push token is generated on the device. You must send it to your server and store it per user for targeted notifications.
 5. **Token expiration** - Expo push tokens can change. Re-register on every app launch and update your backend if the token changed.
 6. **Foreground notifications not showing** - By default, notifications are hidden when the app is in the foreground. Set `shouldShowAlert: true` in `setNotificationHandler`.
 

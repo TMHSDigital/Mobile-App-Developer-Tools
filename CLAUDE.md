@@ -76,7 +76,7 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
 | Tool | Description |
 | --- | --- |
-| mobile_checkDevEnvironment | Detect installed tools, SDKs, simulators; report what is missing |
+| mobile_checkDevEnvironment | Detect installed tools and SDKs (Node, Expo CLI, Watchman, Xcode, Android Studio, JDK); report what is missing |
 | mobile_scaffoldProject | Generate a new Expo project from a template with chosen options |
 | mobile_runOnDevice | Start dev server and provide instructions for connecting a physical device |
 | mobile_generateScreen | Create a new Expo Router screen file with navigation wiring and boilerplate |

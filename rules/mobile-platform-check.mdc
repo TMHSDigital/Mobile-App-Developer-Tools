@@ -19,7 +19,6 @@ When reviewing or writing `.ts` / `.tsx` files in a React Native or Expo project
 - `Settings` (iOS NSUserDefaults bridge)
 - `PushNotificationIOS`
 - `DynamicColorIOS`
-- `UIManager.setLayoutAnimationEnabledExperimental` (Android-only call to enable layout animations)
 - `SafeAreaView` from `react-native` (use `react-native-safe-area-context` instead for cross-platform)
 - `DatePickerIOS` (deprecated, but still appears in older code)
 
@@ -33,6 +32,7 @@ When reviewing or writing `.ts` / `.tsx` files in a React Native or Expo project
 - `ProgressBarAndroid`
 - `StatusBar.setBackgroundColor` (no-op on iOS)
 - `StatusBar.setTranslucent` (Android-only)
+- `UIManager.setLayoutAnimationEnabledExperimental` (must be called on Android to enable LayoutAnimation)
 
 ### Platform-varying behavior
 

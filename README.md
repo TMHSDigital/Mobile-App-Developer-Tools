@@ -281,7 +281,7 @@ npx @tmhs/mobile-mcp
 
 | Tool | Purpose |
 | --- | --- |
-| `mobile_checkDevEnvironment` | Detect installed tools (Node, Expo CLI, Watchman, Xcode, Android Studio, JDK). Report what is missing with install instructions. |
+| `mobile_checkDevEnvironment` | Detect installed tools and SDKs (Node, Expo CLI, Watchman, Xcode, Android Studio, JDK). Report what is missing with install instructions. |
 | `mobile_scaffoldProject` | Generate a new Expo project with TypeScript template and recommended config. |
 | `mobile_runOnDevice` | Start dev server and provide step-by-step instructions for connecting a physical device. |
 | `mobile_generateScreen` | Create a new Expo Router screen file with correct convention, navigation wiring, and boilerplate. |
