@@ -1,0 +1,64 @@
+---
+description: Flag untested components and screens, missing test files for new code, and low coverage thresholds in React Native/Expo and Flutter projects.
+alwaysApply: false
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.dart"
+---
+
+# Test Coverage
+
+Flag these test coverage issues:
+
+## Missing test files
+
+- A component or screen file (`*.tsx` or `*.dart`) has no corresponding test file (`*.test.tsx`, `*.test.ts`, or `*_test.dart`) in `__tests__/` or a colocated location.
+- A utility or hook file has no matching test file.
+- New files added in a PR have zero test coverage.
+
+**Fix:** Create a test file using `mobile_generateTestFile` or write tests manually. At minimum, verify the component renders and key interactions work.
+
+## Low coverage thresholds
+
+- Jest `coverageThreshold` in `package.json` is missing or set below 60% for statements.
+- Flutter project has no coverage enforcement in CI.
+
+**Fix (Expo):** Add to `package.json`:
+
+```json
+{
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 60,
+        "branches": 50,
+        "functions": 60,
+        "lines": 60
+      }
+    }
+  }
+}
+```
+
+**Fix (Flutter):** Add a coverage check step in CI:
+
+```yaml
+- run: flutter test --coverage
+- name: Check coverage
+  run: |
+    COVERAGE=$(lcov --summary coverage/lcov.info 2>&1 | grep 'lines' | grep -o '[0-9.]*%' | head -1)
+    echo "Line coverage: $COVERAGE"
+```
+
+## Snapshot-only testing
+
+- A test file contains only snapshot tests with no behavioral assertions. Snapshot-only tests provide weak coverage and break on any render change.
+
+**Fix:** Add at least one behavioral test per component (user interaction, prop variation, or error state).
+
+## Untested error paths
+
+- Components with `try/catch`, error boundaries, or fallback UI have no tests for the error state.
+
+**Fix:** Write tests that trigger the error path and verify the fallback UI renders.

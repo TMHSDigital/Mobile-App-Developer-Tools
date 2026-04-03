@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.7.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **24 skills**, **7 rules**, and a companion MCP server exposing **19 tools**.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.9.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **32 skills**, **9 rules**, and a companion MCP server exposing **26 tools**.
 
 ## Demo App
 
@@ -16,11 +16,11 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.7.0**. It helps deve
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 19 tools
+mcp-server/                  - MCP server with 26 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (24 total)
+## Skills (32 total)
 
 ### React Native / Expo
 
@@ -60,8 +60,16 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-deep-links | Universal links, app links, URL schemes, deferred deep links, attribution |
 | mobile-analytics | Crash reporting (Sentry, Crashlytics), event tracking (PostHog), source maps |
 | mobile-ota-updates | EAS Update channels, runtime versions, staged rollouts, rollback, Shorebird |
+| mobile-testing | Unit and integration testing with Jest, React Native Testing Library, flutter_test, snapshot testing |
+| mobile-e2e-testing | End-to-end testing with Detox, Maestro, Patrol; device farm setup |
+| mobile-ci-cd | GitHub Actions workflows, EAS Build pipelines, build caching, code signing in CI |
+| mobile-animations | Reanimated, Lottie, Rive for React Native; implicit/explicit animations for Flutter |
+| mobile-maps-location | MapView, geolocation, geofencing, background location tracking |
+| mobile-i18n | Internationalization, RTL layout, locale detection, pluralization, translation files |
+| mobile-forms-validation | React Hook Form + Zod for RN, Form + TextFormField for Flutter; multi-step forms |
+| mobile-real-time | WebSockets, Supabase Realtime, Socket.IO, SSE; reconnection and presence |
 
-## Rules (7 total)
+## Rules (9 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
@@ -72,12 +80,14 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-performance.mdc | `.ts`, `.tsx`, `.dart` | Flags inline styles, missing list keys, unnecessary re-renders (RN); missing const constructors, inline widgets (Flutter) |
 | mobile-accessibility.mdc | `.ts`, `.tsx`, `.dart` | Flags missing a11y labels, small touch targets, images without alt text, color-only indicators |
 | mobile-bundle-size.mdc | `.ts`, `.tsx`, `.json`, `.dart` | Flags large dependencies, unoptimized imports, heavy packages with lighter alternatives |
+| mobile-test-coverage.mdc | `.ts`, `.tsx`, `.dart` | Flags untested components, missing test files, low coverage thresholds, snapshot-only tests |
+| mobile-i18n-strings.mdc | `.ts`, `.tsx`, `.dart` | Flags hardcoded user-facing strings not wrapped in a translation function |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (19 total)
+### Tools (26 total)
 
 | Tool | Description |
 | --- | --- |
@@ -100,6 +110,13 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 | mobile_generateScreenshots | Generate screenshot capture script and list required store dimensions |
 | mobile_analyzeBundle | Analyze app bundle for large dependencies, heavy assets, and optimization opportunities |
 | mobile_configureOTA | Configure EAS Update for over-the-air JavaScript updates with channels and runtime versions |
+| mobile_runTests | Execute test suite (Jest or flutter test) and return structured pass/fail summary |
+| mobile_setupCI | Generate GitHub Actions CI workflow for build, test, and optional EAS Build deployment |
+| mobile_generateTestFile | Scaffold a test file for an existing component or module with matching boilerplate |
+| mobile_setupI18n | Initialize i18n config with locale files and translation structure |
+| mobile_addMap | Add map view with provider config, permissions, and marker support |
+| mobile_generateForm | Scaffold a validated form with typed fields, validation, and error handling |
+| mobile_setupRealtime | Add real-time client with connection management, reconnection, and typed events |
 
 ## Development Workflow
 

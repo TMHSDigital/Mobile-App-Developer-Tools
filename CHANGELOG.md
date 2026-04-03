@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.9.0] - 2026-04-03
+
+### Added
+
+- **5 new skills**: `mobile-animations` (Reanimated, Lottie, Rive, Flutter implicit/explicit animations), `mobile-maps-location` (react-native-maps, google_maps_flutter, expo-location, geofencing, background tracking), `mobile-i18n` (i18next, flutter_localizations, RTL, pluralization, locale detection), `mobile-forms-validation` (React Hook Form + Zod, TextFormField, keyboard avoidance, multi-step wizards), `mobile-real-time` (WebSockets, Supabase Realtime, Socket.IO, SSE, reconnection, presence)
+- **1 new rule**: `mobile-i18n-strings` (flags hardcoded user-facing strings not wrapped in translation functions, string concatenation, missing plurals)
+- **4 new MCP tools**: `mobile_setupI18n`, `mobile_addMap`, `mobile_generateForm`, `mobile_setupRealtime`
+- Totals: 32 skills, 9 rules, 26 MCP tools
+
+## [0.8.0] - 2026-04-03
+
+### Added
+
+- **3 new skills**: `mobile-testing` (unit and integration testing with Jest, React Native Testing Library, flutter_test, snapshot testing), `mobile-e2e-testing` (end-to-end testing with Detox, Maestro, Patrol, device farm setup), `mobile-ci-cd` (GitHub Actions workflows, EAS Build pipelines, build caching, code signing in CI)
+- **1 new rule**: `mobile-test-coverage` (flags untested components, missing test files, low coverage thresholds, snapshot-only tests)
+- **3 new MCP tools**: `mobile_runTests`, `mobile_setupCI`, `mobile_generateTestFile`
+- Totals: 27 skills, 8 rules, 22 MCP tools
+
 ## [0.7.0] - 2026-04-03
 
 ### Added

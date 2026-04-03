@@ -1,0 +1,76 @@
+---
+description: Flag hardcoded user-facing strings that are not wrapped in a translation function. Catches strings in JSX text nodes and Flutter Text widgets that bypass the i18n layer.
+alwaysApply: false
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.dart"
+---
+
+# I18n Strings
+
+Flag these internationalization issues:
+
+## Hardcoded strings in JSX
+
+- A `<Text>` component contains a raw string literal instead of a translation call like `t("key")` or `intl.formatMessage()`.
+- String props that are user-visible (placeholder, title, label, accessibilityLabel) use a hardcoded English string instead of a translated value.
+- Exception: strings that are not user-facing (testID values, console.log messages, error codes) do not need translation.
+
+**Fix:** Wrap the string in a translation function:
+
+```tsx
+// Before
+<Text>Welcome back</Text>
+
+// After
+<Text>{t("home.welcomeBack")}</Text>
+```
+
+## Hardcoded strings in Flutter Text widgets
+
+- A `Text()` widget contains a raw string literal instead of `AppLocalizations.of(context)!.key` or equivalent.
+- Exception: debug-only strings, Key values, and route names do not need translation.
+
+**Fix:**
+
+```dart
+// Before
+Text('Welcome back')
+
+// After
+Text(AppLocalizations.of(context)!.welcomeBack)
+```
+
+## String concatenation for sentences
+
+- Building user-visible sentences with `+` or template literals instead of using interpolation in the translation file. Concatenation breaks in languages with different word order.
+
+**Fix:** Use interpolation parameters:
+
+```tsx
+// Before
+<Text>{"Hello " + user.name}</Text>
+
+// After
+<Text>{t("greeting", { name: user.name })}</Text>
+```
+
+With the translation file:
+
+```json
+{ "greeting": "Hello {{name}}" }
+```
+
+## Missing plural forms
+
+- Displaying counts with simple conditional (`count === 1 ? "item" : "items"`) instead of ICU plural syntax in the translation file.
+
+**Fix:** Use plural-aware translation keys:
+
+```json
+{
+  "itemCount_one": "{{count}} item",
+  "itemCount_other": "{{count}} items"
+}
+```
