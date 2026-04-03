@@ -1,8 +1,8 @@
 {
   "name": "mobile-app-developer-tools",
   "displayName": "Mobile App Developer Tools",
-  "version": "0.6.0",
-  "description": "Mobile app development for Cursor, Claude Code, and MCP-compatible editors. 20 skills covering React Native/Expo and Flutter - project setup through app store submission - plus 6 rules. Companion MCP server provides 15 tools.",
+  "version": "0.7.0",
+  "description": "Mobile app development for Cursor, Claude Code, and MCP-compatible editors. 24 skills covering React Native/Expo and Flutter - project setup through app store submission, monetization, analytics, and OTA updates - plus 7 rules. Companion MCP server provides 19 tools.",
   "author": {
     "name": "TMHSDigital",
     "url": "https://github.com/TMHSDigital"

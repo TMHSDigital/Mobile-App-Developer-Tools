@@ -9,8 +9,8 @@
 | **v0.3.0** | Camera & AI | +3 | +1 | +3 | Camera integration, AI features, permissions skill, image-assets rule |
 | **v0.4.0** | Users & Data | +4 | +1 | +3 | Auth, push notifications, local storage, API integration, env-safety rule |
 | **v0.5.0** | Flutter | +4 | +1 | +0 | Flutter project setup, navigation, run-on-device, state management, performance rule |
-| **v0.6.0** | Ship It | +3 | +1 | +3 | App store prep, iOS submission, Android submission, accessibility rule **(current)** |
-| **v0.7.0** | Grow & Measure | +4 | +1 | +4 | Monetization, deep links, analytics/crash reporting, OTA updates, bundle analysis |
+| **v0.6.0** | Ship It | +3 | +1 | +3 | App store prep, iOS submission, Android submission, accessibility rule |
+| **v0.7.0** | Grow & Measure | +4 | +1 | +4 | Monetization, deep links, analytics/crash reporting, OTA updates, bundle analysis **(current)** |
 | **v0.8.0** | Test & Automate | +3 | +1 | +3 | Unit/E2E testing, CI/CD pipelines, test file generation |
 | **v0.9.0** | Rich Features | +5 | +1 | +4 | Animations, maps/location, i18n, forms/validation, real-time/WebSockets |
 | **v0.10.0** | Harden | +5 | +1 | +4 | Security, offline-sync, background tasks, debugging, production APM |
@@ -90,7 +90,7 @@
 **Rules:**
 - `mobile-performance` - Common performance anti-patterns (inline styles, missing keys, heavy re-renders)
 
-## v0.6.0 - Ship It (current)
+## v0.6.0 - Ship It
 
 **Skills:**
 - `mobile-app-store-prep` (Shared) - Screenshots, descriptions, metadata, review guidelines
@@ -105,7 +105,7 @@
 - `mobile_validateStoreMetadata` - Check store listing fields
 - `mobile_submitToAppStore` - Trigger iOS submission
 
-## v0.7.0 - Grow & Measure
+## v0.7.0 - Grow & Measure (current)
 
 **Skills:**
 - `mobile-monetization` (Shared) - In-app purchases, subscriptions, RevenueCat, StoreKit 2

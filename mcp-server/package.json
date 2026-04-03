@@ -1,7 +1,7 @@
 {
   "name": "@tmhs/mobile-mcp",
-  "version": "0.6.0",
-  "description": "MCP server for mobile app development - 15 tools for environment checks, project scaffolding, device deployment, screen/component generation, dependency installation, permissions, AI integration, build health, push notifications, deep links, dev environment reset, store builds, metadata validation, and App Store submission.",
+  "version": "0.7.0",
+  "description": "MCP server for mobile app development - 19 tools for environment checks, project scaffolding, device deployment, screen/component generation, dependency installation, permissions, AI integration, build health, push notifications, deep links, dev environment reset, store builds, metadata validation, App Store submission, Play Store submission, screenshot capture, bundle analysis, and OTA update configuration.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
