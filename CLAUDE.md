@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.1.0**. It helps developers go from zero to a running mobile app on their phone. Currently supports React Native/Expo with **3 skills**, **1 rule**, and a companion MCP server exposing **3 tools** for environment checks, project scaffolding, and device deployment. Flutter support is planned for v0.5.0.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.2.0**. It helps developers go from zero to a running mobile app on their phone. Currently supports React Native/Expo with **6 skills**, **2 rules**, and a companion MCP server exposing **6 tools** for environment checks, project scaffolding, device deployment, screen generation, component generation, and dependency installation. Flutter support is planned for v0.5.0.
 
 ## Plugin Architecture
 
@@ -12,35 +12,42 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.1.0**. It helps deve
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 3 tools
+mcp-server/                  - MCP server with 6 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (3 total)
+## Skills (6 total)
 
 | Skill | Purpose |
 | --- | --- |
 | mobile-project-setup | Guided Expo project creation with TypeScript, file-based routing, ESLint |
 | mobile-dev-environment | Cross-platform dependency detection (Node, Watchman, Xcode, Android Studio, Expo CLI) |
 | mobile-run-on-device | Running on a physical device via Expo Go, dev builds, QR code, tunnel mode |
+| mobile-navigation-setup | Expo Router file-based navigation: tabs, stack, drawer, typed routes, deep linking |
+| mobile-state-management | When to use React state vs Zustand vs Jotai vs React Query; patterns and examples |
+| mobile-component-patterns | Reusable component architecture, compound components, StyleSheet vs NativeWind, testing |
 
-## Rules (1 total)
+## Rules (2 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
 | mobile-secrets.mdc | Global | Flags API keys, signing credentials, keystore passwords, Firebase config, EAS tokens |
+| mobile-platform-check.mdc | `.ts`, `.tsx` | Flags platform-specific APIs used without Platform.OS or Platform.select() guards |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (3 total)
+### Tools (6 total)
 
 | Tool | Description |
 | --- | --- |
 | mobile_checkDevEnvironment | Detect installed tools, SDKs, simulators; report what is missing |
 | mobile_scaffoldProject | Generate a new Expo project from a template with chosen options |
 | mobile_runOnDevice | Start dev server and provide instructions for connecting a physical device |
+| mobile_generateScreen | Create a new Expo Router screen file with navigation wiring and boilerplate |
+| mobile_generateComponent | Create a React Native component with typed props, StyleSheet, and optional tests |
+| mobile_installDependency | Install a package via npx expo install with native module detection and warnings |
 
 ## Development Workflow
 

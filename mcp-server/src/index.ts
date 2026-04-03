@@ -6,15 +6,21 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { register as registerCheckDevEnvironment } from "./tools/checkDevEnvironment.js";
 import { register as registerScaffoldProject } from "./tools/scaffoldProject.js";
 import { register as registerRunOnDevice } from "./tools/runOnDevice.js";
+import { register as registerGenerateScreen } from "./tools/generateScreen.js";
+import { register as registerGenerateComponent } from "./tools/generateComponent.js";
+import { register as registerInstallDependency } from "./tools/installDependency.js";
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.1.0",
+  version: "0.2.0",
 });
 
 registerCheckDevEnvironment(server);
 registerScaffoldProject(server);
 registerRunOnDevice(server);
+registerGenerateScreen(server);
+registerGenerateComponent(server);
+registerInstallDependency(server);
 
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();

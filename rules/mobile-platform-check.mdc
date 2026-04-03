@@ -1,0 +1,76 @@
+---
+description: Flag platform-specific React Native APIs used without Platform.OS or Platform.select() guards. Prevents runtime errors when code runs on the wrong platform.
+alwaysApply: false
+globs:
+  - "*.ts"
+  - "*.tsx"
+---
+
+# Platform-Specific API Guard
+
+When reviewing or writing `.ts` / `.tsx` files in a React Native or Expo project, flag any usage of platform-specific APIs that lacks a `Platform.OS`, `Platform.select()`, or conditional platform guard.
+
+## APIs That Require Platform Guards
+
+### iOS-only APIs
+
+- `StatusBar.setBarStyle` (behavior differs on Android)
+- `ActionSheetIOS`
+- `Settings` (iOS NSUserDefaults bridge)
+- `PushNotificationIOS`
+- `DynamicColorIOS`
+- `UIManager.setLayoutAnimationEnabledExperimental` (Android-only call to enable layout animations)
+- `SafeAreaView` from `react-native` (use `react-native-safe-area-context` instead for cross-platform)
+- `DatePickerIOS` (deprecated, but still appears in older code)
+
+### Android-only APIs
+
+- `BackHandler` (Android back button)
+- `DrawerLayoutAndroid`
+- `PermissionsAndroid`
+- `ToastAndroid`
+- `ViewPagerAndroid`
+- `ProgressBarAndroid`
+- `StatusBar.setBackgroundColor` (no-op on iOS)
+- `StatusBar.setTranslucent` (Android-only)
+
+### Platform-varying behavior
+
+- `Linking.openURL` with `tel:`, `sms:`, or `mailto:` schemes (URL format differs between platforms)
+- `Keyboard.dismiss` vs hardware keyboard presence
+- `Alert.alert` (third button behavior differs; iOS supports more than 3 buttons, Android does not)
+- File path separators (`/` vs internal storage paths)
+- `expo-file-system` paths (document directory location varies)
+- `expo-notifications` channel setup (Android-only concept)
+
+## What to Do
+
+When any of the above APIs appear without a platform check:
+
+1. **Warn**: "This API (`{api_name}`) is platform-specific. Wrap it in a `Platform.OS` check or use `Platform.select()` to prevent runtime errors on the other platform."
+
+2. **Suggest the fix**:
+
+   ```tsx
+   import { Platform } from "react-native";
+
+   // Option A: conditional
+   if (Platform.OS === "android") {
+     StatusBar.setBackgroundColor("#000000");
+   }
+
+   // Option B: Platform.select
+   const headerStyle = Platform.select({
+     ios: { paddingTop: 44 },
+     android: { paddingTop: 0 },
+   });
+   ```
+
+3. **Exception**: If the file is explicitly platform-suffixed (e.g., `Component.ios.tsx` or `Component.android.tsx`), no guard is needed. React Native automatically resolves the correct file at build time.
+
+## Acceptable Patterns (Do Not Flag)
+
+- Code inside a file named `*.ios.ts` or `*.android.ts`
+- Code already wrapped in `if (Platform.OS === ...)` or `Platform.select(...)`
+- Usage of `expo-safe-area-context` (cross-platform replacement)
+- Usage of `expo-status-bar` (cross-platform wrapper around StatusBar)

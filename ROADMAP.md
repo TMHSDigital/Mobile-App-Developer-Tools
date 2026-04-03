@@ -4,8 +4,8 @@
 
 | Version | Theme | Skills | Rules | MCP Tools | Highlights |
 |---------|-------|--------|-------|-----------|------------|
-| **v0.1.0** | Zero to Phone | 3 | 1 | 3 | Project scaffolding, env check, run-on-device, secrets rule **(current)** |
-| **v0.2.0** | Navigate & State | +3 | +1 | +3 | Navigation setup, state management, component generation, platform-check rule |
+| **v0.1.0** | Zero to Phone | 3 | 1 | 3 | Project scaffolding, env check, run-on-device, secrets rule |
+| **v0.2.0** | Navigate & State | +3 | +1 | +3 | Navigation setup, state management, component generation, platform-check rule **(current)** |
 | **v0.3.0** | Camera & AI | +3 | +1 | +3 | Camera integration, AI features, permissions skill, image-assets rule |
 | **v0.4.0** | Users & Data | +4 | +1 | +3 | Auth, push notifications, local storage, API integration, env-safety rule |
 | **v0.5.0** | Flutter | +4 | +1 | +0 | Flutter project setup, navigation, run-on-device, state management, performance rule |
@@ -13,7 +13,7 @@
 | **v0.7.0** | Grow | +2 | +0 | +3 | Monetization, deep links, build-for-store, screenshots, bundle analysis |
 | **v1.0.0** | Stable | +0 | +0 | +0 | Polish, docs, production release: 22 skills, 7 rules, 18 MCP tools |
 
-## v0.1.0 - Zero to Phone (current)
+## v0.1.0 - Zero to Phone
 
 **Skills:**
 - `mobile-project-setup` - Guided Expo project creation with opinionated defaults
@@ -28,7 +28,7 @@
 - `mobile_scaffoldProject` - Generate a new Expo project from templates
 - `mobile_runOnDevice` - Start dev server and connect to a device
 
-## v0.2.0 - Navigate & State
+## v0.2.0 - Navigate & State (current)
 
 **Skills:**
 - `mobile-navigation-setup` (Expo) - Expo Router file-based navigation patterns

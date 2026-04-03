@@ -1,0 +1,101 @@
+---
+description: Enforce the release checklist when preparing a new version. Ensures all version files, docs, and counts stay in sync.
+alwaysApply: false
+globs:
+  - "**/CHANGELOG.md"
+  - "**/ROADMAP.md"
+  - "**/.cursor-plugin/plugin.json"
+  - "**/mcp-server/package.json"
+  - "**/packages/mobile-dev-tools/package.json"
+---
+
+# Release Process
+
+When preparing a release, complete every step below in order. Do not tag or push until all steps pass.
+
+## 1. Version Bump (7 files)
+
+Update the version string in all of these files. They must match exactly.
+
+| File | Field |
+| --- | --- |
+| `.cursor-plugin/plugin.json` | `version` |
+| `mcp-server/package.json` | `version` |
+| `mcp-server/src/index.ts` | `version` in `new McpServer({...})` |
+| `packages/mobile-dev-tools/package.json` | `version` |
+| `packages/mobile-dev-tools/src/index.ts` | `VERSION` constant |
+| `CLAUDE.md` | version reference in first paragraph |
+| `README.md` | version badge URL (`version-X.Y.Z-`) |
+
+## 2. Update Counts
+
+Update skill, rule, and MCP tool counts in these files to match the actual files on disk:
+
+- `.cursor-plugin/plugin.json` - `description` field
+- `mcp-server/package.json` - `description` field
+- `CLAUDE.md` - counts in overview paragraph and tables
+- `README.md` - counts in header, badge area, section headers, and tables
+
+Count sources:
+- Skills: `ls skills/*/SKILL.md | wc -l`
+- Rules: `ls rules/*.mdc | wc -l`
+- MCP tools: count `register*` calls in `mcp-server/src/index.ts`
+
+## 3. Update CHANGELOG.md
+
+Add a new entry at the top following the existing format:
+
+```markdown
+## [X.Y.Z] - YYYY-MM-DD
+
+### Added
+- List new skills, rules, and MCP tools
+```
+
+## 4. Update ROADMAP.md
+
+Move the `**(current)**` marker from the previous version to the new version in the release plan table and the version detail section.
+
+## 5. Build
+
+```bash
+cd mcp-server && npm run build
+cd ../packages/mobile-dev-tools && npm run build
+```
+
+Both must compile without errors.
+
+## 6. Test
+
+```bash
+pytest tests/ -v --tb=short
+```
+
+All tests must pass. The test suite validates:
+- Plugin manifest structure and referenced paths
+- Skill YAML frontmatter (name, description, name matches directory)
+- Skill required sections (Trigger, Required Inputs, Workflow, Example Interaction, MCP Usage, Common Pitfalls)
+- Rule YAML frontmatter (description, alwaysApply)
+- Version consistency across plugin.json, package.json, and index.ts
+
+## 7. Commit
+
+Use this format (no @ mentions):
+
+```
+vX.Y.Z: Theme Name - N skills, N rules, N MCP tools
+
+Brief description of what was added.
+```
+
+## 8. Tag and Push
+
+```bash
+git push origin main
+git tag -a vX.Y.Z -m "vX.Y.Z - Theme: N skills, N rules, N MCP tools"
+git push origin vX.Y.Z
+```
+
+The tag push triggers:
+- `.github/workflows/release.yml` - creates GitHub Release with changelog
+- `.github/workflows/publish-npm.yml` - publishes to npm
