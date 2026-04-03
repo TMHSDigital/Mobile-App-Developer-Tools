@@ -145,7 +145,7 @@ These map closely to the rule structure in your Plaid tools (plaid-secrets, plai
 | submitToPlayStore | Trigger submission via EAS Submit or bundletool |
 | analyzeBundle | Check app size, identify bloat, suggest optimizations |
 
-**Total: 18 tools at v1.0** (comparable to your Plaid toolkit's 30 tools)`,
+**Total: 36 tools at v1.0** (comparable to your Plaid toolkit's 30 tools)`,
   },
   {
     id: "npm-package",
@@ -184,7 +184,13 @@ mobile-dev validate-store --platform ios
 | **v0.4.0** | Auth, push notifications, local storage skills | App has user accounts and notifications | "Auth on mobile is different from web. Here's what I learned." |
 | **v0.5.0** | Flutter support begins (shared core, Flutter-specific skills) | (Toolkit expansion, app is feature-complete) | "Porting my toolkit to support Flutter: what transferred and what didn't" |
 | **v0.6.0** | App store prep, submission tools, monetization skill | App submitted to both stores | "Submitting my first app: the 47 things that surprised me" |
-| **v1.0.0** | Polish, 22 skills, 7 rules, 18 MCP tools stable | App is live and generating revenue | "From zero to app store: the full story" |
+| **v0.7.0** | Grow & Measure: monetization, deep links, analytics, OTA updates | Post-launch feedback loop running | "Your app is live. Now what? The metrics that matter." |
+| **v0.8.0** | Test & Automate: unit/E2E testing, CI/CD pipelines | Full test suite and automated builds | "I automated my entire mobile build pipeline in a day" |
+| **v0.9.0** | Rich Features: animations, maps, i18n, forms, real-time | App feels production-grade | "The features that separate a demo from a real app" |
+| **v0.10.0** | Harden: security, offline-sync, background tasks, APM | App survives the real world | "SSL pinning, offline mode, and the security audit that scared me" |
+| **v0.11.0** | Design & Adapt: theming, feature flags, a11y testing | App adapts to users | "Dark mode, feature flags, and why accessibility testing is not optional" |
+| **v0.12.0** | Extend & Evolve: native modules, config plugins, SDK upgrades | Toolkit handles advanced use cases | "Writing my first native module and surviving an SDK upgrade" |
+| **v1.0.0** | Polish, 43 skills, 12 rules, 36 MCP tools stable | App is live and generating revenue | "From zero to app store: the full story" |
 
 **Timeline estimate:** v0.1.0 in 1-2 weeks, v1.0.0 in 3-4 months if you're building consistently.`,
   },

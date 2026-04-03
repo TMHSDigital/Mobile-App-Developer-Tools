@@ -358,8 +358,13 @@ Full details in [ROADMAP.md](ROADMAP.md).
 | **v0.4.0** | Users & Data | 13 skills, 4 rules, 12 MCP tools | |
 | **v0.5.0** | Flutter | 17 skills, 5 rules, 12 MCP tools | |
 | **v0.6.0** | Ship It | 20 skills, 6 rules, 15 MCP tools | **Current** |
-| **v0.7.0** | Grow | Monetization, deep links, bundle analysis | |
-| **v1.0.0** | Stable | 22 skills, 7 rules, 18 MCP tools | |
+| **v0.7.0** | Grow & Measure | 24 skills, 7 rules, 19 MCP tools | |
+| **v0.8.0** | Test & Automate | 27 skills, 8 rules, 22 MCP tools | |
+| **v0.9.0** | Rich Features | 32 skills, 9 rules, 26 MCP tools | |
+| **v0.10.0** | Harden | 37 skills, 10 rules, 30 MCP tools | |
+| **v0.11.0** | Design & Adapt | 40 skills, 11 rules, 33 MCP tools | |
+| **v0.12.0** | Extend & Evolve | 43 skills, 12 rules, 36 MCP tools | |
+| **v1.0.0** | Stable | 43 skills, 12 rules, 36 MCP tools | |
 
 </details>
 
