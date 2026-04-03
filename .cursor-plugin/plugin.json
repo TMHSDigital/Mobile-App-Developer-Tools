@@ -26,7 +26,8 @@
   "tags": [
     "mobile",
     "expo",
-    "react-native"
+    "react-native",
+    "flutter"
   ],
   "logo": "assets/logo.png",
   "skills": "./skills/",

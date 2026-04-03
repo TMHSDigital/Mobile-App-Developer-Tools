@@ -27,7 +27,7 @@
 ## Mobile Development Conventions
 
 - Default framework: Expo (React Native) with TypeScript
-- Flutter support is planned but not yet implemented
+- Flutter is supported as of v0.5.0 with 4 dedicated skills (project setup, navigation, run-on-device, state management)
 - Prefer Expo SDK libraries over raw React Native community packages when available
 - Use file-based routing (Expo Router) over React Navigation stack-based routing
 - Always include platform checks (`Platform.OS`) when writing platform-specific code
