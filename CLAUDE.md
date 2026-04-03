@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.9.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **32 skills**, **9 rules**, and a companion MCP server exposing **26 tools**.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.10.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **37 skills**, **10 rules**, and a companion MCP server exposing **30 tools**.
 
 ## Demo App
 
@@ -16,11 +16,11 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.9.0**. It helps deve
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 26 tools
+mcp-server/                  - MCP server with 30 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (32 total)
+## Skills (37 total)
 
 ### React Native / Expo
 
@@ -68,8 +68,13 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-i18n | Internationalization, RTL layout, locale detection, pluralization, translation files |
 | mobile-forms-validation | React Hook Form + Zod for RN, Form + TextFormField for Flutter; multi-step forms |
 | mobile-real-time | WebSockets, Supabase Realtime, Socket.IO, SSE; reconnection and presence |
+| mobile-security | SSL pinning, code obfuscation, jailbreak/root detection, certificate transparency |
+| mobile-offline-sync | Offline-first architecture, background sync, conflict resolution, operation queuing |
+| mobile-background-tasks | Background fetch, WorkManager (Android), BGTaskScheduler (iOS), headless JS |
+| mobile-debugging | Flipper, React DevTools, Flutter DevTools, memory leak detection, network inspection |
+| mobile-app-monitoring | Production APM with Sentry Performance, Datadog, Instabug; OpenTelemetry spans, Apdex scoring |
 
-## Rules (9 total)
+## Rules (10 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
@@ -82,12 +87,13 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-bundle-size.mdc | `.ts`, `.tsx`, `.json`, `.dart` | Flags large dependencies, unoptimized imports, heavy packages with lighter alternatives |
 | mobile-test-coverage.mdc | `.ts`, `.tsx`, `.dart` | Flags untested components, missing test files, low coverage thresholds, snapshot-only tests |
 | mobile-i18n-strings.mdc | `.ts`, `.tsx`, `.dart` | Flags hardcoded user-facing strings not wrapped in a translation function |
+| mobile-security-audit.mdc | `.ts`, `.tsx`, `.dart`, `.json`, `.xml` | Flags insecure storage, missing SSL pinning, debug flags in release builds, cleartext traffic |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (26 total)
+### Tools (30 total)
 
 | Tool | Description |
 | --- | --- |
@@ -117,6 +123,10 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 | mobile_addMap | Add map view with provider config, permissions, and marker support |
 | mobile_generateForm | Scaffold a validated form with typed fields, validation, and error handling |
 | mobile_setupRealtime | Add real-time client with connection management, reconnection, and typed events |
+| mobile_securityAudit | Scan project for common mobile security anti-patterns |
+| mobile_profilePerformance | Analyze project for performance anti-patterns and flag jank, slow renders, memory issues |
+| mobile_checkOfflineReady | Validate offline-first setup: local DB, network listener, query cache, mutation queue |
+| mobile_setupMonitoring | Configure APM with Sentry Performance or Datadog RUM; error capture, tracing, release health |
 
 ## Development Workflow
 

@@ -12,8 +12,8 @@
 | **v0.6.0** | Ship It | +3 | +1 | +3 | App store prep, iOS submission, Android submission, accessibility rule |
 | **v0.7.0** | Grow & Measure | +4 | +1 | +4 | Monetization, deep links, analytics/crash reporting, OTA updates, bundle analysis |
 | **v0.8.0** | Test & Automate | +3 | +1 | +3 | Unit/E2E testing, CI/CD pipelines, test file generation |
-| **v0.9.0** | Rich Features | +5 | +1 | +4 | Animations, maps/location, i18n, forms/validation, real-time/WebSockets **(current)** |
-| **v0.10.0** | Harden | +5 | +1 | +4 | Security, offline-sync, background tasks, debugging, production APM |
+| **v0.9.0** | Rich Features | +5 | +1 | +4 | Animations, maps/location, i18n, forms/validation, real-time/WebSockets |
+| **v0.10.0** | Harden | +5 | +1 | +4 | Security, offline-sync, background tasks, debugging, production APM **(current)** |
 | **v0.11.0** | Design & Adapt | +3 | +1 | +3 | Theming/dark mode, feature flags/remote config, accessibility testing automation |
 | **v0.12.0** | Extend & Evolve | +3 | +1 | +3 | Native module authoring, config plugins, SDK upgrade migration |
 | **v1.0.0** | Stable | +0 | +0 | +0 | Polish, docs, production release: 43 skills, 12 rules, 36 MCP tools |
@@ -137,7 +137,7 @@
 - `mobile_setupCI` - Generate GitHub Actions workflow for build, test, deploy
 - `mobile_generateTestFile` - Scaffold a test file for an existing component or screen
 
-## v0.9.0 - Rich Features (current)
+## v0.9.0 - Rich Features
 
 **Skills:**
 - `mobile-animations` (Shared) - Reanimated, Lottie, Rive for React Native; implicit and explicit animations for Flutter
@@ -155,7 +155,7 @@
 - `mobile_generateForm` - Scaffold a validated form with typed fields and error handling
 - `mobile_setupRealtime` - Add WebSocket or Supabase Realtime client with reconnection and typed events
 
-## v0.10.0 - Harden
+## v0.10.0 - Harden (current)
 
 **Skills:**
 - `mobile-security` (Shared) - SSL pinning, code obfuscation, jailbreak/root detection, certificate transparency

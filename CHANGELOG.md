@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.10.0] - 2026-04-03
+
+### Added
+
+- **5 new skills**: `mobile-security` (SSL pinning, code obfuscation, jailbreak/root detection, certificate transparency, secure key storage), `mobile-offline-sync` (offline-first architecture, WatermelonDB, PowerSync, Drift, conflict resolution, operation queuing), `mobile-background-tasks` (expo-task-manager, expo-background-fetch, WorkManager, BGTaskScheduler, headless JS, Flutter Workmanager), `mobile-debugging` (Flipper, React DevTools, Flutter DevTools, memory leak detection, network inspection), `mobile-app-monitoring` (Sentry Performance, Datadog RUM, Instabug, OpenTelemetry spans, Apdex scoring, session replay)
+- **1 new rule**: `mobile-security-audit` (flags insecure storage, missing SSL pinning, debug flags in release builds, cleartext traffic, hardcoded signing credentials)
+- **4 new MCP tools**: `mobile_securityAudit`, `mobile_profilePerformance`, `mobile_checkOfflineReady`, `mobile_setupMonitoring`
+- Totals: 37 skills, 10 rules, 30 MCP tools
+
 ## [0.9.0] - 2026-04-03
 
 ### Added

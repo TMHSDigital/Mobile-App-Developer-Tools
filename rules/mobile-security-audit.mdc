@@ -1,0 +1,82 @@
+---
+description: Flag common mobile security anti-patterns including insecure storage, missing SSL pinning, debug flags in release builds, cleartext traffic, and exposed signing credentials.
+alwaysApply: false
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.dart"
+  - "**/*.json"
+  - "**/*.xml"
+---
+
+# Security Audit
+
+Flag these security issues:
+
+## Tokens in insecure storage
+
+- Auth tokens, refresh tokens, or API keys stored using `AsyncStorage` (React Native) or `SharedPreferences` (Flutter). These are unencrypted plaintext on both platforms.
+- Exception: non-sensitive data like user preferences, theme settings, or feature flags.
+
+**Fix:**
+
+```tsx
+// Before
+await AsyncStorage.setItem("auth_token", token);
+
+// After
+import * as SecureStore from "expo-secure-store";
+await SecureStore.setItemAsync("auth_token", token);
+```
+
+```dart
+// Before
+final prefs = await SharedPreferences.getInstance();
+prefs.setString('auth_token', token);
+
+// After
+final storage = const FlutterSecureStorage();
+await storage.write(key: 'auth_token', value: token);
+```
+
+## Missing SSL pinning
+
+- API calls to production endpoints using `fetch`, `axios`, `dio`, or `http` without SSL pinning configured. Traffic is vulnerable to man-in-the-middle attacks.
+- Exception: calls to localhost, development servers, or third-party SDKs that handle their own pinning.
+
+**Fix:** Add `react-native-ssl-pinning` (React Native) or `ssl_pinning_plugin` (Flutter) and configure certificate pins for production API endpoints.
+
+## Debug flags in release builds
+
+- `console.log` with sensitive data (tokens, passwords, user objects) outside a `__DEV__` guard.
+- Debug-only packages (`react-native-flipper`, `reactotron-react-native`) in `dependencies` instead of `devDependencies`.
+- `debugShowCheckedModeBanner: true` or `debugShowMaterialGrid: true` in Flutter release builds.
+- `android:debuggable="true"` set explicitly in AndroidManifest.xml.
+
+**Fix:** Move debug packages to `devDependencies`. Gate debug logging with `__DEV__` (RN) or `kDebugMode` (Flutter).
+
+```tsx
+// Before
+console.log("User token:", token);
+
+// After
+if (__DEV__) {
+  console.log("User token:", token);
+}
+```
+
+## Cleartext traffic
+
+- `android:usesCleartextTraffic="true"` in AndroidManifest.xml or app.json. All HTTP traffic is unencrypted and interceptable.
+- `http://` URLs in production API configuration (not `https://`).
+- Exception: `http://10.0.2.2` or `http://localhost` for development.
+
+**Fix:** Set `usesCleartextTraffic` to `false` and use HTTPS for all production endpoints.
+
+## Hardcoded signing credentials
+
+- Keystore passwords, key aliases, or signing certificate paths hardcoded in `build.gradle` or checked into the repository.
+- `.keystore` or `.jks` files committed to version control.
+- `google-services.json` or `GoogleService-Info.plist` with production credentials in a public repository.
+
+**Fix:** Use environment variables or a secrets manager for signing credentials. Add keystore files to `.gitignore`. Use EAS managed credentials when possible.
