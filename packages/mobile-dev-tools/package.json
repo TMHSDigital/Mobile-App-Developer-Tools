@@ -1,5 +1,5 @@
 {
-  "name": "@tmhsdigital/mobile-dev-tools",
+  "name": "@tmhs/mobile-dev-tools",
   "version": "0.1.0",
   "description": "CLI and utilities for mobile app development - environment checks, project scaffolding, store metadata validation.",
   "type": "module",

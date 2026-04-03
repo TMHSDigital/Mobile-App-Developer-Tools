@@ -1,4 +1,4 @@
-# @tmhsdigital/mobile-dev-tools
+# @tmhs/mobile-dev-tools
 
 CLI and utilities for mobile app development.
 
@@ -15,7 +15,7 @@ CLI and utilities for mobile app development.
 ## Install
 
 ```bash
-npm install -g @tmhsdigital/mobile-dev-tools
+npm install -g @tmhs/mobile-dev-tools
 ```
 
 ## Usage

@@ -28,5 +28,6 @@ if (command === "--version" || command === "-v") {
 
 console.log(`${PACKAGE_NAME} v${VERSION}`);
 console.log(`Command "${command}" is not yet implemented. Coming in a future release.`);
-console.log("See https://github.com/TMHSDigital/Mobile-App-Developer-Tools for updates.");
+console.log("See https://github.com/TMHSDigital/Mobile-App-Developer-Tools for updates.")
+
 process.exit(1);

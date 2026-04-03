@@ -112,10 +112,10 @@ Add to your Cursor MCP config (`.cursor/mcp.json`):
 
 ## NPM Package
 
-The `@tmhsdigital/mobile-dev-tools` package provides shared utilities for mobile development. Currently a stub to reserve the name. Full functionality coming in future releases.
+The `@tmhs/mobile-dev-tools` package provides shared utilities for mobile development. Currently a stub to reserve the name. Full functionality coming in future releases.
 
 ```bash
-npm install -g @tmhsdigital/mobile-dev-tools
+npm install -g @tmhs/mobile-dev-tools
 
 # CLI usage (coming soon)
 mobile-dev check-env
