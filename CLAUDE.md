@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.3.0**. It helps developers go from zero to a running mobile app on their phone. Currently supports React Native/Expo with **9 skills**, **3 rules**, and a companion MCP server exposing **9 tools** for environment checks, project scaffolding, device deployment, screen/component generation, dependency installation, permissions, AI integration, and build health checks. Flutter support is planned for v0.5.0.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.4.0**. It helps developers go from zero to a running mobile app on their phone. Currently supports React Native/Expo with **13 skills**, **4 rules**, and a companion MCP server exposing **12 tools**. Flutter support is planned for v0.5.0.
 
 ## Plugin Architecture
 
@@ -12,11 +12,11 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.3.0**. It helps deve
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 9 tools
+mcp-server/                  - MCP server with 12 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (9 total)
+## Skills (13 total)
 
 | Skill | Purpose |
 | --- | --- |
@@ -29,20 +29,25 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-camera-integration | expo-camera setup, permissions, photo capture, barcode scanning, video recording |
 | mobile-ai-features | AI API integration (OpenAI, Anthropic, Google) with backend proxy, vision, text, audio |
 | mobile-permissions | Cross-platform permission request patterns, rationale strings, denied/blocked handling |
+| mobile-auth-setup | Authentication with Supabase, Firebase, Clerk; secure token storage, protected routes |
+| mobile-push-notifications | expo-notifications, EAS Push, Android channels, deep link on tap, local notifications |
+| mobile-local-storage | AsyncStorage, expo-sqlite, expo-secure-store, MMKV; migrations and data cleanup |
+| mobile-api-integration | REST/GraphQL clients, React Query, auth headers, retry, offline queue, optimistic updates |
 
-## Rules (3 total)
+## Rules (4 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
 | mobile-secrets.mdc | Global | Flags API keys, signing credentials, keystore passwords, Firebase config, EAS tokens |
 | mobile-platform-check.mdc | `.ts`, `.tsx` | Flags platform-specific APIs used without Platform.OS or Platform.select() guards |
 | mobile-image-assets.mdc | `.ts`, `.tsx`, `.json` | Flags oversized images, unoptimized formats, missing density variants, uncached remote images |
+| mobile-env-safety.mdc | `.ts`, `.tsx`, `.json` | Flags hardcoded production endpoints, missing EXPO_PUBLIC_ prefix, server-only secrets in client code |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (9 total)
+### Tools (12 total)
 
 | Tool | Description |
 | --- | --- |
@@ -55,6 +60,9 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 | mobile_addPermission | Add platform permission with iOS rationale string to app.json config plugins |
 | mobile_integrateAI | Scaffold AI API client with provider config, error handling, and TypeScript types |
 | mobile_checkBuildHealth | Validate app.json, check dependencies, verify TypeScript, detect native module issues |
+| mobile_addPushNotifications | Add expo-notifications plugin to app.json, create notification handler, configure Android channel |
+| mobile_configureDeepLinks | Set scheme, add Android intent filters, iOS associated domains, generate AASA template |
+| mobile_resetDevEnvironment | Nuclear reset: clear Metro cache, .expo dir, node_modules cache, optionally Pods and Gradle |
 
 ## Development Workflow
 

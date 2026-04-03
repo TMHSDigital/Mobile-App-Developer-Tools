@@ -1,0 +1,82 @@
+---
+description: Flag hardcoded production endpoints, database URLs, and service URLs that should differ between environments. Enforce EXPO_PUBLIC_ prefix for client-side environment variables.
+alwaysApply: false
+globs:
+  - "*.ts"
+  - "*.tsx"
+  - "*.json"
+---
+
+# Environment Safety
+
+When reviewing or writing code in a React Native/Expo project, flag these environment-related issues:
+
+## Patterns to Flag
+
+### 1. Hardcoded production URLs
+
+Flag strings that look like production API endpoints directly in source code:
+
+- `https://api.example.com` or `https://api.*.com` without going through an env variable
+- `https://*.supabase.co` hardcoded (should be `EXPO_PUBLIC_SUPABASE_URL`)
+- `https://*.firebaseio.com` hardcoded
+- `wss://` WebSocket URLs hardcoded
+- Database connection strings (`postgres://`, `mongodb://`, `mysql://`)
+
+**Suggest:** Use `process.env.EXPO_PUBLIC_API_URL` or similar, loaded from a `.env` file.
+
+### 2. Missing EXPO_PUBLIC_ prefix
+
+In Expo, only environment variables prefixed with `EXPO_PUBLIC_` are available in client code. Flag:
+
+- `process.env.API_URL` (missing prefix, will be undefined at runtime)
+- `process.env.SUPABASE_URL` (missing prefix)
+- `process.env.DATABASE_URL` in client code (should never be in client code at all)
+
+**Suggest:** Rename to `process.env.EXPO_PUBLIC_API_URL`. If the variable is truly secret (database URL, service role key), it must not be in client code.
+
+### 3. Server-only secrets in client code
+
+Flag usage of variables that should never appear in a mobile app:
+
+- `SUPABASE_SERVICE_ROLE_KEY` (full database access, backend only)
+- `DATABASE_URL` or any database connection string
+- `STRIPE_SECRET_KEY` (backend only, use publishable key in client)
+- `OPENAI_API_KEY`, `ANTHROPIC_API_KEY` (use a backend proxy)
+- `AWS_SECRET_ACCESS_KEY`, `GCP_SERVICE_ACCOUNT_KEY`
+- `SENDGRID_API_KEY`, `TWILIO_AUTH_TOKEN`
+
+**Suggest:** These belong on your backend server. The mobile app should call your backend API, which holds these keys.
+
+### 4. Environment-specific configuration without switching
+
+Flag files that have environment-specific values without a switching mechanism:
+
+```tsx
+// BAD: hardcoded to production
+const API_URL = "https://api.myapp.com";
+
+// GOOD: reads from environment
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+```
+
+### 5. `.env` files committed or missing from .gitignore
+
+Flag if `.env`, `.env.local`, `.env.production` files are tracked by git or not listed in `.gitignore`.
+
+## What to Do
+
+When any of these patterns are detected:
+
+- **Warn**: "`{pattern}` detected. This should use an environment variable to support multiple environments (dev/staging/prod)."
+- **For server secrets**: "This key/URL is a server-only secret. It must not appear in mobile app code. Use a backend API proxy."
+- **Suggest** the correct `EXPO_PUBLIC_` pattern and `.env` file setup
+
+## Acceptable Patterns (Do Not Flag)
+
+- `process.env.EXPO_PUBLIC_*` (correctly prefixed)
+- URLs inside comments or documentation
+- `localhost` or `127.0.0.1` URLs (local development)
+- `exp.host` URLs (Expo push service, always the same)
+- Test/mock URLs in test files (`*.test.ts`, `*.spec.ts`)
+- URLs in `app.json` `scheme` field (deep link scheme, not a backend URL)

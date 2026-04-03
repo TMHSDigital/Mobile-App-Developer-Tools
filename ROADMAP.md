@@ -6,8 +6,8 @@
 |---------|-------|--------|-------|-----------|------------|
 | **v0.1.0** | Zero to Phone | 3 | 1 | 3 | Project scaffolding, env check, run-on-device, secrets rule |
 | **v0.2.0** | Navigate & State | +3 | +1 | +3 | Navigation setup, state management, component generation, platform-check rule |
-| **v0.3.0** | Camera & AI | +3 | +1 | +3 | Camera integration, AI features, permissions skill, image-assets rule **(current)** |
-| **v0.4.0** | Users & Data | +4 | +1 | +3 | Auth, push notifications, local storage, API integration, env-safety rule |
+| **v0.3.0** | Camera & AI | +3 | +1 | +3 | Camera integration, AI features, permissions skill, image-assets rule |
+| **v0.4.0** | Users & Data | +4 | +1 | +3 | Auth, push notifications, local storage, API integration, env-safety rule **(current)** |
 | **v0.5.0** | Flutter | +4 | +1 | +0 | Flutter project setup, navigation, run-on-device, state management, performance rule |
 | **v0.6.0** | Ship It | +3 | +1 | +3 | App store prep, iOS submission, Android submission, accessibility rule |
 | **v0.7.0** | Grow | +2 | +0 | +3 | Monetization, deep links, build-for-store, screenshots, bundle analysis |
@@ -43,7 +43,7 @@
 - `mobile_generateComponent` - Create a component with props, styles, tests
 - `mobile_installDependency` - Add and configure a library with linking and pod install
 
-## v0.3.0 - Camera & AI (current)
+## v0.3.0 - Camera & AI
 
 **Skills:**
 - `mobile-camera-integration` (Expo) - expo-camera setup, permissions, photo capture
@@ -58,7 +58,7 @@
 - `mobile_integrateAI` - Add AI API integration with error handling
 - `mobile_checkBuildHealth` - Verify the project builds cleanly
 
-## v0.4.0 - Users & Data
+## v0.4.0 - Users & Data (current)
 
 **Skills:**
 - `mobile-auth-setup` (Shared) - Auth patterns with Supabase, Firebase, Clerk

@@ -12,10 +12,13 @@ import { register as registerInstallDependency } from "./tools/installDependency
 import { register as registerAddPermission } from "./tools/addPermission.js";
 import { register as registerIntegrateAI } from "./tools/integrateAI.js";
 import { register as registerCheckBuildHealth } from "./tools/checkBuildHealth.js";
+import { register as registerAddPushNotifications } from "./tools/addPushNotifications.js";
+import { register as registerConfigureDeepLinks } from "./tools/configureDeepLinks.js";
+import { register as registerResetDevEnvironment } from "./tools/resetDevEnvironment.js";
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.3.0",
+  version: "0.4.0",
 });
 
 registerCheckDevEnvironment(server);
@@ -27,6 +30,9 @@ registerInstallDependency(server);
 registerAddPermission(server);
 registerIntegrateAI(server);
 registerCheckBuildHealth(server);
+registerAddPushNotifications(server);
+registerConfigureDeepLinks(server);
+registerResetDevEnvironment(server);
 
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();

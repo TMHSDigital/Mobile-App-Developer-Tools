@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2026-04-03
+
+### Added
+
+- **4 new skills**: `mobile-auth-setup` (Supabase, Firebase, Clerk auth with secure token storage), `mobile-push-notifications` (expo-notifications, EAS Push, Android channels), `mobile-local-storage` (AsyncStorage, SQLite, SecureStore, MMKV), `mobile-api-integration` (REST/GraphQL clients, React Query, offline, retry)
+- **1 new rule**: `mobile-env-safety` (flags hardcoded production endpoints, missing EXPO_PUBLIC_ prefix, server-only secrets in client code)
+- **3 new MCP tools**: `mobile_addPushNotifications`, `mobile_configureDeepLinks`, `mobile_resetDevEnvironment`
+- Totals: 13 skills, 4 rules, 12 MCP tools
+
 ## [0.3.0] - 2026-04-03
 
 ### Added
