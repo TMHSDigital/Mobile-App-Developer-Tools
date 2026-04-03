@@ -8,8 +8,8 @@
 | **v0.2.0** | Navigate & State | +3 | +1 | +3 | Navigation setup, state management, component generation, platform-check rule |
 | **v0.3.0** | Camera & AI | +3 | +1 | +3 | Camera integration, AI features, permissions skill, image-assets rule |
 | **v0.4.0** | Users & Data | +4 | +1 | +3 | Auth, push notifications, local storage, API integration, env-safety rule |
-| **v0.5.0** | Flutter | +4 | +1 | +0 | Flutter project setup, navigation, run-on-device, state management, performance rule **(current)** |
-| **v0.6.0** | Ship It | +3 | +1 | +3 | App store prep, iOS submission, Android submission, accessibility rule |
+| **v0.5.0** | Flutter | +4 | +1 | +0 | Flutter project setup, navigation, run-on-device, state management, performance rule |
+| **v0.6.0** | Ship It | +3 | +1 | +3 | App store prep, iOS submission, Android submission, accessibility rule **(current)** |
 | **v0.7.0** | Grow | +2 | +0 | +3 | Monetization, deep links, build-for-store, screenshots, bundle analysis |
 | **v1.0.0** | Stable | +0 | +0 | +0 | Polish, docs, production release: 22 skills, 7 rules, 18 MCP tools |
 
@@ -74,7 +74,7 @@
 - `mobile_configureDeepLinks` - Set up universal links and app links
 - `mobile_resetDevEnvironment` - Clear caches, reinstall pods, reset Metro/Gradle
 
-## v0.5.0 - Flutter (current)
+## v0.5.0 - Flutter
 
 **Skills:**
 - `mobile-project-setup` (Flutter) - Guided `flutter create` with recommended structure
@@ -85,7 +85,7 @@
 **Rules:**
 - `mobile-performance` - Common performance anti-patterns (inline styles, missing keys, heavy re-renders)
 
-## v0.6.0 - Ship It
+## v0.6.0 - Ship It (current)
 
 **Skills:**
 - `mobile-app-store-prep` (Shared) - Screenshots, descriptions, metadata, review guidelines

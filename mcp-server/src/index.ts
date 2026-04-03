@@ -15,10 +15,13 @@ import { register as registerCheckBuildHealth } from "./tools/checkBuildHealth.j
 import { register as registerAddPushNotifications } from "./tools/addPushNotifications.js";
 import { register as registerConfigureDeepLinks } from "./tools/configureDeepLinks.js";
 import { register as registerResetDevEnvironment } from "./tools/resetDevEnvironment.js";
+import { register as registerBuildForStore } from "./tools/buildForStore.js";
+import { register as registerValidateStoreMetadata } from "./tools/validateStoreMetadata.js";
+import { register as registerSubmitToAppStore } from "./tools/submitToAppStore.js";
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.5.0",
+  version: "0.6.0",
 });
 
 registerCheckDevEnvironment(server);
@@ -33,6 +36,9 @@ registerCheckBuildHealth(server);
 registerAddPushNotifications(server);
 registerConfigureDeepLinks(server);
 registerResetDevEnvironment(server);
+registerBuildForStore(server);
+registerValidateStoreMetadata(server);
+registerSubmitToAppStore(server);
 
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();

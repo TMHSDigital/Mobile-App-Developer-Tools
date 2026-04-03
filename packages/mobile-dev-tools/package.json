@@ -1,6 +1,6 @@
 {
   "name": "@tmhs/mobile-dev-tools",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "CLI and utilities for mobile app development - environment checks, project scaffolding, store metadata validation.",
   "type": "module",
   "main": "dist/index.js",

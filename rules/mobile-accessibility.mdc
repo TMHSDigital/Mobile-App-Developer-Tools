@@ -1,0 +1,182 @@
+---
+description: Flag accessibility anti-patterns in React Native and Flutter code. Catches missing accessibility labels, small touch targets, images without alt text, and color-only state indicators.
+alwaysApply: false
+globs:
+  - "*.ts"
+  - "*.tsx"
+  - "*.dart"
+---
+
+# Accessibility Anti-Patterns
+
+When reviewing or writing code in a React Native or Flutter project, flag these accessibility issues:
+
+## React Native / Expo
+
+### 1. Missing accessibilityLabel on interactive elements
+
+Flag `TouchableOpacity`, `Pressable`, `TouchableHighlight`, and `Button` components without `accessibilityLabel`:
+
+```tsx
+// BAD: screen reader announces nothing useful
+<Pressable onPress={handleDelete}>
+  <Icon name="trash" />
+</Pressable>
+
+// GOOD: screen reader announces "Delete item"
+<Pressable onPress={handleDelete} accessibilityLabel="Delete item" accessibilityRole="button">
+  <Icon name="trash" />
+</Pressable>
+```
+
+Icon-only buttons are the most common offender. Every interactive element needs a label.
+
+### 2. Missing accessibilityRole
+
+Flag interactive elements without `accessibilityRole`. This tells screen readers what type of element it is:
+
+- `"button"` for tappable actions
+- `"link"` for navigation links
+- `"checkbox"` / `"switch"` for toggles
+- `"header"` for section headings
+- `"search"` for search fields
+- `"image"` for meaningful images
+
+### 3. Images without accessibility
+
+Flag `Image` and `expo-image` components that display meaningful content without `accessibilityLabel`:
+
+```tsx
+// BAD: screen reader skips or says "image"
+<Image source={require('./avatar.png')} />
+
+// GOOD: describes the image
+<Image
+  source={require('./avatar.png')}
+  accessibilityLabel="User profile photo"
+  accessible={true}
+/>
+```
+
+Decorative images that do not convey information should set `accessible={false}` to hide from screen readers.
+
+### 4. Small touch targets
+
+Flag interactive elements with explicit dimensions smaller than 44x44 points:
+
+```tsx
+// BAD: too small for reliable tapping
+<Pressable style={{ width: 24, height: 24 }} onPress={onClose}>
+  <Icon name="close" size={16} />
+</Pressable>
+
+// GOOD: meets minimum touch target
+<Pressable
+  style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
+  onPress={onClose}
+  accessibilityLabel="Close"
+>
+  <Icon name="close" size={16} />
+</Pressable>
+```
+
+Apple HIG requires 44x44 pt minimum. Material Design requires 48x48 dp. When the visual element is smaller, add padding to reach the minimum tap area.
+
+### 5. Color-only state indicators
+
+Flag patterns where state is communicated only through color:
+
+```tsx
+// BAD: color blind users cannot distinguish states
+<View style={{ backgroundColor: isValid ? 'green' : 'red' }} />
+
+// GOOD: add text or icon alongside color
+<View style={{ backgroundColor: isValid ? 'green' : 'red' }}>
+  <Text>{isValid ? 'Valid' : 'Invalid'}</Text>
+</View>
+```
+
+Always pair color with text, icons, or patterns to convey meaning.
+
+## Flutter / Dart
+
+### 1. Missing Semantics on interactive elements
+
+Flag `GestureDetector`, `InkWell`, and custom tappable widgets without `Semantics`:
+
+```dart
+// BAD: invisible to screen readers
+GestureDetector(
+  onTap: handleDelete,
+  child: Icon(Icons.delete),
+)
+
+// GOOD: labeled for screen readers
+Semantics(
+  button: true,
+  label: 'Delete item',
+  child: GestureDetector(
+    onTap: handleDelete,
+    child: Icon(Icons.delete),
+  ),
+)
+```
+
+`ElevatedButton`, `TextButton`, and `IconButton` have built-in semantics. Custom widgets need explicit `Semantics`.
+
+### 2. Images without semanticLabel
+
+Flag `Image.asset` and `Image.network` without `semanticLabel`:
+
+```dart
+// BAD: screen reader ignores or says "image"
+Image.asset('assets/logo.png')
+
+// GOOD: meaningful description
+Image.asset('assets/logo.png', semanticLabel: 'Company logo')
+```
+
+For decorative images, use `excludeFromSemantics: true`.
+
+### 3. Small tap targets
+
+Flag widgets with explicit `SizedBox` or `Container` constraints below 48x48 dp for interactive elements:
+
+```dart
+// BAD: too small
+SizedBox(
+  width: 24,
+  height: 24,
+  child: IconButton(icon: Icon(Icons.close), onPressed: onClose),
+)
+
+// GOOD: meets Material minimum (IconButton has 48x48 default)
+IconButton(
+  icon: Icon(Icons.close),
+  onPressed: onClose,
+  tooltip: 'Close',
+)
+```
+
+Material Design minimum is 48x48 dp. `IconButton` defaults to this.
+
+### 4. Missing tooltip on IconButton
+
+Flag `IconButton` without a `tooltip`:
+
+```dart
+// BAD: no tooltip means no long-press hint and poor screen reader support
+IconButton(icon: Icon(Icons.share), onPressed: onShare)
+
+// GOOD: tooltip serves as semantic label
+IconButton(icon: Icon(Icons.share), onPressed: onShare, tooltip: 'Share')
+```
+
+## What to Do
+
+When any of these patterns are detected:
+
+- **Warn**: "`{pattern}` detected. Screen reader users cannot interact with this element."
+- **Suggest** the correct accessible pattern with a code example.
+- **Do not flag** patterns in test files (`*.test.ts`, `*.test.dart`, `*_test.dart`).
+- **Do not flag** elements explicitly marked as decorative (`accessible={false}`, `excludeFromSemantics: true`).

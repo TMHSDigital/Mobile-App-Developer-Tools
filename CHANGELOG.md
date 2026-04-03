@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.0] - 2026-04-03
+
+### Added
+
+- **3 new skills**: `mobile-app-store-prep` (app icons, screenshots, metadata, privacy policy, review guidelines), `mobile-ios-submission` (EAS Build/Submit, certificates, TestFlight, App Store review), `mobile-android-submission` (Play Console, signing keys, AAB, service accounts, staged rollouts)
+- **1 new rule**: `mobile-accessibility` (missing a11y labels, small touch targets, images without alt text, color-only indicators for RN + Flutter)
+- **3 new MCP tools**: `mobile_buildForStore`, `mobile_validateStoreMetadata`, `mobile_submitToAppStore`
+- Totals: 20 skills, 6 rules, 15 MCP tools
+
 ## [0.5.0] - 2026-04-03
 
 ### Added

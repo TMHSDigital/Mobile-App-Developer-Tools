@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.5.0**. It helps developers go from zero to a running mobile app on their phone. Supports React Native/Expo and Flutter with **17 skills**, **5 rules**, and a companion MCP server exposing **12 tools**.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.6.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **20 skills**, **6 rules**, and a companion MCP server exposing **15 tools**.
 
 ## Plugin Architecture
 
@@ -12,11 +12,11 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.5.0**. It helps deve
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 12 tools
+mcp-server/                  - MCP server with 15 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (17 total)
+## Skills (20 total)
 
 ### React Native / Expo
 
@@ -35,6 +35,8 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-push-notifications | expo-notifications, EAS Push, Android channels, deep link on tap, local notifications |
 | mobile-local-storage | AsyncStorage, expo-sqlite, expo-secure-store, MMKV; migrations and data cleanup |
 | mobile-api-integration | REST/GraphQL clients, React Query, auth headers, retry, offline queue, optimistic updates |
+| mobile-ios-submission | EAS Build/Submit, certificates, provisioning profiles, TestFlight, App Store review |
+| mobile-android-submission | Play Console, signing keys, AAB, service accounts, staged rollouts |
 
 ### Flutter
 
@@ -45,7 +47,13 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-flutter-run-on-device | USB/wireless debugging, hot reload vs restart, build modes, troubleshooting |
 | mobile-flutter-state-management | Riverpod (recommended), Bloc, Provider, setState; async data, code generation |
 
-## Rules (5 total)
+### Shared
+
+| Skill | Purpose |
+| --- | --- |
+| mobile-app-store-prep | App icons, screenshots, metadata, privacy policy, age ratings, review guidelines |
+
+## Rules (6 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
@@ -54,12 +62,13 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-image-assets.mdc | `.ts`, `.tsx`, `.json` | Flags oversized images, unoptimized formats, missing density variants, uncached remote images |
 | mobile-env-safety.mdc | `.ts`, `.tsx`, `.json` | Flags hardcoded production endpoints, missing EXPO_PUBLIC_ prefix, server-only secrets in client code |
 | mobile-performance.mdc | `.ts`, `.tsx`, `.dart` | Flags inline styles, missing list keys, unnecessary re-renders (RN); missing const constructors, inline widgets (Flutter) |
+| mobile-accessibility.mdc | `.ts`, `.tsx`, `.dart` | Flags missing a11y labels, small touch targets, images without alt text, color-only indicators |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (12 total)
+### Tools (15 total)
 
 | Tool | Description |
 | --- | --- |
@@ -75,6 +84,9 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 | mobile_addPushNotifications | Add expo-notifications plugin to app.json, create notification handler, configure Android channel |
 | mobile_configureDeepLinks | Set scheme, add Android intent filters, iOS associated domains, generate AASA template |
 | mobile_resetDevEnvironment | Nuclear reset: clear Metro cache, .expo dir, node_modules cache, optionally Pods and Gradle |
+| mobile_buildForStore | Create a production build for app store submission via EAS Build |
+| mobile_validateStoreMetadata | Check app.json for all required store listing fields (name, bundle ID, icon, etc.) |
+| mobile_submitToAppStore | Submit latest iOS production build to App Store Connect via EAS Submit |
 
 ## Development Workflow
 
