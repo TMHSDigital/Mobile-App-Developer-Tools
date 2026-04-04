@@ -36,10 +36,13 @@ import { register as registerSetupMonitoring } from "./tools/setupMonitoring.js"
 import { register as registerSetupTheming } from "./tools/setupTheming.js";
 import { register as registerAuditAccessibility } from "./tools/auditAccessibility.js";
 import { register as registerSetupFeatureFlags } from "./tools/setupFeatureFlags.js";
+import { register as registerCreateNativeModule } from "./tools/createNativeModule.js";
+import { register as registerUpgradeSDK } from "./tools/upgradeSDK.js";
+import { register as registerCheckNativeCompat } from "./tools/checkNativeCompat.js";
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.11.0",
+  version: "0.12.0",
 });
 
 registerCheckDevEnvironment(server);
@@ -75,6 +78,9 @@ registerSetupMonitoring(server);
 registerSetupTheming(server);
 registerAuditAccessibility(server);
 registerSetupFeatureFlags(server);
+registerCreateNativeModule(server);
+registerUpgradeSDK(server);
+registerCheckNativeCompat(server);
 
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();

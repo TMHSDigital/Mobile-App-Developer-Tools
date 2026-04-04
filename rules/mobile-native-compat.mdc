@@ -1,0 +1,130 @@
+---
+description: Flag deprecated native APIs, bridge-only module patterns, and New Architecture incompatibilities
+globs: ["*.ts", "*.tsx", "*.dart"]
+alwaysApply: false
+---
+
+# Native Compatibility
+
+## Purpose
+
+Detect usage of deprecated native APIs, bridge-only patterns incompatible with the New Architecture (Fabric/TurboModules), and sunset React Native APIs that have modern replacements.
+
+## Flagged Patterns
+
+### 1. Legacy NativeModules Bridge (React Native)
+
+```tsx
+// ❌ Old bridge pattern — not compatible with New Architecture
+import { NativeModules } from "react-native";
+const { MyModule } = NativeModules;
+
+// ✅ Turbo Module via Expo Modules API
+import MyModule from "./MyModule";
+
+// ✅ Turbo Module via TurboModuleRegistry
+import { TurboModuleRegistry } from "react-native";
+const MyModule = TurboModuleRegistry.getEnforcing("MyModule");
+```
+
+### 2. Deprecated requireNativeComponent
+
+```tsx
+// ❌ Legacy view manager — bridge-only
+import { requireNativeComponent } from "react-native";
+const MyView = requireNativeComponent("MyNativeView");
+
+// ✅ Expo view component
+import { requireNativeViewManager } from "expo-modules-core";
+const MyView = requireNativeViewManager("MyNativeView");
+```
+
+### 3. UIManager Direct Access
+
+```tsx
+// ❌ UIManager is bridge-only and partially removed in New Architecture
+import { UIManager } from "react-native";
+UIManager.dispatchViewManagerCommand(viewRef, "focus", []);
+
+// ✅ Use refs and component methods
+viewRef.current?.focus();
+```
+
+### 4. NativeEventEmitter Without Listener Count
+
+```tsx
+// ❌ Missing required addListener/removeListeners spec (RN 0.73+)
+const emitter = new NativeEventEmitter(NativeModules.MyModule);
+
+// ✅ Module must implement addListener and removeListeners
+// In the Turbo Module spec:
+export interface Spec extends TurboModule {
+  addListener(eventType: string): void;
+  removeListeners(count: number): void;
+}
+```
+
+### 5. Deprecated React Native APIs
+
+Flag usage of APIs removed or deprecated in recent React Native versions:
+
+- `ViewPropTypes` — removed in RN 0.71+; use TypeScript props instead
+- `ColorPropType` — removed; use TypeScript types
+- `EdgeInsetsPropType` — removed; use TypeScript types
+- `PointPropType` — removed; use TypeScript types
+- `BackAndroid` — removed; use `BackHandler`
+- `NetInfo` from `react-native` — use `@react-native-community/netinfo`
+- `AsyncStorage` from `react-native` — use `@react-native-async-storage/async-storage`
+- `ImageEditor` from `react-native` — use `@react-native-community/image-editor`
+
+### 6. Flutter Deprecated APIs
+
+```dart
+// ❌ Deprecated in Flutter 3.x
+FlatButton(onPressed: () {}, child: Text("OK"))
+RaisedButton(onPressed: () {}, child: Text("OK"))
+
+// ✅ Modern replacements
+TextButton(onPressed: () {}, child: Text("OK"))
+ElevatedButton(onPressed: () {}, child: Text("OK"))
+```
+
+```dart
+// ❌ Deprecated color access
+Theme.of(context).accentColor
+Theme.of(context).backgroundColor
+
+// ✅ ColorScheme access
+Theme.of(context).colorScheme.secondary
+Theme.of(context).colorScheme.surface
+```
+
+### 7. Platform-Specific API Without Version Check
+
+```kotlin
+// ❌ Using API without version check
+val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+vibrator.vibrate(100) // Deprecated in API 26
+
+// ✅ With version check
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+  vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
+} else {
+  @Suppress("DEPRECATION")
+  vibrator.vibrate(100)
+}
+```
+
+## Exceptions
+
+- Code inside migration/compatibility layers that intentionally supports both old and new APIs
+- Test files that mock legacy modules for backward compatibility testing
+- Config plugin code that reads legacy format and converts to new format
+- Polyfill files explicitly documented as bridge compatibility shims
+
+## Resources
+
+- [React Native New Architecture](https://reactnative.dev/docs/the-new-architecture/landing-page)
+- [Expo Modules API](https://docs.expo.dev/modules/overview/)
+- [Flutter Deprecation Policy](https://docs.flutter.dev/release/compatibility-policy)
+- [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/)

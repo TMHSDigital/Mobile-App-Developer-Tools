@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-The **Mobile App Developer Tools** Cursor plugin is at **v0.11.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **40 skills**, **11 rules**, and a companion MCP server exposing **33 tools**.
+The **Mobile App Developer Tools** Cursor plugin is at **v0.12.0**. It helps developers go from zero to a published app in the stores. Supports React Native/Expo and Flutter with **43 skills**, **12 rules**, and a companion MCP server exposing **36 tools**.
 
 ## Demo App
 
@@ -16,11 +16,11 @@ The **Mobile App Developer Tools** Cursor plugin is at **v0.11.0**. It helps dev
 .cursor-plugin/plugin.json   - Plugin manifest
 skills/<skill-name>/SKILL.md - AI workflow definitions
 rules/<rule-name>.mdc        - Code quality and security rules
-mcp-server/                  - MCP server with 33 tools
+mcp-server/                  - MCP server with 36 tools
 packages/mobile-dev-tools/   - NPM package (stub for name claim)
 ```
 
-## Skills (40 total)
+## Skills (43 total)
 
 ### React Native / Expo
 
@@ -76,8 +76,11 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-theming | Design tokens, dark mode, system appearance detection, NativeWind, Material 3, persistent preference |
 | mobile-feature-flags | Feature toggles with PostHog, LaunchDarkly, Firebase Remote Config; A/B testing, staged rollouts |
 | mobile-accessibility-testing | Automated a11y audits, WCAG compliance, screen reader testing, CI integration |
+| mobile-native-modules | Expo Modules API (Swift/Kotlin), Turbo Modules, JSI bridging, native view components |
+| mobile-config-plugins | Config plugin authoring, CNG patterns, Xcode/Gradle automation, modifier previews |
+| mobile-sdk-upgrade | SDK version migration, dependency audit, breaking change detection, rollback strategy |
 
-## Rules (11 total)
+## Rules (12 total)
 
 | Rule | Scope | Purpose |
 | --- | --- | --- |
@@ -92,12 +95,13 @@ packages/mobile-dev-tools/   - NPM package (stub for name claim)
 | mobile-i18n-strings.mdc | `.ts`, `.tsx`, `.dart` | Flags hardcoded user-facing strings not wrapped in a translation function |
 | mobile-security-audit.mdc | `.ts`, `.tsx`, `.dart`, `.json`, `.xml` | Flags insecure storage, missing SSL pinning, debug flags in release builds, cleartext traffic |
 | mobile-color-contrast.mdc | `.ts`, `.tsx`, `.dart` | Flags insufficient color contrast, missing dark mode variants, non-semantic color usage |
+| mobile-native-compat.mdc | `.ts`, `.tsx`, `.dart` | Flags deprecated native APIs, bridge-only patterns, New Architecture incompatibilities |
 
 ## Companion MCP Server
 
 Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 
-### Tools (33 total)
+### Tools (36 total)
 
 | Tool | Description |
 | --- | --- |
@@ -134,6 +138,9 @@ Tools use the `mobile_` prefix (for example `mobile_checkDevEnvironment`).
 | mobile_setupTheming | Initialize design token system with light/dark themes, semantic colors, and persistent preference |
 | mobile_auditAccessibility | Scan project for a11y violations: missing labels, small touch targets, images without alt text |
 | mobile_setupFeatureFlags | Add typed feature flag provider with default values, remote sync, and provider integration |
+| mobile_createNativeModule | Scaffold an Expo Module or Flutter plugin with Swift/Kotlin stubs and TS/Dart bindings |
+| mobile_upgradeSDK | Generate SDK upgrade plan with dependency fixes, breaking changes, and rollback strategy |
+| mobile_checkNativeCompat | Audit packages for New Architecture support, flag bridge-only and deprecated dependencies |
 
 ## Development Workflow
 

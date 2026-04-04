@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.12.0] - 2026-04-04
+
+### Added
+
+- **3 new skills**: `mobile-native-modules` (Expo Modules API, Turbo Modules, JSI bridging, native view components, Swift/Kotlin), `mobile-config-plugins` (config plugin authoring, CNG patterns, Xcode/Gradle automation, modifier previews), `mobile-sdk-upgrade` (SDK version migration, dependency audit, breaking change detection, rollback strategy, expo-doctor)
+- **1 new rule**: `mobile-native-compat` (flags deprecated native APIs, bridge-only module patterns, New Architecture incompatibilities, sunset React Native APIs)
+- **3 new MCP tools**: `mobile_createNativeModule`, `mobile_upgradeSDK`, `mobile_checkNativeCompat`
+- Totals: 43 skills, 12 rules, 36 MCP tools
+
 ## [0.11.0] - 2026-04-03
 
 ### Added

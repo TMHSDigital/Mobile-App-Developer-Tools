@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.11.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.12.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&label=CI&logo=githubactions&style=for-the-badge" alt="CI"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&label=Validate&logo=githubactions&style=for-the-badge" alt="Validate"></a>
@@ -24,7 +24,7 @@
 ---
 
 <p align="center">
-  <strong>40 skills</strong> &nbsp;&bull;&nbsp; <strong>11 rules</strong> &nbsp;&bull;&nbsp; <strong>33 MCP tools</strong>
+  <strong>43 skills</strong> &nbsp;&bull;&nbsp; <strong>12 rules</strong> &nbsp;&bull;&nbsp; <strong>36 MCP tools</strong>
 </p>
 
 <p align="center">
@@ -35,15 +35,15 @@
 
 ## Overview
 
-Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, build, and ship mobile apps without leaving the IDE. Currently at **v0.11.0** with forty skills (React Native/Expo + Flutter), eleven rules, and thirty-three live MCP tools.
+Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, build, and ship mobile apps without leaving the IDE. Currently at **v0.12.0** with forty-three skills (React Native/Expo + Flutter), twelve rules, and thirty-six live MCP tools.
 
 **What you get**
 
 | Layer | Role |
 | --- | --- |
-| **Skills** | 40 guided workflows for React Native/Expo and Flutter: project setup through monetization, analytics, OTA updates, testing, CI/CD, animations, maps, i18n, forms, real-time, security, offline sync, background tasks, debugging, production monitoring, theming, feature flags, and accessibility testing |
-| **Rules** | 11 guardrails: secrets, platform guards, image bloat, env safety, performance, accessibility, bundle size, test coverage, i18n strings, security audit, color contrast |
-| **MCP** | 33 tools: env checks, scaffolding, device deploy, screen/component gen, permissions, AI, build health, push, deep links, store builds, metadata validation, App Store + Play Store submission, screenshots, bundle analysis, OTA config, test runner, CI setup, test file generation, i18n setup, map integration, form generation, real-time client, security audit, performance profiling, offline readiness, APM monitoring, theming, accessibility audit, feature flags |
+| **Skills** | 43 guided workflows for React Native/Expo and Flutter: project setup through monetization, analytics, OTA updates, testing, CI/CD, animations, maps, i18n, forms, real-time, security, offline sync, background tasks, debugging, production monitoring, theming, feature flags, accessibility testing, native modules, config plugins, and SDK upgrades |
+| **Rules** | 12 guardrails: secrets, platform guards, image bloat, env safety, performance, accessibility, bundle size, test coverage, i18n strings, security audit, color contrast, native compatibility |
+| **MCP** | 36 tools: env checks, scaffolding, device deploy, screen/component gen, permissions, AI, build health, push, deep links, store builds, metadata validation, App Store + Play Store submission, screenshots, bundle analysis, OTA config, test runner, CI setup, test file generation, i18n setup, map integration, form generation, real-time client, security audit, performance profiling, offline readiness, APM monitoring, theming, accessibility audit, feature flags, native module scaffolding, SDK upgrade, native compat audit |
 
 **Quick facts**
 
@@ -61,7 +61,7 @@ Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packag
 flowchart LR
     A[User asks mobile dev question] --> B[Cursor loads a Skill]
     B --> C{MCP server configured?}
-    C -->|Yes| D["mobile-mcp tools (33)"]
+    C -->|Yes| D["mobile-mcp tools (36)"]
     C -->|No| E[Docs-only guidance]
     D --> F[Local env checks / scaffolding]
     E --> G[Answer in chat or code edits]
@@ -144,7 +144,7 @@ Open Cursor and ask:
 
 ## Demo App
 
-See the plugin in action: **[SnapLog](https://github.com/TMHSDigital/Demo-Mobile-App)** is a photo journal app built entirely using these skills and MCP tools. It exercises 16 of the 40 skills - from project scaffolding and navigation to camera capture, AI descriptions, local storage, and push notifications.
+See the plugin in action: **[SnapLog](https://github.com/TMHSDigital/Demo-Mobile-App)** is a photo journal app built entirely using these skills and MCP tools. It exercises 16 of the 43 skills - from project scaffolding and navigation to camera capture, AI descriptions, local storage, and push notifications.
 
 [![Demo App](https://img.shields.io/badge/demo-SnapLog-0A84FF?style=flat-square&logo=github)](https://github.com/TMHSDigital/Demo-Mobile-App)
 
@@ -152,7 +152,7 @@ See the plugin in action: **[SnapLog](https://github.com/TMHSDigital/Demo-Mobile
 
 ## Skills
 
-All 40 skills are production-ready. Names match the folder under `skills/`.
+All 43 skills are production-ready. Names match the folder under `skills/`.
 
 <details>
 <summary><strong>React Native / Expo skills (15)</strong></summary>
@@ -190,7 +190,7 @@ All 40 skills are production-ready. Names match the folder under `skills/`.
 </details>
 
 <details>
-<summary><strong>Shared skills (21)</strong></summary>
+<summary><strong>Shared skills (24)</strong></summary>
 
 | Skill | What it does |
 | --- | --- |
@@ -215,6 +215,9 @@ All 40 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-theming` | Design tokens, dark mode, system appearance detection, NativeWind for RN, Material 3 for Flutter, persistent preference |
 | `mobile-feature-flags` | Feature toggles with PostHog, LaunchDarkly, Firebase Remote Config; A/B testing, staged rollouts, kill switches |
 | `mobile-accessibility-testing` | Automated a11y audits, WCAG 2.1 AA compliance, screen reader testing (VoiceOver/TalkBack), CI integration |
+| `mobile-native-modules` | Expo Modules API (Swift/Kotlin), Turbo Modules, JSI bridging, native view components, platform plugins |
+| `mobile-config-plugins` | Config plugin authoring, CNG patterns, Xcode/Gradle automation, modifier previews |
+| `mobile-sdk-upgrade` | SDK version migration, dependency audit, breaking change detection, rollback strategy |
 
 </details>
 
@@ -263,6 +266,9 @@ All 40 skills are production-ready. Names match the folder under `skills/`.
 | `mobile-theming` | "Add dark mode support with design tokens and system appearance detection" |
 | `mobile-feature-flags` | "Set up feature flags with PostHog so I can do staged rollouts" |
 | `mobile-accessibility-testing` | "Run an accessibility audit on my app and fix any WCAG violations" |
+| `mobile-native-modules` | "Create a native module to access the device gyroscope" |
+| `mobile-config-plugins` | "Add Apple Pay entitlement and a custom URL scheme via config plugins" |
+| `mobile-sdk-upgrade` | "Upgrade my Expo app from SDK 50 to the latest version" |
 
 </details>
 
@@ -270,10 +276,10 @@ All 40 skills are production-ready. Names match the folder under `skills/`.
 
 ## Rules
 
-All 11 rules are production-ready.
+All 12 rules are production-ready.
 
 <details>
-<summary><strong>All 11 rules</strong></summary>
+<summary><strong>All 12 rules</strong></summary>
 
 | Rule | Scope | What it catches |
 | --- | --- | --- |
@@ -288,6 +294,7 @@ All 11 rules are production-ready.
 | `mobile-i18n-strings` | `.ts`, `.tsx`, `.dart` | Hardcoded user-facing strings not wrapped in a translation function, string concatenation for sentences, missing plural forms |
 | `mobile-security-audit` | `.ts`, `.tsx`, `.dart`, `.json`, `.xml` | Insecure storage (tokens in AsyncStorage), missing SSL pinning, debug flags in release builds, cleartext traffic, hardcoded signing credentials |
 | `mobile-color-contrast` | `.ts`, `.tsx`, `.dart` | Insufficient color contrast ratios, missing dark mode variants, non-semantic color usage, hardcoded colors without theme tokens |
+| `mobile-native-compat` | `.ts`, `.tsx`, `.dart` | Deprecated native APIs, bridge-only module patterns, New Architecture incompatibilities, sunset React Native/Flutter APIs |
 
 </details>
 
@@ -322,7 +329,7 @@ npx @tmhs/mobile-mcp
 ```
 
 <details>
-<summary><strong>All 33 MCP tools</strong></summary>
+<summary><strong>All 36 MCP tools</strong></summary>
 
 | Tool | Purpose |
 | --- | --- |
@@ -359,6 +366,9 @@ npx @tmhs/mobile-mcp
 | `mobile_setupTheming` | Initialize design token system with light/dark themes, semantic colors, spacing, typography, and persistent theme preference. |
 | `mobile_auditAccessibility` | Scan project for a11y violations: missing labels, small touch targets, images without alt text, color-only indicators. Reports WCAG level. |
 | `mobile_setupFeatureFlags` | Add typed feature flag provider with default values, remote sync, and provider integration (PostHog, LaunchDarkly, Firebase). |
+| `mobile_createNativeModule` | Scaffold an Expo Module or Flutter platform plugin with Swift/Kotlin stubs and TypeScript/Dart bindings. |
+| `mobile_upgradeSDK` | Detect current SDK version, generate step-by-step upgrade plan with dependency fixes, breaking changes, and rollback strategy. |
+| `mobile_checkNativeCompat` | Audit installed packages for New Architecture (Fabric/TurboModules) support. Flag bridge-only and deprecated dependencies. |
 
 </details>
 
@@ -425,8 +435,8 @@ Full details in [ROADMAP.md](ROADMAP.md).
 | **v0.8.0** | Test & Automate | 27 skills, 8 rules, 22 MCP tools | |
 | **v0.9.0** | Rich Features | 32 skills, 9 rules, 26 MCP tools | |
 | **v0.10.0** | Harden | 37 skills, 10 rules, 30 MCP tools | |
-| **v0.11.0** | Design & Adapt | 40 skills, 11 rules, 33 MCP tools | **Current** |
-| **v0.12.0** | Extend & Evolve | 43 skills, 12 rules, 36 MCP tools | |
+| **v0.11.0** | Design & Adapt | 40 skills, 11 rules, 33 MCP tools | |
+| **v0.12.0** | Extend & Evolve | 43 skills, 12 rules, 36 MCP tools | **Current** |
 | **v1.0.0** | Stable | 43 skills, 12 rules, 36 MCP tools | |
 | **v1.1.0** | Polish & Platform | 48 skills, 13 rules, 39 MCP tools | |
 | **v1.2.0** | Data & Payments | 53 skills, 14 rules, 43 MCP tools | |
