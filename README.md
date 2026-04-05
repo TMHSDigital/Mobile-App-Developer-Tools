@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-0.12.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-1.0.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
   <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&label=CI&logo=githubactions&style=for-the-badge" alt="CI"></a>
   <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&label=Validate&logo=githubactions&style=for-the-badge" alt="Validate"></a>
@@ -35,7 +35,7 @@
 
 ## Overview
 
-Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, build, and ship mobile apps without leaving the IDE. Currently at **v0.12.0** with forty-three skills (React Native/Expo + Flutter), twelve rules, and thirty-six live MCP tools.
+Mobile App Developer Tools is a **Cursor** plugin by **TMHSDigital** that packages agent skills, editor rules, and a TypeScript **MCP server** (`mcp-server/`) so you can scaffold, build, and ship mobile apps without leaving the IDE. Currently at **v1.0.0** with forty-three skills (React Native/Expo + Flutter), twelve rules, and thirty-six live MCP tools.
 
 **What you get**
 
@@ -111,7 +111,7 @@ Windows PowerShell (run as Administrator if your policy requires it):
 ```powershell
 New-Item -ItemType SymbolicLink `
   -Path "$env:USERPROFILE\.cursor\plugins\mobile-app-developer-tools" `
-  -Target (Resolve-Path .\Mobile-App-Developer-Tools)
+  -Target (Get-Location)
 ```
 
 macOS / Linux:
@@ -436,7 +436,8 @@ Full details in [ROADMAP.md](ROADMAP.md).
 | **v0.9.0** | Rich Features | 32 skills, 9 rules, 26 MCP tools | |
 | **v0.10.0** | Harden | 37 skills, 10 rules, 30 MCP tools | |
 | **v0.11.0** | Design & Adapt | 40 skills, 11 rules, 33 MCP tools | |
-| **v0.12.0** | Extend & Evolve | 43 skills, 12 rules, 36 MCP tools | **Current** |
+| **v0.12.0** | Extend & Evolve | 43 skills, 12 rules, 36 MCP tools | |
+| **v1.0.0** | Stable | 43 skills, 12 rules, 36 MCP tools | **Current** |
 | **v1.0.0** | Stable | 43 skills, 12 rules, 36 MCP tools | |
 | **v1.1.0** | Polish & Platform | 48 skills, 13 rules, 39 MCP tools | |
 | **v1.2.0** | Data & Payments | 53 skills, 14 rules, 43 MCP tools | |

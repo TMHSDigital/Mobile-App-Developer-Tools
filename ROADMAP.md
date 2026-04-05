@@ -15,8 +15,8 @@
 | **v0.9.0** | Rich Features | +5 | +1 | +4 | Animations, maps/location, i18n, forms/validation, real-time/WebSockets |
 | **v0.10.0** | Harden | +5 | +1 | +4 | Security, offline-sync, background tasks, debugging, production APM |
 | **v0.11.0** | Design & Adapt | +3 | +1 | +3 | Theming/dark mode, feature flags/remote config, accessibility testing automation |
-| **v0.12.0** | Extend & Evolve | +3 | +1 | +3 | Native module authoring, config plugins, SDK upgrade migration **(current)** |
-| **v1.0.0** | Stable | +0 | +0 | +0 | Polish, docs, production release: 43 skills, 12 rules, 36 MCP tools |
+| **v0.12.0** | Extend & Evolve | +3 | +1 | +3 | Native module authoring, config plugins, SDK upgrade migration |
+| **v1.0.0** | Stable | +0 | +0 | +0 | Polish, docs, production release: 43 skills, 12 rules, 36 MCP tools **(current)** |
 | **v1.1.0** | Polish & Platform | +5 | +1 | +3 | Media handling, social sharing, biometrics, haptics, app lifecycle; privacy-compliance rule |
 | **v1.2.0** | Data & Payments | +5 | +1 | +4 | Payments/checkout, data visualization, widgets/shortcuts, error boundaries, network awareness |
 | **v1.3.0** | Engage & Comply | +5 | +1 | +3 | Onboarding, advanced notifications, privacy compliance, file management, multi-environment |

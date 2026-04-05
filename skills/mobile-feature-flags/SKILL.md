@@ -125,7 +125,7 @@ if (kDebugMode) {
 | Internal | 0% (staff only) | 1 week | Employee targeting |
 | Canary | 5% | 3 days | Monitor crash rates |
 | Beta | 25% | 1 week | Monitor metrics |
-| GA | 100% | — | Remove flag |
+| GA | 100% |  - | Remove flag |
 
 #### Kill Switch Pattern
 
@@ -166,15 +166,15 @@ if (isFeatureDisabled) {
 
 ## Common Pitfalls
 
-- **No default values** — always define a safe fallback; network requests can fail.
-- **Stale flags** — refresh on app foreground, not just on launch.
-- **Flag debt** — remove flags after full rollout; stale flags accumulate complexity.
-- **Testing without flags** — unit tests should mock flag values for both branches.
-- **Targeting before identification** — call `identify()` before reading user-targeted flags.
-- **Boolean-only flags** — some providers support string/JSON flags for multivariate tests.
+- **No default values**  - always define a safe fallback; network requests can fail.
+- **Stale flags**  - refresh on app foreground, not just on launch.
+- **Flag debt**  - remove flags after full rollout; stale flags accumulate complexity.
+- **Testing without flags**  - unit tests should mock flag values for both branches.
+- **Targeting before identification**  - call `identify()` before reading user-targeted flags.
+- **Boolean-only flags**  - some providers support string/JSON flags for multivariate tests.
 
 ## See Also
 
-- `mobile-analytics` — track flag impressions and conversion events
-- `mobile-ci-cd` — CI checks that verify flag defaults match expectations
-- `mobile-ota-updates` — combine flags with OTA channels for staged releases
+- `mobile-analytics`  - track flag impressions and conversion events
+- `mobile-ci-cd`  - CI checks that verify flag defaults match expectations
+- `mobile-ota-updates`  - combine flags with OTA channels for staged releases

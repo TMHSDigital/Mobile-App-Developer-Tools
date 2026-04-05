@@ -42,7 +42,7 @@ import { register as registerCheckNativeCompat } from "./tools/checkNativeCompat
 
 const server = new McpServer({
   name: "mobile-mcp",
-  version: "0.12.0",
+  version: "1.0.0",
 });
 
 registerCheckDevEnvironment(server);

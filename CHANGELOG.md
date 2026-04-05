@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.0] - 2026-04-05
+
+### Changed
+
+- Production stable release: 43 skills, 12 rules, 36 MCP tools
+- Added README.md to MCP server package (`@tmhs/mobile-mcp`) for npm listing
+- Standardized punctuation: replaced em dashes with hyphens across 6 skills, 2 rules, 1 README
+- Fixed CLAUDE.md SnapLog skill count (was "20", corrected to "43")
+- Updated SECURITY.md supported versions
+- Added LICENSE to mcp-server/ and packages/mobile-dev-tools/ for npm tarballs
+- Added keywords to `@tmhs/mobile-mcp` package.json
+- Fixed README.md symlink example path
+
 ## [0.12.0] - 2026-04-04
 
 ### Added

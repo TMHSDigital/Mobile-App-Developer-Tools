@@ -244,16 +244,16 @@ git stash pop
 
 ## Common Pitfalls
 
-- **Skipping pre-upgrade commit** — always create a restore point before upgrading.
-- **Upgrading multiple major versions at once** — upgrade one major version at a time.
-- **Ignoring expo-doctor warnings** — fix all warnings before proceeding; they become errors later.
-- **Not clearing caches** — stale Metro/Gradle/CocoaPods caches cause mysterious build failures.
-- **Forgetting native rebuild** — after SDK upgrade, always run `npx expo prebuild --clean`.
-- **Testing one platform only** — upgrades can break iOS and Android differently; test both.
-- **Not checking CI** — update CI workflow to use the new SDK version and compatible Node/Xcode/Java.
+- **Skipping pre-upgrade commit**  - always create a restore point before upgrading.
+- **Upgrading multiple major versions at once**  - upgrade one major version at a time.
+- **Ignoring expo-doctor warnings**  - fix all warnings before proceeding; they become errors later.
+- **Not clearing caches**  - stale Metro/Gradle/CocoaPods caches cause mysterious build failures.
+- **Forgetting native rebuild**  - after SDK upgrade, always run `npx expo prebuild --clean`.
+- **Testing one platform only**  - upgrades can break iOS and Android differently; test both.
+- **Not checking CI**  - update CI workflow to use the new SDK version and compatible Node/Xcode/Java.
 
 ## See Also
 
-- `mobile-native-modules` — ensure custom modules remain compatible after upgrades
-- `mobile-ci-cd` — update CI configuration for new SDK requirements
-- `mobile-debugging` — debug build failures after SDK upgrades
+- `mobile-native-modules`  - ensure custom modules remain compatible after upgrades
+- `mobile-ci-cd`  - update CI configuration for new SDK requirements
+- `mobile-debugging`  - debug build failures after SDK upgrades

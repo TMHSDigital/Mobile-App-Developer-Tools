@@ -258,15 +258,15 @@ testWidgets('delete button has semantics', (tester) async {
 
 ## Common Pitfalls
 
-- **Decorative images not excluded** — set `accessible={false}` (RN) or `excludeFromSemantics: true` (Flutter).
-- **Custom components missing semantics** — every interactive custom widget needs labels.
-- **Focus traps** — modals and bottom sheets must trap focus and release it on close.
-- **Skipping platform testing** — VoiceOver and TalkBack behavior differs; test on both.
-- **Hardcoded font sizes without scaling** — use relative sizes or test at max scale.
-- **Color-only errors** — form validation errors must include text or icons, not just red borders.
+- **Decorative images not excluded**  - set `accessible={false}` (RN) or `excludeFromSemantics: true` (Flutter).
+- **Custom components missing semantics**  - every interactive custom widget needs labels.
+- **Focus traps**  - modals and bottom sheets must trap focus and release it on close.
+- **Skipping platform testing**  - VoiceOver and TalkBack behavior differs; test on both.
+- **Hardcoded font sizes without scaling**  - use relative sizes or test at max scale.
+- **Color-only errors**  - form validation errors must include text or icons, not just red borders.
 
 ## See Also
 
-- `mobile-theming` — semantic color tokens for consistent contrast
-- `mobile-component-patterns` — accessible component architecture
-- `mobile-forms-validation` — accessible form error handling
+- `mobile-theming`  - semantic color tokens for consistent contrast
+- `mobile-component-patterns`  - accessible component architecture
+- `mobile-forms-validation`  - accessible form error handling

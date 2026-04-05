@@ -186,7 +186,7 @@ export default config;
 
 ### 6. CNG Best Practices
 
-- **Never edit `ios/` or `android/` directly** — changes are overwritten by `npx expo prebuild`
+- **Never edit `ios/` or `android/` directly**  - changes are overwritten by `npx expo prebuild`
 - **Always use config plugins** to modify native config
 - **Add `ios/` and `android/` to `.gitignore`** when using CNG
 - **Test with `npx expo prebuild --clean`** to verify plugins from scratch
@@ -224,15 +224,15 @@ export default config;
 
 ## Common Pitfalls
 
-- **Editing native dirs directly** — `npx expo prebuild --clean` wipes manual changes. Always use plugins.
-- **Plugin ordering** — plugins execute in array order; some depend on others running first.
-- **Missing TypeScript types** — import from `expo/config-plugins`, not `@expo/config-plugins`.
-- **Stale prebuild** — run `--clean` when debugging; incremental prebuild can mask issues.
-- **Config vs runtime** — plugins run at build time, not runtime. Don't put runtime logic in plugins.
-- **Missing return** — every modifier function must return the modified config object.
+- **Editing native dirs directly**  - `npx expo prebuild --clean` wipes manual changes. Always use plugins.
+- **Plugin ordering**  - plugins execute in array order; some depend on others running first.
+- **Missing TypeScript types**  - import from `expo/config-plugins`, not `@expo/config-plugins`.
+- **Stale prebuild**  - run `--clean` when debugging; incremental prebuild can mask issues.
+- **Config vs runtime**  - plugins run at build time, not runtime. Don't put runtime logic in plugins.
+- **Missing return**  - every modifier function must return the modified config object.
 
 ## See Also
 
-- `mobile-native-modules` — create native code that config plugins wire up
-- `mobile-permissions` — add permissions using existing config plugins
-- `mobile-deep-links` — deep link config that uses config plugins internally
+- `mobile-native-modules`  - create native code that config plugins wire up
+- `mobile-permissions`  - add permissions using existing config plugins
+- `mobile-deep-links`  - deep link config that uses config plugins internally

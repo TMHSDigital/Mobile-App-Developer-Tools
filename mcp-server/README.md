@@ -1,6 +1,6 @@
 # @tmhs/mobile-mcp
 
-MCP server for mobile app development — **36 tools** that let AI agents scaffold, build, test, and ship React Native/Expo and Flutter apps.
+MCP server for mobile app development. **36 tools** that let AI agents scaffold, build, test, and ship React Native/Expo and Flutter apps.
 
 Part of [Mobile App Developer Tools](https://github.com/TMHSDigital/Mobile-App-Developer-Tools), a Cursor plugin with 43 skills, 12 rules, and this companion MCP server.
 
@@ -89,4 +89,4 @@ npm run build
 
 ## License
 
-[CC-BY-NC-ND-4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) — Copyright 2026 TM Hospitality Strategies.
+[CC-BY-NC-ND-4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) - Copyright 2026 TM Hospitality Strategies.

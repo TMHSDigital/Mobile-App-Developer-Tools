@@ -36,7 +36,7 @@ Use MCP tool: mobile_setupTheming
 ```
 
 This creates:
-- **Token file** — colors (light + dark), spacing scale, typography scale, border radii
+- **Token file**  - colors (light + dark), spacing scale, typography scale, border radii
 - **Theme provider** (Expo) or **ThemeData builder** (Flutter)
 
 ### 2. React Native / Expo Setup
@@ -191,15 +191,15 @@ final stored = prefs.getString('theme_mode');
 
 ## Common Pitfalls
 
-- **Hardcoded colors** — use tokens, not raw hex values. The `mobile-color-contrast` rule catches this.
-- **Forgetting StatusBar** — set `StatusBar` barStyle to match the current theme.
-- **Not testing both modes** — always preview in light AND dark before shipping.
-- **Ignoring system preference** — default to system appearance; let users override.
-- **Missing elevation/shadow in dark mode** — dark surfaces use lighter tints, not shadows.
-- **Opacity-based dark mode** — avoid simply reducing opacity; use distinct dark palette colors.
+- **Hardcoded colors**  - use tokens, not raw hex values. The `mobile-color-contrast` rule catches this.
+- **Forgetting StatusBar**  - set `StatusBar` barStyle to match the current theme.
+- **Not testing both modes**  - always preview in light AND dark before shipping.
+- **Ignoring system preference**  - default to system appearance; let users override.
+- **Missing elevation/shadow in dark mode**  - dark surfaces use lighter tints, not shadows.
+- **Opacity-based dark mode**  - avoid simply reducing opacity; use distinct dark palette colors.
 
 ## See Also
 
-- `mobile-accessibility-testing` — verify contrast ratios meet WCAG AA
-- `mobile-component-patterns` — component architecture with theme-aware styling
-- `mobile-app-store-prep` — dark mode screenshots for store listings
+- `mobile-accessibility-testing`  - verify contrast ratios meet WCAG AA
+- `mobile-component-patterns`  - component architecture with theme-aware styling
+- `mobile-app-store-prep`  - dark mode screenshots for store listings

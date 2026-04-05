@@ -15,7 +15,7 @@ Detect color usage patterns that cause accessibility issues or break in dark mod
 ### 1. Hardcoded Colors Without Theme Tokens
 
 ```tsx
-// ❌ Raw hex values — break in dark mode
+// ❌ Raw hex values  - break in dark mode
 <View style={{ backgroundColor: "#FFFFFF" }}>
   <Text style={{ color: "#333333" }}>Hello</Text>
 </View>
@@ -71,7 +71,7 @@ const styles = {
 Flag when `Color(0x...)` or `Colors.white`/`Colors.black` is used outside of `ThemeData` without `Theme.of(context)`:
 
 ```dart
-// ❌ Hardcoded — invisible in dark mode
+// ❌ Hardcoded  - invisible in dark mode
 Text('Hello', style: TextStyle(color: Colors.black))
 
 // ✅ Theme-aware
@@ -83,11 +83,11 @@ Text('Hello', style: TextStyle(color: Theme.of(context).colorScheme.onSurface))
 Flag variables or tokens using visual color names instead of semantic names:
 
 ```tsx
-// ❌ Visual name — meaning unclear, hard to maintain across themes
+// ❌ Visual name  - meaning unclear, hard to maintain across themes
 const blueColor = "#0A84FF";
 const darkGray = "#333333";
 
-// ✅ Semantic name — intent is clear
+// ✅ Semantic name  - intent is clear
 const primaryColor = "#0A84FF";
 const textSecondary = "#333333";
 ```

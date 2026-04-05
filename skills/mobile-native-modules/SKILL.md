@@ -210,15 +210,15 @@ public class MyMapView: ExpoView {
 
 ## Common Pitfalls
 
-- **Missing prebuild** — after adding an Expo module, run `npx expo prebuild --clean` to regenerate native projects.
-- **Forgetting both platforms** — always implement Swift AND Kotlin; crashing on one platform is a common oversight.
-- **Thread safety** — native modules run on the native thread; UI updates need `DispatchQueue.main` (iOS) or `runOnUiThread` (Android).
-- **Memory leaks** — clean up listeners and observers in `OnDestroy` / `deinit`.
-- **Expo Go incompatibility** — custom native modules require a dev build, not Expo Go.
-- **Missing config** — `expo-module.config.json` must list your module class names for auto-linking.
+- **Missing prebuild**  - after adding an Expo module, run `npx expo prebuild --clean` to regenerate native projects.
+- **Forgetting both platforms**  - always implement Swift AND Kotlin; crashing on one platform is a common oversight.
+- **Thread safety**  - native modules run on the native thread; UI updates need `DispatchQueue.main` (iOS) or `runOnUiThread` (Android).
+- **Memory leaks**  - clean up listeners and observers in `OnDestroy` / `deinit`.
+- **Expo Go incompatibility**  - custom native modules require a dev build, not Expo Go.
+- **Missing config**  - `expo-module.config.json` must list your module class names for auto-linking.
 
 ## See Also
 
-- `mobile-config-plugins` — modify native project config without ejecting
-- `mobile-sdk-upgrade` — ensure native modules remain compatible after upgrades
-- `mobile-debugging` — debug native module crashes with Xcode/Android Studio
+- `mobile-config-plugins`  - modify native project config without ejecting
+- `mobile-sdk-upgrade`  - ensure native modules remain compatible after upgrades
+- `mobile-debugging`  - debug native module crashes with Xcode/Android Studio

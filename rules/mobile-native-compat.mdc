@@ -15,7 +15,7 @@ Detect usage of deprecated native APIs, bridge-only patterns incompatible with t
 ### 1. Legacy NativeModules Bridge (React Native)
 
 ```tsx
-// ❌ Old bridge pattern — not compatible with New Architecture
+// ❌ Old bridge pattern  - not compatible with New Architecture
 import { NativeModules } from "react-native";
 const { MyModule } = NativeModules;
 
@@ -30,7 +30,7 @@ const MyModule = TurboModuleRegistry.getEnforcing("MyModule");
 ### 2. Deprecated requireNativeComponent
 
 ```tsx
-// ❌ Legacy view manager — bridge-only
+// ❌ Legacy view manager  - bridge-only
 import { requireNativeComponent } from "react-native";
 const MyView = requireNativeComponent("MyNativeView");
 
@@ -68,14 +68,14 @@ export interface Spec extends TurboModule {
 
 Flag usage of APIs removed or deprecated in recent React Native versions:
 
-- `ViewPropTypes` — removed in RN 0.71+; use TypeScript props instead
-- `ColorPropType` — removed; use TypeScript types
-- `EdgeInsetsPropType` — removed; use TypeScript types
-- `PointPropType` — removed; use TypeScript types
-- `BackAndroid` — removed; use `BackHandler`
-- `NetInfo` from `react-native` — use `@react-native-community/netinfo`
-- `AsyncStorage` from `react-native` — use `@react-native-async-storage/async-storage`
-- `ImageEditor` from `react-native` — use `@react-native-community/image-editor`
+- `ViewPropTypes`  - removed in RN 0.71+; use TypeScript props instead
+- `ColorPropType`  - removed; use TypeScript types
+- `EdgeInsetsPropType`  - removed; use TypeScript types
+- `PointPropType`  - removed; use TypeScript types
+- `BackAndroid`  - removed; use `BackHandler`
+- `NetInfo` from `react-native`  - use `@react-native-community/netinfo`
+- `AsyncStorage` from `react-native`  - use `@react-native-async-storage/async-storage`
+- `ImageEditor` from `react-native`  - use `@react-native-community/image-editor`
 
 ### 6. Flutter Deprecated APIs
 
