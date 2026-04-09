@@ -1,16 +1,1873 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mobile App Developer Tools</title>
-  <meta http-equiv="refresh" content="0; url=https://github.com/TMHSDigital/Mobile-App-Developer-Tools">
+  <meta name="description" content="Mobile app development for Cursor, Claude Code, and MCP-compatible editors. 43 skills covering React Native/Expo and Flutter - project setup through app store submission, monetization, analytics, OTA updates, testing, CI/CD, animations, maps, i18n, forms, real-time, security, offline sync, background tasks, debugging, production monitoring, theming, feature flags, accessibility testing, native modules, config plugins, and SDK upgrades - plus 12 rules. Companion MCP server provides 36 tools." />
+  <meta property="og:title" content="Mobile App Developer Tools" />
+  <meta property="og:description" content="Mobile app development for Cursor, Claude Code, and MCP-compatible editors. 43 skills covering React Native/Expo and Flutter - project setup through app store submission, monetization, analytics, OTA updates, testing, CI/CD, animations, maps, i18n, forms, real-time, security, offline sync, background tasks, debugging, production monitoring, theming, feature flags, accessibility testing, native modules, config plugins, and SDK upgrades - plus 12 rules. Companion MCP server provides 36 tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/logo.png" />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-regular.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/inter-bold.woff2" />
+  <script>
+    (function(){var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');else if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+  </script>
   <style>
-    body { font-family: system-ui, sans-serif; text-align: center; padding: 2rem; }
-    a { color: #0366d6; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/inter-regular.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/inter-medium.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/inter-bold.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/jetbrains-mono-regular.woff2') format('woff2'); }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #06b6d4;
+      --accent-light: #67e8f9;
+      --bg: #0a1117;
+      --bg2: #161b22;
+      --bg3: #1c2128;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-dim: #8b949e;
+      --nav-bg: rgba(13,17,23,0.85);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      --hero-from: #0a1117;
+      --hero-to: #0d2137;
+    }
+
+    /* LIGHT THEME (OS preference, no explicit data-theme) */
+    @media (prefers-color-scheme: light) {
+      html:not([data-theme="dark"]) {
+        --bg: #f6f8fa; --bg2: #ffffff; --bg3: #f0f2f5;
+        --border: #d0d7de; --text: #1f2328; --text-dim: #656d76;
+        --nav-bg: rgba(255,255,255,0.88);
+        --hero-from: #f0f2f5; --hero-to: #f6f8fa;
+      }
+      html:not([data-theme="dark"]) a { color: var(--accent); }
+      html:not([data-theme="dark"]) a:hover { color: var(--accent-light); }
+      html:not([data-theme="dark"]) .hero h1 { background: linear-gradient(135deg, var(--text), var(--accent)); -webkit-background-clip: text; background-clip: text; }
+      html:not([data-theme="dark"]) .data-table tr:hover td { background: rgba(0,0,0,0.03); }
+      html:not([data-theme="dark"]) .search-input { background: var(--bg3); }
+      html:not([data-theme="dark"]) .install-steps code { background: var(--bg3); }
+    }
+    /* LIGHT THEME (explicit toggle) */
+    [data-theme="light"] {
+      --bg: #f6f8fa; --bg2: #ffffff; --bg3: #f0f2f5;
+      --border: #d0d7de; --text: #1f2328; --text-dim: #656d76;
+      --nav-bg: rgba(255,255,255,0.88);
+      --hero-from: #f0f2f5; --hero-to: #f6f8fa;
+    }
+    [data-theme="light"] a { color: var(--accent); }
+    [data-theme="light"] a:hover { color: var(--accent-light); }
+    [data-theme="light"] .hero h1 { background: linear-gradient(135deg, var(--text), var(--accent)); -webkit-background-clip: text; background-clip: text; }
+    [data-theme="light"] .data-table tr:hover td { background: rgba(0,0,0,0.03); }
+    [data-theme="light"] .search-input { background: var(--bg3); }
+    [data-theme="light"] .install-steps code { background: var(--bg3); }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+    a { color: var(--accent-light); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #fff; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 100; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .nav-brand { font-weight: 700; font-size: 1rem; color: var(--text); white-space: nowrap; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent-light); }
+    .nav-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 0.5rem; }
+    .nav-toggle svg { width: 24px; height: 24px; }
+    .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); cursor: pointer; padding: 0.25rem 0.5rem; font-size: 0.8125rem; transition: color 0.2s, border-color 0.2s; display: inline-flex; align-items: center; gap: 0.3rem; font-family: var(--font-sans); }
+    .theme-toggle:hover { color: var(--accent-light); border-color: var(--accent); }
+    .theme-toggle svg { width: 14px; height: 14px; }
+
+    /* HERO */
+    .hero { text-align: center; padding: 4rem 1.5rem 4.5rem; background: linear-gradient(180deg, var(--hero-from) 0%, var(--hero-to) 70%, var(--bg) 100%); position: relative; }
+    .hero-inner { max-width: 720px; margin: 0 auto; }
+    .hero-logo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 1.25rem; box-shadow: 0 4px 24px rgba(0,0,0,0.3); border: 2px solid var(--border); }
+    .hero h1 { font-size: 2.75rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, var(--text), var(--accent-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.125rem; color: var(--text-dim); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .stats { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .stat { text-align: center; }
+    .stat-val { font-size: 2rem; font-weight: 700; color: var(--accent-light); font-family: var(--font-mono); }
+    .stat-lbl { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+    .hero-badges { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.875rem; font-weight: 500; transition: border-color 0.2s, background 0.2s; }
+    .badge:hover { border-color: var(--accent); background: var(--bg3); color: var(--text); }
+    .badge svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* CONTENT AREA */
+    .content-area { max-width: 1040px; margin: 0 auto; padding: 2rem 1.5rem 0; }
+
+    /* SECTIONS */
+    .section { background: var(--bg2); border: 1px solid var(--border); border-top: 2px solid var(--accent); border-radius: 12px; padding: 1.75rem 2rem; margin-bottom: 1.25rem; box-shadow: 0 -2px 20px color-mix(in srgb, var(--accent) 8%, transparent); }
+    .section-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 0.625rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .section-header h2 { font-size: 1.25rem; font-weight: 700; margin: 0; }
+    .count { font-size: 0.8125rem; font-weight: 500; color: var(--text-dim); background: var(--bg3); padding: 0.15rem 0.6rem; border-radius: 12px; }
+    .section-actions { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; }
+    .btn-sm { padding: 0.3rem 0.75rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: color 0.2s, border-color 0.2s; font-family: var(--font-sans); }
+    .btn-sm:hover { color: var(--accent-light); border-color: var(--accent); }
+
+    /* SEARCH */
+    .search-wrap { margin-bottom: 1rem; position: relative; }
+    .search-input { width: 100%; padding: 0.6rem 0.75rem 0.6rem 2.25rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.875rem; font-family: var(--font-sans); outline: none; transition: border-color 0.2s; }
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text-dim); }
+    .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-dim); pointer-events: none; }
+    .search-icon svg { width: 16px; height: 16px; }
+    .search-meta { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.35rem; }
+    .search-shortcut { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 0.625rem; color: var(--text-dim); background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 0.1rem 0.4rem; font-family: var(--font-mono); pointer-events: none; }
+
+    /* DETAILS / COLLAPSIBLE */
+    details.cat-group { margin-bottom: 0.25rem; }
+    details.cat-group > summary { display: flex; align-items: center; gap: 0.5rem; padding: 0.625rem 0.75rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; list-style: none; font-weight: 600; font-size: 0.875rem; color: var(--text); transition: background 0.15s; }
+    details.cat-group > summary::-webkit-details-marker { display: none; }
+    details.cat-group > summary::before { content: ''; display: inline-block; width: 0; height: 0; border-left: 5px solid var(--accent-light); border-top: 4px solid transparent; border-bottom: 4px solid transparent; transition: transform 0.2s; flex-shrink: 0; }
+    details.cat-group[open] > summary::before { transform: rotate(90deg); }
+    details.cat-group > summary:hover { background: var(--bg3); }
+    details.cat-group > summary .cat-count { font-weight: 400; color: var(--text-dim); font-size: 0.75rem; margin-left: auto; }
+    details.cat-group > .cat-body { overflow: hidden; }
+
+    /* EXPAND ANIMATION */
+    .cat-body-anim { transition: max-height 0.25s ease, opacity 0.2s ease; overflow: hidden; }
+
+    /* TABLE */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+    .data-table th { text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); padding: 0.625rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .data-table td { padding: 0.625rem 0.75rem; border-bottom: 1px solid rgba(48,54,61,0.5); color: var(--text-dim); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(22,27,34,0.5); }
+    .data-table .name-cell { color: var(--text); font-weight: 500; white-space: nowrap; }
+    .data-table .scope-cell { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--accent-light); }
+    tr.hidden-row { display: none; }
+
+    /* INSTALL */
+    .install-steps { list-style: none; counter-reset: step; }
+    .install-steps li { counter-increment: step; display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid rgba(48,54,61,0.4); }
+    .install-steps li::before { content: counter(step); flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.8125rem; }
+    .install-steps code { background: var(--bg2); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: var(--font-mono); font-size: 0.85em; position: relative; }
+    .copy-icon { display: inline-flex; align-items: center; margin-left: 0.35rem; padding: 0.15rem; cursor: pointer; color: var(--text-dim); transition: color 0.2s; vertical-align: middle; }
+    .copy-icon:hover { color: var(--accent-light); }
+    .copy-icon svg { width: 14px; height: 14px; }
+
+    /* TOAST */
+    .toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(100%); background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.8125rem; font-weight: 500; opacity: 0; transition: transform 0.3s, opacity 0.3s; z-index: 200; pointer-events: none; }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* BACK TO TOP */
+    .back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 150; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; }
+    .back-to-top svg { width: 20px; height: 20px; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 2rem 1.5rem 2.5rem; color: var(--text-dim); font-size: 0.8125rem; margin-top: 1rem; }
+    footer a { color: var(--accent-light); }
+    .footer-inner { max-width: 1040px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 1.25rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .footer-links a { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--text-dim); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent-light); }
+    .footer-links svg { width: 16px; height: 16px; }
+    .footer-divider { width: 60px; height: 2px; background: var(--accent); margin: 0 auto 1rem; border-radius: 1px; opacity: 0.4; }
+    .footer-meta { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; font-size: 0.75rem; }
+    .footer-meta span { opacity: 0.7; }
+    .footer-directory { margin-top: 0.75rem; font-size: 0.6875rem; opacity: 0.5; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-logo { width: 64px; height: 64px; }
+      .stats { gap: 1.25rem; }
+      .stat-val { font-size: 1.5rem; }
+      .nav-links { gap: 0.75rem; }
+      .nav-links a { font-size: 0.8rem; }
+      .data-table { font-size: 0.875rem; }
+    }
+    @media (max-width: 640px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 56px; left: 0; right: 0; flex-direction: column; background: var(--nav-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; gap: 0.75rem; }
+      .nav-links.open { display: flex; }
+      .hero { padding: 3rem 1rem 2.5rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .hero-badges { flex-direction: column; align-items: center; }
+      .content-area { padding: 0 0.75rem; }
+      .section { padding: 1.25rem 1rem; border-radius: 8px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .section-actions { margin-left: 0; }
+    }
+
+    /* SKILL DETAIL ROWS */
+    details.skill-row { border-bottom: 1px solid rgba(48,54,61,0.5); }
+    details.skill-row > summary { display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 0.75rem; cursor: pointer; list-style: none; transition: background 0.15s; }
+    details.skill-row > summary::-webkit-details-marker { display: none; }
+    details.skill-row > summary::before { content: ''; display: inline-block; width: 0; height: 0; border-left: 5px solid var(--accent-light); border-top: 4px solid transparent; border-bottom: 4px solid transparent; transition: transform 0.2s; flex-shrink: 0; }
+    details.skill-row[open] > summary::before { transform: rotate(90deg); }
+    details.skill-row > summary:hover { background: var(--bg3); }
+    .skill-name { font-weight: 500; color: var(--text); white-space: nowrap; min-width: 140px; }
+    .skill-desc { color: var(--text-dim); font-size: 0.875rem; }
+    .skill-detail { padding: 0.5rem 0.75rem 1rem 1.75rem; }
+    .skill-detail-group { margin-bottom: 0.75rem; }
+    .skill-detail-group strong { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 0.35rem; }
+    .skill-detail-group ul { list-style: disc; padding-left: 1.25rem; font-size: 0.875rem; color: var(--text); }
+    .skill-detail-group li { margin-bottom: 0.2rem; }
+    .skill-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .skill-tools code { background: var(--bg3); padding: 0.15rem 0.5rem; border-radius: 4px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-light); }
+    .skill-category-label { display: inline-block; font-size: 0.6875rem; color: var(--text-dim); background: var(--bg3); padding: 0.1rem 0.5rem; border-radius: 10px; }
+
+    /* QUICK START */
+    .quick-start { position: relative; max-width: 640px; margin: 0 auto 2rem; }
+    .quick-start-title { font-size: 0.8125rem; color: var(--text-dim); text-align: center; margin-bottom: 0.5rem; font-weight: 500; }
+    .quick-start-block { position: relative; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 3rem 1rem 1.25rem; font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent-light); overflow-x: auto; white-space: pre; line-height: 1.6; }
+    .quick-start-copy { position: absolute; top: 0.625rem; right: 0.625rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim); cursor: pointer; padding: 0.3rem; display: flex; align-items: center; justify-content: center; transition: color 0.2s, border-color 0.2s; }
+    .quick-start-copy:hover { color: var(--accent-light); border-color: var(--accent); }
+    .quick-start-copy svg { width: 16px; height: 16px; }
+
+    /* COMPATIBILITY BADGES */
+    .compat-row { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .compat-pill { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.75rem; background: color-mix(in srgb, var(--accent) 12%, transparent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: 999px; font-size: 0.75rem; font-weight: 500; color: var(--accent-light); white-space: nowrap; }
+    .compat-pill svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* CHANGELOG */
+    .changelog-entry { margin-bottom: 1.25rem; }
+    .changelog-version { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .changelog-date { font-size: 0.8125rem; color: var(--text-dim); margin-left: 0.5rem; }
+    .changelog-heading { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-light); margin: 0.75rem 0 0.35rem; }
+    .changelog-items { list-style: disc; padding-left: 1.25rem; font-size: 0.875rem; color: var(--text-dim); }
+    .changelog-items li { margin-bottom: 0.2rem; }
+    .changelog-link { display: inline-block; margin-top: 0.75rem; font-size: 0.8125rem; }
+
+    /* RELATED TOOLS */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+    .related-card { display: flex; flex-direction: column; padding: 1rem 1.25rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; transition: border-color 0.2s, transform 0.15s; text-decoration: none; color: inherit; }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-2px); color: inherit; }
+    .related-card-name { font-weight: 600; font-size: 0.9375rem; color: var(--text); display: flex; align-items: center; gap: 0.4rem; }
+    .related-card-name svg { width: 14px; height: 14px; color: var(--accent-light); flex-shrink: 0; }
+    .related-card-desc { font-size: 0.8125rem; color: var(--text-dim); margin-top: 0.35rem; }
+
+    /* SR ONLY */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
-  <p>Redirecting to <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools">GitHub repository</a>...</p>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <span class="nav-brand">Mobile App Developer Tools</span>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#rules">Rules</a></li>
+        <li><a href="#mcp-tools">MCP Tools</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#changelog">Changelog</a></li>
+        <li><a href="#related">Related</a></li>
+        <li><a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools">GitHub</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="hero-logo" src="assets/logo.png" alt="Mobile App Developer Tools logo" />
+      <h1>Mobile App Developer Tools</h1>
+      <p>Mobile app development for Cursor, Claude Code, and MCP-compatible editors. 43 skills covering React Native/Expo and Flutter - project setup through app store submission, monetization, analytics, OTA updates, testing, CI/CD, animations, maps, i18n, forms, real-time, security, offline sync, background tasks, debugging, production monitoring, theming, feature flags, accessibility testing, native modules, config plugins, and SDK upgrades - plus 12 rules. Companion MCP server provides 36 tools.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-val" data-target="43">0</div><div class="stat-lbl">Skills</div></div>
+        <div class="stat"><div class="stat-val" data-target="12">0</div><div class="stat-lbl">Rules</div></div>
+        <div class="stat"><div class="stat-val" data-target="36">0</div><div class="stat-lbl">MCP Tools</div></div>
+      </div>
+      
+      <div class="compat-row">
+        
+        <span class="compat-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Cursor 0.49+
+        </span>
+        
+        
+        <span class="compat-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Windows / macOS / Linux
+        </span>
+        
+        
+        <span class="compat-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Node 18+
+        </span>
+        
+        
+        <span class="compat-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M9 12l2 2 4-4"/></svg>
+          Claude Code compatible
+        </span>
+        
+      </div>
+      
+
+      <div class="hero-badges">
+        <a class="badge" href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        
+        <a class="badge" href="https://www.npmjs.com/package/@tmhs/mobile-mcp">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 0v16h16V0H0zm13 13H8V5H5v8H3V3h10v10z"/></svg>
+          npm
+        </a>
+        
+      </div>
+
+      
+      <div class="quick-start">
+        <div class="quick-start-title">Get started in seconds</div>
+        <div class="quick-start-block" id="quickStartCode">npm install -g @tmhs/mobile-mcp</div>
+        <button class="quick-start-copy" id="quickStartCopy" aria-label="Copy command">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>
+        </button>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Content sections -->
+  <div class="content-area">
+
+  <!-- Skills -->
+  
+  <section class="section" id="skills">
+    <div class="section-header">
+      <h2>Skills</h2>
+      <span class="count">43</span>
+      <div class="section-actions">
+        <button class="btn-sm toggle-section" data-target="skills-body">Expand</button>
+      </div>
+    </div>
+    <details class="cat-group" id="skills-body">
+      <summary class="sr-only">Skills list</summary>
+      <div class="cat-body">
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Accessibility Testing</span>
+            <span class="skill-desc">Automated and manual accessibility auditing, WCAG compliance, and screen reader testing for mobile apps</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Accessibility (a11y) testing or auditing</li><li>WCAG 2.1 AA compliance for mobile</li><li>Screen reader testing with VoiceOver or TalkBack</li><li>Missing accessibility labels, roles, or hints</li><li>Touch target sizing requirements</li><li>Dynamic type / font scaling support</li><li>Reduced motion preferences</li><li>Color contrast ratio validation</li><li>CI integration for accessibility checks</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-accessibility-testing</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile AI Features</span>
+            <span class="skill-desc">Integrate AI APIs (OpenAI, Anthropic, Google AI) into a React Native/Expo app. Covers vision, text generation, and audio transcription with secure API key management. Use when the user wants to add AI</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add AI-powered features to a mobile app</li><li>Needs to send images to a vision API (GPT-4o, Claude, Gemini)</li><li>Wants text generation or chatbot functionality</li><li>Needs audio transcription (Whisper)</li><li>Asks about securing API keys in a mobile app</li><li>Mentions &#34;AI&#34;, &#34;GPT&#34;, &#34;Claude&#34;, &#34;Gemini&#34;, &#34;vision&#34;, &#34;transcription&#34;, &#34;chatbot&#34;, or &#34;LLM&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-ai-features</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Analytics</span>
+            <span class="skill-desc">Add crash reporting and event tracking to a React Native/Expo or Flutter app. Covers Sentry, Firebase Crashlytics, PostHog, source map upload, user identification, session recording, and GDPR complian</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants crash reporting or error tracking in production</li><li>Needs event analytics or user behavior tracking</li><li>Asks about Sentry, Firebase Crashlytics, PostHog, or Mixpanel</li><li>Wants to understand how users interact with their app</li><li>Mentions &#34;analytics&#34;, &#34;crash reporting&#34;, &#34;crashlytics&#34;, &#34;sentry&#34;, &#34;tracking&#34;, &#34;events&#34;, or &#34;session recording&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-analytics</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Google Play Store Submission</span>
+            <span class="skill-desc">Submit an Expo/React Native app to the Google Play Store. Covers Play Console setup, signing keys, AAB format, EAS Build and Submit, service accounts, content ratings, and staged rollouts. Use when th</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to submit their app to the Google Play Store</li><li>Needs help with Android signing keys or Play App Signing</li><li>Asks about Play Console, AAB format, or staged rollouts</li><li>Gets a build or submission error for Android</li><li>Mentions &#34;play store&#34;, &#34;android submit&#34;, &#34;google play&#34;, &#34;aab&#34;, &#34;signing key&#34;, or &#34;eas submit android&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-android-submission</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Animations</span>
+            <span class="skill-desc">Add animations to a React Native/Expo or Flutter app. Covers Reanimated 3 (shared values, worklets, gesture-driven), Lottie and Rive for vector animations, implicit and explicit Flutter animations, He</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add animations to components, screens, or transitions</li><li>Asks about Reanimated, Lottie, Rive, or Animated API</li><li>Needs gesture-driven animations (swipe to dismiss, drag to reorder)</li><li>Mentions &#34;animation&#34;, &#34;transition&#34;, &#34;motion&#34;, &#34;parallax&#34;, &#34;spring&#34;, &#34;fade&#34;, or &#34;slide&#34;</li><li>Wants loading spinners, skeleton screens, or progress animations</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-animations</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile API Integration</span>
+            <span class="skill-desc">Integrate REST and GraphQL APIs into a React Native/Expo app. Covers fetch, Axios, React Query, urql, auth headers, retry logic, offline queuing, and optimistic updates. Use when the user needs to con</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Needs to connect their app to a REST or GraphQL API</li><li>Asks about data fetching, caching, or offline support</li><li>Wants to add auth headers to API requests</li><li>Needs retry logic or error handling for network calls</li><li>Mentions &#34;API&#34;, &#34;fetch&#34;, &#34;Axios&#34;, &#34;REST&#34;, &#34;GraphQL&#34;, &#34;React Query&#34;, &#34;offline&#34;, or &#34;cache&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-api-integration</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile App Monitoring</span>
+            <span class="skill-desc">Add production application performance monitoring (APM) to a React Native/Expo or Flutter app. Covers Sentry Performance, Datadog RUM, and Instabug for error tracking, performance tracing, session rep</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants production error tracking and crash reporting beyond basic Crashlytics</li><li>Asks about APM, performance monitoring, or production observability</li><li>Needs to track app launch times, screen load durations, or API latency</li><li>Mentions &#34;Sentry Performance&#34;, &#34;Datadog&#34;, &#34;Instabug&#34;, &#34;APM&#34;, &#34;Apdex&#34;, &#34;session replay&#34;, or &#34;release health&#34;</li><li>Wants dashboards, alerts, or user impact analysis for production issues</li><li>Is preparing for a production launch and needs monitoring infrastructure</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-app-monitoring</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">App Store Prep</span>
+            <span class="skill-desc">Prepare a mobile app for App Store and Play Store submission. Covers app icons, screenshots, metadata, privacy policy, age ratings, and review guideline compliance. Use when the user is getting ready </span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to publish their app to the App Store or Play Store</li><li>Asks about app store requirements, screenshots, or metadata</li><li>Needs help with app icons, descriptions, or keywords</li><li>Mentions &#34;publish&#34;, &#34;submit&#34;, &#34;app store&#34;, &#34;play store&#34;, &#34;release&#34;, or &#34;store listing&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-app-store-prep</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Auth Setup</span>
+            <span class="skill-desc">Add authentication to a React Native/Expo app using Supabase, Firebase, or Clerk. Covers email/password, OAuth, token storage with expo-secure-store, protected routes, and session management. Use when</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add user authentication to their app</li><li>Asks about sign-in, sign-up, or session management</li><li>Needs OAuth (Google, Apple, GitHub) in a mobile app</li><li>Asks how to store auth tokens securely</li><li>Wants protected routes that redirect unauthenticated users</li><li>Mentions &#34;auth&#34;, &#34;login&#34;, &#34;sign-in&#34;, &#34;Supabase&#34;, &#34;Firebase Auth&#34;, &#34;Clerk&#34;, or &#34;session&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-auth-setup</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Background Tasks</span>
+            <span class="skill-desc">Schedule and manage background tasks in React Native/Expo and Flutter apps. Covers expo-task-manager and expo-background-fetch for React Native, WorkManager (Android) and BGTaskScheduler (iOS) for nat</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Needs periodic data sync while the app is backgrounded or closed</li><li>Asks about background fetch, background processing, or scheduled tasks</li><li>Wants background location tracking or geofence monitoring</li><li>Mentions &#34;background task&#34;, &#34;WorkManager&#34;, &#34;BGTaskScheduler&#34;, &#34;headless JS&#34;, &#34;background fetch&#34;, or &#34;periodic sync&#34;</li><li>Needs to run code when the app is not in the foreground</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-background-tasks</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Camera Integration</span>
+            <span class="skill-desc">Add camera functionality to an Expo app using expo-camera. Covers permissions, photo capture, barcode scanning, video recording, and saving to the camera roll. Use when the user wants to take photos, </span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add camera functionality to their app</li><li>Needs to capture photos or record video</li><li>Wants barcode or QR code scanning</li><li>Asks about camera permissions on iOS or Android</li><li>Mentions &#34;camera&#34;, &#34;photo&#34;, &#34;barcode&#34;, &#34;QR code&#34;, &#34;scan&#34;, or &#34;video recording&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-camera-integration</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile CI/CD</span>
+            <span class="skill-desc">Set up CI/CD pipelines for React Native/Expo or Flutter apps. Covers GitHub Actions workflows, EAS Build integration, build caching, code signing in CI, secrets management, PR preview builds, and cond</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants automated builds or tests on push or PR</li><li>Asks about GitHub Actions, EAS Build, or CI/CD for mobile</li><li>Needs code signing (certificates, keystores) in CI</li><li>Mentions &#34;continuous integration&#34;, &#34;CI&#34;, &#34;CD&#34;, &#34;pipeline&#34;, &#34;automated build&#34;, &#34;github actions&#34;, or &#34;deploy on merge&#34;</li><li>Wants PR preview builds or staged deployment</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-ci-cd</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Component Patterns</span>
+            <span class="skill-desc">Build reusable, maintainable React Native components. Covers compound components, custom hooks, style patterns (StyleSheet vs NativeWind), screen vs component separation, and testing with React Native</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to build reusable UI components for React Native</li><li>Asks about component architecture or project structure</li><li>Needs help organizing screens vs shared components</li><li>Asks about styling approaches (StyleSheet, NativeWind, styled-components)</li><li>Wants to add component tests</li><li>Mentions &#34;component&#34;, &#34;reusable&#34;, &#34;pattern&#34;, &#34;StyleSheet&#34;, &#34;NativeWind&#34;, &#34;testing&#34;, or &#34;RNTL&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-component-patterns</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Config Plugins</span>
+            <span class="skill-desc">Expo config plugin authoring, CNG patterns, native project modification, and Xcode/Gradle automation</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Creating or customizing Expo config plugins</li><li>Modifying app.json/app.config.js programmatically</li><li>Continuous Native Generation (CNG) patterns</li><li>Modifying Xcode project settings (Info.plist, entitlements, build settings)</li><li>Modifying Android manifest, build.gradle, or proguard rules</li><li>Prebuild hooks and native project automation</li><li>Adding native configuration without ejecting from Expo</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-config-plugins</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Debugging</span>
+            <span class="skill-desc">Debug React Native/Expo and Flutter apps effectively. Covers Flipper, React DevTools, React Native Debugger for RN and Flutter DevTools (widget inspector, timeline, memory view) for Flutter. Includes </span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Has a bug they cannot find or fix</li><li>Asks about debugging tools (Flipper, DevTools, Debugger)</li><li>Needs to inspect network requests, state, or component trees</li><li>Wants to detect memory leaks or performance issues</li><li>Mentions &#34;debug&#34;, &#34;Flipper&#34;, &#34;DevTools&#34;, &#34;memory leak&#34;, &#34;profiler&#34;, &#34;breakpoint&#34;, or &#34;network inspector&#34;</li><li>Is troubleshooting crashes, freezes, or unexpected behavior</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-debugging</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Deep Links</span>
+            <span class="skill-desc">Set up universal links (iOS), app links (Android), URL schemes, and deferred deep links in a React Native/Expo or Flutter app. Covers AASA hosting, assetlinks.json, Expo Linking API, link-to-screen ro</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants URLs to open specific screens in their app</li><li>Needs universal links (iOS) or app links (Android)</li><li>Asks about URL schemes, deferred deep links, or install attribution</li><li>Wants to share content links that open the app (or the store if not installed)</li><li>Mentions &#34;deep link&#34;, &#34;universal link&#34;, &#34;app link&#34;, &#34;URL scheme&#34;, &#34;expo-linking&#34;, or &#34;branch.io&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-deep-links</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Dev Environment</span>
+            <span class="skill-desc">Detect and set up mobile development prerequisites across macOS, Windows, and Linux. Use when the user needs to verify their environment, install missing tools, or fix common setup issues.</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Asks if their machine is ready for mobile development</li><li>Gets build errors related to missing tools or SDKs</li><li>Needs to install Node, Watchman, Xcode, Android Studio, or JDK</li><li>Mentions &#34;setup&#34;, &#34;install&#34;, &#34;environment&#34;, &#34;prerequisites&#34;, or &#34;can&#39;t build&#34;</li><li>Is starting mobile development for the first time</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-dev-environment</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile E2E Testing</span>
+            <span class="skill-desc">Set up end-to-end testing for React Native/Expo or Flutter apps. Covers Detox, Maestro, Patrol, device farm integration, CI pipeline setup, and flaky test mitigation. Use when the user wants automated</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants automated tests that tap buttons, fill forms, and verify screens on a device or emulator</li><li>Asks about Detox, Maestro, or Patrol</li><li>Needs to test full user flows like onboarding, login, or checkout</li><li>Mentions &#34;end-to-end&#34;, &#34;e2e&#34;, &#34;integration test on device&#34;, &#34;device farm&#34;, or &#34;UI automation&#34;</li><li>Wants to run automated tests in CI against real devices</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-e2e-testing</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Feature Flags</span>
+            <span class="skill-desc">Feature flag management with PostHog, LaunchDarkly, or Firebase Remote Config for React Native/Expo and Flutter</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Feature flags, feature toggles, or feature switches</li><li>A/B testing or experimentation frameworks</li><li>Staged rollouts or percentage-based releases</li><li>Kill switches for disabling features remotely</li><li>PostHog, LaunchDarkly, or Firebase Remote Config integration</li><li>Typed flag definitions with default values</li><li>User targeting or segmentation for features</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-feature-flags</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Flutter Navigation</span>
+            <span class="skill-desc">Set up navigation in a Flutter app using GoRouter. Covers declarative routing, route guards, shell routes for tabs, typed routes, deep linking, and platform-adaptive transitions. Use when the user wan</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add navigation to a Flutter app</li><li>Asks about GoRouter, Navigator 2.0, or routing</li><li>Needs tabs, drawer, or nested navigation in Flutter</li><li>Wants auth-protected routes or route guards</li><li>Asks about deep linking in Flutter</li><li>Mentions &#34;go_router&#34;, &#34;routes&#34;, &#34;navigation&#34;, &#34;tabs&#34;, or &#34;deep link&#34; in a Flutter context</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-flutter-navigation</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Flutter Project Setup</span>
+            <span class="skill-desc">Create a new Flutter project with recommended structure, linting, and packages. Covers flutter create, directory conventions, analysis_options.yaml, pubspec.yaml management, and flavors. Use when the </span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to create a new Flutter app from scratch</li><li>Asks how to set up a Flutter project with good structure</li><li>Needs help with `flutter create` options</li><li>Wants recommended project structure or directory conventions</li><li>Mentions &#34;flutter create&#34;, &#34;new Flutter project&#34;, &#34;Flutter scaffold&#34;, or &#34;Dart project&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-flutter-project-setup</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Flutter Run on Device</span>
+            <span class="skill-desc">Run a Flutter app on a physical phone or tablet. Covers USB and wireless debugging, hot reload vs hot restart, build modes, common connection issues, and platform-specific setup. Use when the user wan</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to run their Flutter app on a physical phone or tablet</li><li>Is stuck on emulator and wants real hardware</li><li>Gets device connection errors</li><li>Asks about USB debugging, wireless debugging, or `adb`</li><li>Mentions &#34;run on phone&#34;, &#34;hot reload&#34;, &#34;device not found&#34;, or &#34;flutter run&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-flutter-run-on-device</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Flutter State Management</span>
+            <span class="skill-desc">Choose and implement state management in a Flutter app. Covers Riverpod (recommended), Bloc, Provider, and setState. Patterns for async data, code generation, and testing. Use when the user needs to m</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Asks which state management to use in Flutter</li><li>Needs to share state across multiple widgets</li><li>Wants to manage async data (API calls, streams)</li><li>Mentions &#34;Riverpod&#34;, &#34;Bloc&#34;, &#34;Provider&#34;, &#34;setState&#34;, &#34;state management&#34;, or &#34;Cubit&#34;</li><li>Asks about code generation with `riverpod_generator` or `freezed`</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-flutter-state-management</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Forms and Validation</span>
+            <span class="skill-desc">Build validated forms in a React Native/Expo or Flutter app. Covers React Hook Form with Zod, TextFormField with validators, keyboard avoidance, multi-step wizard forms, accessible error messages, and</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to build a form with validation (login, registration, profile edit, checkout)</li><li>Asks about React Hook Form, Zod, Yup, or form validation</li><li>Needs keyboard avoidance, multi-step forms, or dynamic field arrays</li><li>Mentions &#34;form&#34;, &#34;validation&#34;, &#34;input&#34;, &#34;text field&#34;, &#34;form wizard&#34;, or &#34;keyboard avoiding&#34;</li><li>Wants accessible error messages on form inputs</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-forms-validation</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Internationalization</span>
+            <span class="skill-desc">Add internationalization (i18n) to a React Native/Expo or Flutter app. Covers i18next, react-intl, flutter_localizations, locale detection, RTL layout, pluralization, date/number formatting, translati</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to support multiple languages in their app</li><li>Asks about i18n, localization, or translations</li><li>Needs RTL (right-to-left) layout support for Arabic, Hebrew, or similar</li><li>Mentions &#34;internationalization&#34;, &#34;localization&#34;, &#34;translate&#34;, &#34;multi-language&#34;, &#34;locale&#34;, &#34;RTL&#34;, or &#34;pluralization&#34;</li><li>Wants to format dates, numbers, or currencies for different regions</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-i18n</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">iOS App Store Submission</span>
+            <span class="skill-desc">Submit an Expo/React Native app to the iOS App Store. Covers Apple Developer account, certificates, provisioning profiles, EAS Build and Submit, TestFlight, build versioning, and common rejection reas</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to submit their app to the iOS App Store</li><li>Needs help with Apple certificates or provisioning profiles</li><li>Asks about TestFlight, EAS Submit, or App Store Connect</li><li>Gets a build or submission error for iOS</li><li>Mentions &#34;app store&#34;, &#34;ios submit&#34;, &#34;testflight&#34;, &#34;eas submit&#34;, &#34;apple review&#34;, or &#34;provisioning profile&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-ios-submission</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Local Storage</span>
+            <span class="skill-desc">Persist data locally in a React Native/Expo app. Covers AsyncStorage for key-value, expo-sqlite for relational data, expo-secure-store for sensitive tokens, and react-native-mmkv for fast synchronous </span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Needs to persist data locally on the device</li><li>Asks about offline storage or caching</li><li>Wants to store auth tokens securely</li><li>Needs a local database (SQLite)</li><li>Mentions &#34;storage&#34;, &#34;AsyncStorage&#34;, &#34;SQLite&#34;, &#34;SecureStore&#34;, &#34;MMKV&#34;, &#34;offline&#34;, or &#34;cache&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-local-storage</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Maps and Location</span>
+            <span class="skill-desc">Add maps and geolocation to a React Native/Expo or Flutter app. Covers react-native-maps, google_maps_flutter, expo-location, geofencing, background location tracking, marker clustering, and permissio</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to show a map with markers, routes, or polygons</li><li>Needs to get the user&#39;s current location</li><li>Asks about react-native-maps, google_maps_flutter, or expo-location</li><li>Mentions &#34;map&#34;, &#34;geolocation&#34;, &#34;GPS&#34;, &#34;geofencing&#34;, &#34;directions&#34;, &#34;coordinates&#34;, or &#34;location tracking&#34;</li><li>Wants background location tracking or location-based notifications</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-maps-location</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Monetization</span>
+            <span class="skill-desc">Add in-app purchases, subscriptions, or one-time payments to a React Native/Expo or Flutter app. Covers RevenueCat, StoreKit 2, Google Play Billing, receipt validation, sandbox testing, and subscripti</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add in-app purchases or subscriptions</li><li>Asks about RevenueCat, StoreKit 2, or Google Play Billing</li><li>Needs help with receipt validation or sandbox testing</li><li>Wants to offer a paywall, freemium model, or premium features</li><li>Mentions &#34;monetization&#34;, &#34;IAP&#34;, &#34;in-app purchase&#34;, &#34;subscription&#34;, &#34;paywall&#34;, or &#34;RevenueCat&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-monetization</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Native Modules</span>
+            <span class="skill-desc">Building native modules with Expo Modules API, Turbo Modules, JSI bridging, and Flutter platform plugins</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Creating a native module or native extension</li><li>Expo Modules API (Swift/Kotlin module definitions)</li><li>Turbo Modules or JSI bridging for React Native</li><li>Native view components (Fabric components)</li><li>Flutter platform plugins (MethodChannel, EventChannel)</li><li>Bridging Swift/Kotlin/ObjC code to JS or Dart</li><li>Custom native functionality not available via existing packages</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-native-modules</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Navigation Setup</span>
+            <span class="skill-desc">Set up file-based navigation in an Expo Router project. Covers tab layouts, stack navigation, drawer navigation, typed routes, dynamic segments, deep linking, and layout composition. Use when the user</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add tabs, a drawer, or stack navigation to an Expo app</li><li>Asks how Expo Router file-based routing works</li><li>Needs to add a screen or route group</li><li>Wants to set up deep linking or typed routes</li><li>Mentions &#34;navigation&#34;, &#34;tabs&#34;, &#34;stack&#34;, &#34;drawer&#34;, &#34;routes&#34;, or &#34;linking&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-navigation-setup</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Offline Sync</span>
+            <span class="skill-desc">Build offline-first mobile apps with local databases, background sync, conflict resolution, and operation queuing. Covers WatermelonDB, PowerSync, Realm for React Native and Drift, Isar for Flutter. I</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants the app to work without internet connectivity</li><li>Asks about offline-first architecture or local-first data</li><li>Needs background sync, conflict resolution, or operation queuing</li><li>Mentions &#34;offline&#34;, &#34;sync&#34;, &#34;local database&#34;, &#34;conflict resolution&#34;, &#34;CRDT&#34;, or &#34;queue&#34;</li><li>Wants optimistic UI that updates instantly and syncs later</li><li>Builds apps for unreliable network environments (field work, travel, rural areas)</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-offline-sync</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile OTA Updates</span>
+            <span class="skill-desc">Deploy over-the-air JavaScript updates to a React Native/Expo app using EAS Update. Covers channels, runtime versions, staged rollouts, rollback, bandwidth management, and testing published updates. F</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to push bug fixes or content changes without a store release</li><li>Asks about EAS Update, CodePush, or Shorebird</li><li>Needs staged rollouts or rollback for updates</li><li>Wants to manage multiple update channels (production, staging, preview)</li><li>Mentions &#34;OTA&#34;, &#34;over-the-air&#34;, &#34;eas update&#34;, &#34;hot update&#34;, &#34;code push&#34;, or &#34;shorebird&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-ota-updates</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Permissions</span>
+            <span class="skill-desc">Handle runtime permissions in a React Native/Expo app. Covers camera, location, contacts, media library, notifications, and microphone with iOS rationale strings and Android manifest config. Use when </span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Needs to request a device permission (camera, location, contacts, etc.)</li><li>Gets a permission denied error</li><li>Asks about iOS usage description strings or Android manifest permissions</li><li>Wants to handle the &#34;don&#39;t ask again&#34; / permanently blocked state</li><li>Mentions &#34;permission&#34;, &#34;Info.plist&#34;, &#34;NSCameraUsageDescription&#34;, &#34;rationale&#34;, or &#34;settings&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-permissions</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Project Setup</span>
+            <span class="skill-desc">Create a new Expo (React Native) project with TypeScript, file-based routing, and opinionated defaults. Use when the user wants to start a new mobile app or needs help choosing project configuration.</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to create a new mobile app from scratch</li><li>Asks how to set up an Expo or React Native project</li><li>Needs help choosing between Expo templates</li><li>Wants a recommended project structure</li><li>Mentions &#34;create app&#34;, &#34;new project&#34;, &#34;scaffold&#34;, or &#34;starter&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-project-setup</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Push Notifications</span>
+            <span class="skill-desc">Add push notifications to an Expo app using expo-notifications and EAS Push. Covers permission requests, token registration, local/remote notifications, foreground/background handlers, Android channel</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add push notifications to their app</li><li>Needs local or remote notifications</li><li>Asks about notification permissions or Android channels</li><li>Wants to handle notification taps for deep linking</li><li>Mentions &#34;push&#34;, &#34;notification&#34;, &#34;EAS push&#34;, &#34;FCM&#34;, &#34;APNs&#34;, or &#34;expo-notifications&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-push-notifications</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Real-Time</span>
+            <span class="skill-desc">Add real-time features to a React Native/Expo or Flutter app. Covers WebSockets, Supabase Realtime, Socket.IO, server-sent events, connection lifecycle, reconnection with exponential backoff, typed ev</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants live data updates without polling (chat, notifications, dashboards)</li><li>Asks about WebSockets, Supabase Realtime, Socket.IO, or SSE</li><li>Needs presence indicators, typing status, or online/offline detection</li><li>Mentions &#34;real-time&#34;, &#34;websocket&#34;, &#34;live updates&#34;, &#34;chat&#34;, &#34;push data&#34;, &#34;socket&#34;, or &#34;streaming&#34;</li><li>Wants to sync data between multiple clients in real time</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-real-time</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Run on Device</span>
+            <span class="skill-desc">Run an Expo/React Native app on a physical phone or tablet. Use when the user wants to test on a real device, is having trouble connecting, or needs to switch from simulator to physical hardware.</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to run their app on a physical phone or tablet</li><li>Is stuck on simulator/emulator and wants to test on real hardware</li><li>Gets connection errors between the dev server and their device</li><li>Mentions &#34;run on phone&#34;, &#34;test on device&#34;, &#34;QR code&#34;, &#34;can&#39;t connect&#34;, or &#34;Expo Go&#34;</li><li>Needs to set up USB debugging or wireless deployment</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-run-on-device</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile SDK Upgrade</span>
+            <span class="skill-desc">SDK version migration, dependency audit, breaking change detection, and rollback strategy for Expo and Flutter</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Upgrading Expo SDK version</li><li>Upgrading Flutter version</li><li>Migration guides for SDK version bumps</li><li>Dependency compatibility after upgrades</li><li>Breaking changes between SDK versions</li><li>expo-doctor or flutter doctor issues</li><li>Rollback strategy after a failed upgrade</li><li>React Native version bumps (via Expo SDK)</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-sdk-upgrade</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Security</span>
+            <span class="skill-desc">Harden a React Native/Expo or Flutter app against common mobile security threats. Covers SSL pinning, certificate transparency, code obfuscation (ProGuard/R8, Hermes bytecode), jailbreak and root dete</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to secure API communication (SSL pinning, certificate transparency)</li><li>Asks about code obfuscation or preventing reverse engineering</li><li>Needs jailbreak or root detection</li><li>Mentions &#34;security&#34;, &#34;SSL pinning&#34;, &#34;obfuscation&#34;, &#34;ProGuard&#34;, &#34;jailbreak&#34;, &#34;root detection&#34;, &#34;tamper detection&#34;, or &#34;secure storage&#34;</li><li>Wants to encrypt local data or protect signing credentials</li><li>Is preparing for a security audit or compliance review</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-security</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile State Management</span>
+            <span class="skill-desc">Choose and implement state management for a React Native/Expo app. Covers React state, Zustand, Jotai, and React Query with guidance on when to use each. Use when the user needs to manage global state</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Asks how to manage global or shared state in a React Native app</li><li>Wants to fetch and cache server data</li><li>Needs help choosing between state management libraries</li><li>Is dealing with prop drilling or context performance issues</li><li>Mentions &#34;state&#34;, &#34;Zustand&#34;, &#34;Jotai&#34;, &#34;React Query&#34;, &#34;TanStack Query&#34;, &#34;context&#34;, &#34;store&#34;, or &#34;cache&#34;</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-state-management</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Testing</span>
+            <span class="skill-desc">Set up unit and integration testing for React Native/Expo or Flutter apps. Covers Jest, React Native Testing Library, flutter_test, snapshot testing, mocking native modules, and test organization. Use</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Wants to add unit or integration tests to their app</li><li>Asks about Jest, React Native Testing Library, or flutter_test</li><li>Needs to test components, hooks, utilities, or state management</li><li>Mentions &#34;testing&#34;, &#34;unit test&#34;, &#34;snapshot test&#34;, &#34;test coverage&#34;, or &#34;mock&#34;</li><li>Wants help structuring test files or writing assertions</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-testing</span>
+          </div>
+        </details>
+        
+        <details class="skill-row">
+          <summary>
+            <span class="skill-name">Mobile Theming &amp; Dark Mode</span>
+            <span class="skill-desc">Design tokens, dark mode, and dynamic theming for React Native/Expo and Flutter apps</span>
+          </summary>
+          <div class="skill-detail">
+            
+            <div class="skill-detail-group">
+              <strong>Triggers</strong>
+              <ul><li>Setting up a theme system, design tokens, or color palettes</li><li>Implementing dark mode or light/dark theme switching</li><li>System appearance detection and automatic theme matching</li><li>NativeWind or Tailwind theming in React Native</li><li>Material 3 / Material You / dynamic color in Flutter</li><li>Persisting user theme preference</li><li>Semantic color naming or token-based styling</li></ul>
+            </div>
+            
+            
+            <span class="skill-category-label">mobile-theming</span>
+          </div>
+        </details>
+        
+      </div>
+    </details>
+  </section>
+  
+
+  <!-- Rules -->
+  
+  <section class="section" id="rules">
+    <div class="section-header">
+      <h2>Rules</h2>
+      <span class="count">12</span>
+      <div class="section-actions">
+        <button class="btn-sm toggle-section" data-target="rules-body">Expand</button>
+      </div>
+    </div>
+    <details class="cat-group" id="rules-body">
+      <summary class="sr-only">Rules list</summary>
+      <div class="cat-body">
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Scope</th><th>Description</th></tr></thead>
+          <tbody>
+            
+            <tr>
+              <td class="name-cell">Mobile Accessibility</td>
+              <td class="scope-cell"></td>
+              <td>Flag accessibility anti-patterns in React Native and Flutter code. Catches missing accessibility labels, small touch targets, images without alt text, and color-only state indicators.</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Bundle Size</td>
+              <td class="scope-cell"></td>
+              <td>Flag large dependencies, unoptimized imports, and bloated assets that inflate the app bundle. Catches full-library imports when tree-shakeable alternatives exist, heavy packages with lighter replaceme</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Color Contrast</td>
+              <td class="scope-cell"></td>
+              <td>Flag insufficient color contrast, missing dark mode support, and non-semantic color usage</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Env Safety</td>
+              <td class="scope-cell"></td>
+              <td>Flag hardcoded production endpoints, database URLs, and service URLs that should differ between environments. Enforce EXPO_PUBLIC_ prefix for client-side environment variables.</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile I18N Strings</td>
+              <td class="scope-cell"></td>
+              <td>Flag hardcoded user-facing strings that are not wrapped in a translation function. Catches strings in JSX text nodes and Flutter Text widgets that bypass the i18n layer.</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Image Assets</td>
+              <td class="scope-cell"></td>
+              <td>Flag oversized image assets, unoptimized formats, missing density variants, and uncached remote images in React Native/Expo projects. Prevents app bundle bloat and poor image performance.</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Native Compat</td>
+              <td class="scope-cell"></td>
+              <td>Flag deprecated native APIs, bridge-only module patterns, and New Architecture incompatibilities</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Performance</td>
+              <td class="scope-cell"></td>
+              <td>Flag common performance anti-patterns in React Native and Flutter code. Catches inline styles, missing list keys, unnecessary re-renders, missing const constructors, and heavy computation in build met</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Platform Check</td>
+              <td class="scope-cell"></td>
+              <td>Flag platform-specific React Native APIs used without Platform.OS or Platform.select() guards. Prevents runtime errors when code runs on the wrong platform.</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Secrets</td>
+              <td class="scope-cell"></td>
+              <td>Prevent committing mobile app secrets, API keys, signing credentials, or authentication material. Flag files containing sensitive patterns before they are committed.</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Security Audit</td>
+              <td class="scope-cell"></td>
+              <td>Flag common mobile security anti-patterns including insecure storage, missing SSL pinning, debug flags in release builds, cleartext traffic, and exposed signing credentials.</td>
+            </tr>
+            
+            <tr>
+              <td class="name-cell">Mobile Test Coverage</td>
+              <td class="scope-cell"></td>
+              <td>Flag untested components and screens, missing test files for new code, and low coverage thresholds in React Native/Expo and Flutter projects.</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+  
+
+  <!-- MCP Tools -->
+  
+  <section class="section" id="mcp-tools">
+    <div class="section-header">
+      <h2>MCP Tools</h2>
+      <span class="count">36</span>
+      
+      <div class="section-actions">
+        <button class="btn-sm" id="toggleAllCats">Expand all</button>
+      </div>
+      
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.5 7a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0zm-.82 4.74a6 6 0 1 1 1.06-1.06l3.04 3.04a.75.75 0 1 1-1.06 1.06l-3.04-3.04z"/></svg></span>
+      <input class="search-input" id="toolSearch" type="text" placeholder="Filter tools..." autocomplete="off" />
+      <span class="search-shortcut">/</span>
+      <div class="search-meta" id="toolSearchMeta"></div>
+    </div>
+    
+      
+      <details class="cat-group" data-cat="Build and Release">
+        <summary>Build and Release <span class="cat-count">6</span></summary>
+        <div class="cat-body">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_checkBuildHealth</td>
+                <td>Run build health checks: validate app.json, check dependencies, verify TypeScript, detect native issues</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_buildForStore</td>
+                <td>Create a production build for app store submission using EAS Build</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_analyzeBundle</td>
+                <td>Analyze app bundle for large dependencies, heavy assets, and optimization opportunities</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_configureOTA</td>
+                <td>Configure EAS Update for over-the-air JavaScript updates with runtime version policy</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_checkNativeCompat</td>
+                <td>Audit installed packages for New Architecture (Fabric/TurboModules) support</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_upgradeSDK</td>
+                <td>Detect current SDK version, compare to target, generate step-by-step upgrade plan</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details class="cat-group" data-cat="Dependencies">
+        <summary>Dependencies <span class="cat-count">2</span></summary>
+        <div class="cat-body">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_installDependency</td>
+                <td>Install a package using npx expo install for Expo compatibility with native module warnings</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_addPermission</td>
+                <td>Add a platform permission to an Expo project with iOS rationale string in app.json</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details class="cat-group" data-cat="Dev Environment">
+        <summary>Dev Environment <span class="cat-count">3</span></summary>
+        <div class="cat-body">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_checkDevEnvironment</td>
+                <td>Detect installed mobile development tools and SDKs (Node, Expo CLI, Watchman, Xcode, Android Studio, JDK)</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_runOnDevice</td>
+                <td>Step-by-step instructions for connecting a physical device to the Expo dev server</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_resetDevEnvironment</td>
+                <td>Nuclear reset for a stuck Expo dev environment: clear Metro cache, node_modules, .expo directory</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details class="cat-group" data-cat="Features">
+        <summary>Features <span class="cat-count">7</span></summary>
+        <div class="cat-body">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_addMap</td>
+                <td>Add a map view with provider config, location permissions, and marker support</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_addPushNotifications</td>
+                <td>Wire up push notifications: add plugin to app.json, create handler utility, configure Android channel</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_configureDeepLinks</td>
+                <td>Configure deep linking: scheme, Android App Links intent filters, iOS Universal Links</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_integrateAI</td>
+                <td>Scaffold AI API integration with provider config, error handling, and TypeScript types</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_setupRealtime</td>
+                <td>Add a real-time client module with connection management, event subscriptions, and reconnection</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_setupI18n</td>
+                <td>Initialize internationalization config with locale files and translation structure</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_setupFeatureFlags</td>
+                <td>Add a typed feature flag system with default values and remote sync (PostHog, LaunchDarkly, Firebase)</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details class="cat-group" data-cat="Quality">
+        <summary>Quality <span class="cat-count">6</span></summary>
+        <div class="cat-body">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_securityAudit</td>
+                <td>Scan for common security anti-patterns: insecure storage, missing SSL pinning, debug flags, credentials</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_profilePerformance</td>
+                <td>Analyze for performance anti-patterns: slow lists, unnecessary re-renders, inline styles, uncached images</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_auditAccessibility</td>
+                <td>Scan for accessibility violations: missing labels, small touch targets, images without alt text</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_checkOfflineReady</td>
+                <td>Validate offline-first readiness: local database, network status listener, query caching, mutation queue</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_setupMonitoring</td>
+                <td>Configure APM with Sentry Performance or Datadog RUM: error capture, tracing, breadcrumbs</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_setupTheming</td>
+                <td>Initialize a design token system with light/dark themes, semantic colors, spacing, typography</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details class="cat-group" data-cat="Scaffolding">
+        <summary>Scaffolding <span class="cat-count">6</span></summary>
+        <div class="cat-body">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_scaffoldProject</td>
+                <td>Generate a new Expo project using create-expo-app with the default or specified template</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_generateScreen</td>
+                <td>Create a new Expo Router screen file with navigation wiring and boilerplate</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_generateComponent</td>
+                <td>Create a React Native component file with typed props, StyleSheet, and optional test file</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_generateForm</td>
+                <td>Scaffold a validated form component with typed fields, validation rules, and error handling</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_createNativeModule</td>
+                <td>Scaffold an Expo Module or Flutter platform plugin with Swift/Kotlin stubs and bindings</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_generateTestFile</td>
+                <td>Scaffold a test file for an existing component or module with matching test boilerplate</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details class="cat-group" data-cat="Store Submission">
+        <summary>Store Submission <span class="cat-count">4</span></summary>
+        <div class="cat-body">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_validateStoreMetadata</td>
+                <td>Check that an Expo project has all required app store listing fields: name, bundle ID, icon, splash</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_submitToAppStore</td>
+                <td>Submit the latest iOS production build to App Store Connect via EAS Submit</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_submitToPlayStore</td>
+                <td>Submit the latest Android production build to Google Play Console via EAS Submit</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_generateScreenshots</td>
+                <td>Generate a screenshot capture helper script with required App Store and Play Store dimensions</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+      <details class="cat-group" data-cat="Testing and CI">
+        <summary>Testing and CI <span class="cat-count">2</span></summary>
+        <div class="cat-body">
+          <table class="data-table">
+            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+            <tbody>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_runTests</td>
+                <td>Execute the project test suite (Jest for Expo, flutter test for Flutter) with structured results</td>
+              </tr>
+              
+              <tr data-tool>
+                <td class="name-cell">mobile_setupCI</td>
+                <td>Generate a GitHub Actions CI workflow for build, test, and optional EAS Build deployment</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </details>
+      
+    
+  </section>
+  
+
+  <!-- Install -->
+  
+  <section class="section" id="install">
+    <div class="section-header">
+      <h2>Installation</h2>
+      <div class="section-actions">
+        <button class="btn-sm toggle-section" data-target="install-body">Expand</button>
+      </div>
+    </div>
+    <details class="cat-group" id="install-body">
+      <summary class="sr-only">Installation steps</summary>
+      <div class="cat-body">
+        <ol class="install-steps">
+          
+          <li><span>Clone the repository: <code>git clone https://github.com/TMHSDigital/Mobile-App-Developer-Tools.git</code></span></li>
+          
+          <li><span>Open the folder in <strong>Cursor IDE</strong></span></li>
+          
+          <li><span>Install MCP server: <code>cd mcp-server && npm install</code></span></li>
+          
+          <li><span>Configure MCP in your editor settings</span></li>
+          
+          <li><span>Start using the 43 AI skills and 36 MCP tools</span></li>
+          
+        </ol>
+      </div>
+    </details>
+  </section>
+  
+
+  <!-- Changelog -->
+  
+  <section class="section" id="changelog">
+    <div class="section-header">
+      <h2>Changelog</h2>
+      <div class="section-actions">
+        <button class="btn-sm toggle-section" data-target="changelog-body">Expand</button>
+      </div>
+    </div>
+    <details class="cat-group" id="changelog-body">
+      <summary class="sr-only">Recent changelog</summary>
+      <div class="cat-body">
+        
+        <div class="changelog-entry">
+          <span class="changelog-version">v1.0.0</span>
+          <span class="changelog-date">2026-04-05</span>
+          
+          <div class="changelog-heading">Changed</div>
+          <ul class="changelog-items">
+            <li>Production stable release: 43 skills, 12 rules, 36 MCP tools</li><li>Added README.md to MCP server package (`@tmhs/mobile-mcp`) for npm listing</li><li>Standardized punctuation: replaced em dashes with hyphens across 6 skills, 2 rules, 1 README</li><li>Fixed CLAUDE.md SnapLog skill count (was &#34;20&#34;, corrected to &#34;43&#34;)</li><li>Updated SECURITY.md supported versions</li><li>Added LICENSE to mcp-server/ and packages/mobile-dev-tools/ for npm tarballs</li><li>Added keywords to `@tmhs/mobile-mcp` package.json</li><li>Fixed README.md symlink example path</li>
+          </ul>
+          
+        </div>
+        
+        <div class="changelog-entry">
+          <span class="changelog-version">v0.12.0</span>
+          <span class="changelog-date">2026-04-04</span>
+          
+          <div class="changelog-heading">Added</div>
+          <ul class="changelog-items">
+            <li>**3 new skills**: `mobile-native-modules` (Expo Modules API, Turbo Modules, JSI bridging, native view components, Swift/Kotlin), `mobile-config-plugins` (config plugin authoring, CNG patterns, Xcode/Gradle automation, modifier previews), `mobile-sdk-upgrade` (SDK version migration, dependency audit, breaking change detection, rollback strategy, expo-doctor)</li><li>**1 new rule**: `mobile-native-compat` (flags deprecated native APIs, bridge-only module patterns, New Architecture incompatibilities, sunset React Native APIs)</li><li>**3 new MCP tools**: `mobile_createNativeModule`, `mobile_upgradeSDK`, `mobile_checkNativeCompat`</li><li>Totals: 43 skills, 12 rules, 36 MCP tools</li>
+          </ul>
+          
+          <div class="changelog-heading">Added</div>
+          <ul class="changelog-items">
+            <li>**3 new skills**: `mobile-native-modules` (Expo Modules API, Turbo Modules, JSI bridging, native view components, Swift/Kotlin), `mobile-config-plugins` (config plugin authoring, CNG patterns, Xcode/Gradle automation, modifier previews), `mobile-sdk-upgrade` (SDK version migration, dependency audit, breaking change detection, rollback strategy, expo-doctor)</li><li>**1 new rule**: `mobile-native-compat` (flags deprecated native APIs, bridge-only module patterns, New Architecture incompatibilities, sunset React Native APIs)</li><li>**3 new MCP tools**: `mobile_createNativeModule`, `mobile_upgradeSDK`, `mobile_checkNativeCompat`</li><li>Totals: 43 skills, 12 rules, 36 MCP tools</li>
+          </ul>
+          
+        </div>
+        
+        <a class="changelog-link" href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/blob/main/CHANGELOG.md">View full changelog on GitHub &rarr;</a>
+      </div>
+    </details>
+  </section>
+  
+
+  <!-- Related Tools -->
+  
+  <section class="section" id="related">
+    <div class="section-header">
+      <h2>Related Tools</h2>
+      <span class="count">3</span>
+    </div>
+    <div class="related-grid">
+      
+      <a class="related-card" href="https://tmhsdigital.github.io/Docker-Developer-Tools/">
+        <span class="related-card-name">
+          Docker Developer Tools
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+        <span class="related-card-desc">Container management and Dockerfile support</span>
+      </a>
+      
+      <a class="related-card" href="https://tmhsdigital.github.io/Home-Lab-Developer-Tools/">
+        <span class="related-card-name">
+          Home Lab Developer Tools
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+        <span class="related-card-desc">Home lab and Raspberry Pi workflows</span>
+      </a>
+      
+      <a class="related-card" href="https://tmhsdigital.github.io/Developer-Tools-Directory/">
+        <span class="related-card-name">
+          Developer Tools Directory
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+        <span class="related-card-desc">Browse all TMHSDigital developer tools</span>
+      </a>
+      
+    </div>
+  </section>
+  
+
+  </div><!-- /.content-area -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        
+        <a href="https://www.npmjs.com/package/@tmhs/mobile-mcp">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 0v16h16V0H0zm13 13H8V5H5v8H3V3h10v10z"/></svg>
+          npm
+        </a>
+        
+        <a href="https://tmhsdigital.github.io/Developer-Tools-Directory/">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 1.75V13.5h13.05l.001-11.75H1.5zM0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v11.5A1.75 1.75 0 0114.25 15H1.75A1.75 1.75 0 010 13.25V1.75zM9.22 3.72a.75.75 0 000 1.06L10.69 6.25H6.75a.75.75 0 000 1.5h3.94l-1.47 1.47a.75.75 0 101.06 1.06l2.75-2.75a.75.75 0 000-1.06L10.28 3.72a.75.75 0 00-1.06 0z"/></svg>
+          All Tools
+        </a>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-meta">
+        <span>v1.0.0</span>
+        <span>&middot;</span>
+        <span>CC-BY-NC-ND-4.0</span>
+        <span>&middot;</span>
+        <span>Built 2026-04-08</span>
+      </div>
+      <div class="footer-directory">
+        Part of <a href="https://tmhsdigital.github.io/Developer-Tools-Directory/">TMHSDigital Developer Tools</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    /* Toast */
+    (function () {
+      var toastEl = document.getElementById('toast');
+      var timer;
+      window.showToast = function (msg) {
+        clearTimeout(timer);
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        timer = setTimeout(function () { toastEl.classList.remove('show'); }, 2000);
+      };
+    })();
+
+    /* Theme toggle (dark / light / auto) */
+    (function () {
+      var btn = document.getElementById('themeToggle');
+      var icon = document.getElementById('themeIcon');
+      var sunSvg = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+      var moonSvg = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+      var autoSvg = '<circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20V2z"/>';
+      var states = ['dark', 'light', 'auto'];
+      function getState() { return localStorage.getItem('theme') || 'auto'; }
+      function apply(state) {
+        if (state === 'light') { document.documentElement.setAttribute('data-theme', 'light'); }
+        else if (state === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); }
+        else { document.documentElement.removeAttribute('data-theme'); }
+        if (state === 'auto') localStorage.removeItem('theme');
+        else localStorage.setItem('theme', state);
+        updateIcon(state);
+      }
+      function updateIcon(state) {
+        if (state === 'light') icon.innerHTML = sunSvg;
+        else if (state === 'dark') icon.innerHTML = moonSvg;
+        else icon.innerHTML = autoSvg;
+        btn.title = 'Theme: ' + state;
+      }
+      btn.addEventListener('click', function () {
+        var cur = getState();
+        var next = states[(states.indexOf(cur) + 1) % states.length];
+        apply(next);
+      });
+      updateIcon(getState());
+    })();
+
+    /* Animated stat counters */
+    (function () {
+      var prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-target'), 10);
+          if (isNaN(target)) return;
+          observer.unobserve(el);
+          if (prefersReduce) { el.textContent = target; return; }
+          var duration = 1200, start = performance.now();
+          function tick(now) {
+            var p = Math.min((now - start) / duration, 1);
+            el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }, { threshold: 0.3 });
+      document.querySelectorAll('.stat-val[data-target]').forEach(function (el) { observer.observe(el); });
+    })();
+
+    /* Copy to clipboard with toast */
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(function () { showToast('Copied to clipboard'); });
+    }
+
+    /* Quick-start copy button */
+    (function () {
+      var btn = document.getElementById('quickStartCopy');
+      var block = document.getElementById('quickStartCode');
+      if (!btn || !block) return;
+      btn.addEventListener('click', function () { copyText(block.textContent.trim()); });
+    })();
+
+    /* Auto-add copy buttons next to <code> in install steps */
+    (function () {
+      document.querySelectorAll('.install-steps code').forEach(function (code) {
+        var btn = document.createElement('span');
+        btn.className = 'copy-icon';
+        btn.title = 'Copy';
+        btn.innerHTML = '<svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"/></svg>';
+        btn.addEventListener('click', function () { copyText(code.textContent); });
+        code.parentNode.insertBefore(btn, code.nextSibling);
+      });
+    })();
+
+    /* MCP tool search / filter */
+    (function () {
+      var input = document.getElementById('toolSearch');
+      var meta = document.getElementById('toolSearchMeta');
+      if (!input) return;
+      var rows = document.querySelectorAll('#mcp-tools [data-tool]');
+      var total = rows.length;
+      function filter() {
+        var q = input.value.toLowerCase().trim();
+        var shown = 0;
+        rows.forEach(function (tr) {
+          var text = tr.textContent.toLowerCase();
+          var match = !q || text.indexOf(q) !== -1;
+          tr.classList.toggle('hidden-row', !match);
+          if (match) shown++;
+        });
+        if (q) {
+          meta.textContent = shown + ' of ' + total;
+          document.querySelectorAll('.cat-group').forEach(function (d) {
+            var vis = d.querySelectorAll('[data-tool]:not(.hidden-row)').length;
+            if (vis > 0) { d.open = true; d.style.display = ''; }
+            else { d.style.display = 'none'; }
+          });
+        } else {
+          meta.textContent = '';
+          document.querySelectorAll('.cat-group').forEach(function (d) { d.style.display = ''; });
+        }
+      }
+      input.addEventListener('input', filter);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === '/' && !e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+          e.preventDefault();
+          input.focus();
+        }
+      });
+    })();
+
+    /* Expand / collapse all categories */
+    (function () {
+      var btn = document.getElementById('toggleAllCats');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var details = document.querySelectorAll('#mcp-tools .cat-group');
+        var allOpen = Array.prototype.every.call(details, function (d) { return d.open; });
+        details.forEach(function (d) { d.open = !allOpen; });
+        btn.textContent = allOpen ? 'Expand all' : 'Collapse all';
+      });
+    })();
+
+    /* Section collapse/expand toggles */
+    (function () {
+      document.querySelectorAll('.toggle-section').forEach(function (btn) {
+        var targetId = btn.getAttribute('data-target');
+        var details = document.getElementById(targetId);
+        if (!details) return;
+        function updateLabel() { btn.textContent = details.open ? 'Collapse' : 'Expand'; }
+        btn.addEventListener('click', function () { details.open = !details.open; updateLabel(); });
+        details.addEventListener('toggle', updateLabel);
+      });
+    })();
+
+    /* Smooth expand/collapse animation */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      document.querySelectorAll('details.cat-group').forEach(function (det) {
+        var body = det.querySelector('.cat-body');
+        if (!body) return;
+        det.addEventListener('toggle', function () {
+          if (det.open) {
+            body.style.maxHeight = '0';
+            body.style.opacity = '0';
+            body.classList.add('cat-body-anim');
+            requestAnimationFrame(function () {
+              body.style.maxHeight = body.scrollHeight + 'px';
+              body.style.opacity = '1';
+            });
+            setTimeout(function () { body.style.maxHeight = 'none'; body.classList.remove('cat-body-anim'); }, 260);
+          }
+        });
+      });
+    })();
+
+    /* Scroll spy */
+    (function () {
+      var links = document.querySelectorAll('.nav-links a[href^="#"]');
+      if (!links.length) return;
+      var sections = [];
+      links.forEach(function (link) {
+        var id = link.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: link });
+      });
+      function onScroll() {
+        var scrollY = window.scrollY + 80;
+        var current = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= scrollY) current = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (current) current.link.classList.add('active');
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    /* Back to top */
+    (function () {
+      var btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', function () {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    })();
+
+    /* Mobile nav toggle */
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.querySelector('.nav-links');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function () { links.classList.toggle('open'); });
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { links.classList.remove('open'); });
+      });
+    })();
+  </script>
+
 </body>
 </html>

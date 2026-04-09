@@ -1,0 +1,34 @@
+{
+  "accent": "#06b6d4",
+  "accentLight": "#67e8f9",
+  "heroGradientFrom": "#0a1117",
+  "heroGradientTo": "#0d2137",
+  "favicon": "assets/logo.png",
+  "ogImage": "assets/logo.png",
+  "installSteps": [
+    "Clone the repository: <code>git clone https://github.com/TMHSDigital/Mobile-App-Developer-Tools.git</code>",
+    "Open the folder in <strong>Cursor IDE</strong>",
+    "Install MCP server: <code>cd mcp-server && npm install</code>",
+    "Configure MCP in your editor settings",
+    "Start using the 43 AI skills and 36 MCP tools"
+  ],
+  "links": {
+    "npm": "https://www.npmjs.com/package/@tmhs/mobile-mcp",
+    "github": "https://github.com/TMHSDigital/Mobile-App-Developer-Tools"
+  },
+  "quickStart": {
+    "title": "Get started in seconds",
+    "command": "npm install -g @tmhs/mobile-mcp"
+  },
+  "compatibility": {
+    "cursor": "0.49+",
+    "os": ["Windows", "macOS", "Linux"],
+    "node": "18+",
+    "claude": "Claude Code compatible"
+  },
+  "relatedTools": [
+    { "name": "Docker Developer Tools", "url": "https://tmhsdigital.github.io/Docker-Developer-Tools/", "description": "Container management and Dockerfile support" },
+    { "name": "Home Lab Developer Tools", "url": "https://tmhsdigital.github.io/Home-Lab-Developer-Tools/", "description": "Home lab and Raspberry Pi workflows" },
+    { "name": "Developer Tools Directory", "url": "https://tmhsdigital.github.io/Developer-Tools-Directory/", "description": "Browse all TMHSDigital developer tools" }
+  ]
+}
