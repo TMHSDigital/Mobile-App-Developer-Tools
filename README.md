@@ -8,30 +8,40 @@
   <em>Go from zero to a running mobile app on your phone.</em>
 </p>
 
+<!-- Row 1: Identity -->
 <p align="center">
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-1.0.0-0A84FF?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyTDIyIDEyTDEyIDIyTDIgMTJaIi8+PC9zdmc+" alt="Release"></a>
-  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge" alt="License"></a>
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&label=CI&logo=githubactions&style=for-the-badge" alt="CI"></a>
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&label=Validate&logo=githubactions&style=for-the-badge" alt="Validate"></a>
-  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/codeql.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/codeql.yml?branch=main&label=CodeQL&logo=githubactions&style=for-the-badge" alt="CodeQL"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/badge/version-1.0.0-0A84FF?style=flat-square" alt="Version" /></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/releases"><img src="https://img.shields.io/github/v/release/TMHSDigital/Mobile-App-Developer-Tools?style=flat-square&color=0A84FF&label=release" alt="Release" /></a>
+  <a href="https://www.npmjs.com/package/@tmhs/mobile-mcp"><img src="https://img.shields.io/npm/v/@tmhs/mobile-mcp?style=flat-square&color=06b6d4&label=npm" alt="npm" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-CC--BY--NC--ND--4.0-384d54?style=flat-square" alt="License" /></a>
+  <a href="https://tmhsdigital.github.io/Mobile-App-Developer-Tools/"><img src="https://img.shields.io/badge/docs-website-0A84FF?style=flat-square" alt="Docs" /></a>
 </p>
 
+<!-- Row 2: CI -->
 <p align="center">
-  <a href="https://www.npmjs.com/package/@tmhs/mobile-mcp"><img src="https://img.shields.io/npm/v/@tmhs/mobile-mcp?style=for-the-badge&logo=npm&label=mobile-mcp" alt="npm: mobile-mcp"></a>
-  <a href="https://www.npmjs.com/package/@tmhs/mobile-dev-tools"><img src="https://img.shields.io/npm/v/@tmhs/mobile-dev-tools?style=for-the-badge&logo=npm&label=mobile-dev-tools" alt="npm: mobile-dev-tools"></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/ci.yml?branch=main&style=flat-square&label=CI" alt="CI" /></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/validate.yml?branch=main&style=flat-square&label=validate" alt="Validate" /></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/actions/workflows/codeql.yml"><img src="https://img.shields.io/github/actions/workflow/status/TMHSDigital/Mobile-App-Developer-Tools/codeql.yml?branch=main&style=flat-square&label=CodeQL" alt="CodeQL" /></a>
 </p>
 
----
+<!-- Row 3: Community -->
+<p align="center">
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/stargazers"><img src="https://img.shields.io/github/stars/TMHSDigital/Mobile-App-Developer-Tools?style=flat-square&color=384d54" alt="Stars" /></a>
+  <a href="https://github.com/TMHSDigital/Mobile-App-Developer-Tools/issues"><img src="https://img.shields.io/github/issues/TMHSDigital/Mobile-App-Developer-Tools?style=flat-square&color=384d54" alt="Issues" /></a>
+  <a href="https://www.npmjs.com/package/@tmhs/mobile-mcp"><img src="https://img.shields.io/npm/dm/@tmhs/mobile-mcp?style=flat-square&color=384d54&label=downloads" alt="downloads" /></a>
+</p>
 
 <p align="center">
   <strong>43 skills</strong> &nbsp;&bull;&nbsp; <strong>12 rules</strong> &nbsp;&bull;&nbsp; <strong>36 MCP tools</strong>
 </p>
 
 <p align="center">
-  <a href="#skills">Skills</a> · <a href="#rules">Rules</a> · <a href="#companion-mobile-mcp-server">MCP Tools</a> · <a href="#installation">Install</a> · <a href="#roadmap">Roadmap</a>
+  <a href="#skills">Skills</a> &nbsp;&bull;&nbsp;
+  <a href="#rules">Rules</a> &nbsp;&bull;&nbsp;
+  <a href="#companion-mobile-mcp-server">MCP Tools</a> &nbsp;&bull;&nbsp;
+  <a href="#installation">Install</a> &nbsp;&bull;&nbsp;
+  <a href="#roadmap">Roadmap</a>
 </p>
-
----
 
 ## Overview
 
