@@ -6,11 +6,11 @@
   "favicon": "assets/logo.png",
   "ogImage": "assets/logo.png",
   "installSteps": [
-    "Clone the repository: <code>git clone https://github.com/TMHSDigital/Mobile-App-Developer-Tools.git</code>",
-    "Open the folder in <strong>Cursor IDE</strong>",
-    "Install MCP server: <code>cd mcp-server && npm install</code>",
-    "Configure MCP in your editor settings",
-    "Start using the 43 AI skills and 36 MCP tools"
+    "<strong>Option A: npm (recommended)</strong><br><code>npm install -g @tmhs/mobile-mcp</code>",
+    "<strong>Option B: from source</strong><br><code>git clone https://github.com/TMHSDigital/Mobile-App-Developer-Tools.git</code><br><code>cd Mobile-App-Developer-Tools/mcp-server && npm install && npm run build</code>",
+    "<strong>Add to Cursor MCP config</strong> (<code>.cursor/mcp.json</code>):<br><code>{\"mcpServers\":{\"mobile\":{\"command\":\"npx\",\"args\":[\"-y\",\"@tmhs/mobile-mcp\"]}}}</code>",
+    "<strong>Prerequisites:</strong> Node.js 20+. For React Native/Expo: install <code>expo-cli</code>. For Flutter: install the Flutter SDK. The MCP tools detect your environment automatically.",
+    "Open your mobile project in Cursor. All 43 skills, 12 rules, and 36 MCP tools are available immediately - from scaffolding to app store submission."
   ],
   "links": {
     "npm": "https://www.npmjs.com/package/@tmhs/mobile-mcp",
