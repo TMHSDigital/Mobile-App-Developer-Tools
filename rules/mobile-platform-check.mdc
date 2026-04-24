@@ -4,6 +4,7 @@ alwaysApply: false
 globs:
   - "*.ts"
   - "*.tsx"
+standards-version: 1.6.3
 ---
 
 # Platform-Specific API Guard

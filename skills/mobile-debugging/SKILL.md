@@ -1,6 +1,7 @@
 ---
 name: mobile-debugging
 description: Debug React Native/Expo and Flutter apps effectively. Covers Flipper, React DevTools, React Native Debugger for RN and Flutter DevTools (widget inspector, timeline, memory view) for Flutter. Includes memory leak detection with LeakCanary and Instruments, network inspection, console logging, native breakpoints, performance profiling, and common debugging workflows. Use when the user needs to find and fix bugs, inspect state, profile performance, or detect memory leaks.
+standards-version: 1.6.3
 ---
 
 # Mobile Debugging

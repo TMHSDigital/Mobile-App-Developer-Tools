@@ -1,6 +1,7 @@
 ---
 name: mobile-sdk-upgrade
 description: SDK version migration, dependency audit, breaking change detection, and rollback strategy for Expo and Flutter
+standards-version: 1.6.3
 ---
 
 # Mobile SDK Upgrade

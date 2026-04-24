@@ -1,6 +1,7 @@
 ---
 name: mobile-android-submission
 description: Submit an Expo/React Native app to the Google Play Store. Covers Play Console setup, signing keys, AAB format, EAS Build and Submit, service accounts, content ratings, and staged rollouts. Use when the user wants to publish to Google Play.
+standards-version: 1.6.3
 ---
 
 # Google Play Store Submission

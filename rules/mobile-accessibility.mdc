@@ -5,6 +5,7 @@ globs:
   - "*.ts"
   - "*.tsx"
   - "*.dart"
+standards-version: 1.6.3
 ---
 
 # Accessibility Anti-Patterns

@@ -5,6 +5,7 @@ globs:
   - "*.ts"
   - "*.tsx"
   - "*.json"
+standards-version: 1.6.3
 ---
 
 # Environment Safety
