@@ -1,6 +1,7 @@
 ---
 name: mobile-real-time
 description: Add real-time features to a React Native/Expo or Flutter app. Covers WebSockets, Supabase Realtime, Socket.IO, server-sent events, connection lifecycle, reconnection with exponential backoff, typed event channels, presence indicators, and offline queue with sync on reconnect. Use when the user wants live chat, real-time updates, typing indicators, or collaborative features.
+standards-version: 1.6.3
 ---
 
 # Mobile Real-Time

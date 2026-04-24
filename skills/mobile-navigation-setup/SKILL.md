@@ -1,6 +1,7 @@
 ---
 name: mobile-navigation-setup
 description: Set up file-based navigation in an Expo Router project. Covers tab layouts, stack navigation, drawer navigation, typed routes, dynamic segments, deep linking, and layout composition. Use when the user wants to add screens, tabs, or navigation flows.
+standards-version: 1.6.3
 ---
 
 # Mobile Navigation Setup

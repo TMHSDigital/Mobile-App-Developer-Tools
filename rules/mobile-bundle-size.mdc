@@ -6,6 +6,7 @@ globs:
   - "*.tsx"
   - "*.json"
   - "*.dart"
+standards-version: 1.6.3
 ---
 
 # Bundle Size

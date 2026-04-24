@@ -1,6 +1,7 @@
 ---
 name: mobile-feature-flags
 description: Feature flag management with PostHog, LaunchDarkly, or Firebase Remote Config for React Native/Expo and Flutter
+standards-version: 1.6.3
 ---
 
 # Mobile Feature Flags

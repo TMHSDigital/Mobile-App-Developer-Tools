@@ -2,6 +2,7 @@
 description: Flag insufficient color contrast, missing dark mode support, and non-semantic color usage
 globs: ["*.ts", "*.tsx", "*.dart"]
 alwaysApply: false
+standards-version: 1.6.3
 ---
 
 # Color Contrast & Theme Compliance

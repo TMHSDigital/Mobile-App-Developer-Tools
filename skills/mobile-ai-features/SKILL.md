@@ -1,6 +1,7 @@
 ---
 name: mobile-ai-features
 description: Integrate AI APIs (OpenAI, Anthropic, Google AI) into a React Native/Expo app. Covers vision, text generation, and audio transcription with secure API key management. Use when the user wants to add AI-powered features to their mobile app.
+standards-version: 1.6.3
 ---
 
 # Mobile AI Features

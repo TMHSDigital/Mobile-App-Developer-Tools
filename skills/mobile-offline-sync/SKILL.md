@@ -1,6 +1,7 @@
 ---
 name: mobile-offline-sync
 description: Build offline-first mobile apps with local databases, background sync, conflict resolution, and operation queuing. Covers WatermelonDB, PowerSync, Realm for React Native and Drift, Isar for Flutter. Includes optimistic UI patterns, sync status indicators, and strategies for handling merge conflicts (last-write-wins, CRDT, manual merge). Use when the user needs the app to work without internet, sync data in the background, or handle conflicting edits.
+standards-version: 1.6.3
 ---
 
 # Mobile Offline Sync
