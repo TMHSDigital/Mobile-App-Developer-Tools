@@ -1,7 +1,7 @@
 ---
 name: mobile-app-store-prep
 description: Prepare a mobile app for App Store and Play Store submission. Covers app icons, screenshots, metadata, privacy policy, age ratings, and review guideline compliance. Use when the user is getting ready to publish their app.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # App Store Prep

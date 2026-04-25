@@ -1,7 +1,7 @@
 ---
 name: mobile-ota-updates
 description: Deploy over-the-air JavaScript updates to a React Native/Expo app using EAS Update. Covers channels, runtime versions, staged rollouts, rollback, bandwidth management, and testing published updates. For Flutter, covers Shorebird. Use when the user wants to push fixes without a full app store release.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile OTA Updates

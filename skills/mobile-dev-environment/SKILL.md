@@ -1,7 +1,7 @@
 ---
 name: mobile-dev-environment
 description: Detect and set up mobile development prerequisites across macOS, Windows, and Linux. Use when the user needs to verify their environment, install missing tools, or fix common setup issues.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Dev Environment

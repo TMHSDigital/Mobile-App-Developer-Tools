@@ -1,7 +1,7 @@
 ---
 name: mobile-config-plugins
 description: Expo config plugin authoring, CNG patterns, native project modification, and Xcode/Gradle automation
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Config Plugins

@@ -1,7 +1,7 @@
 ---
 name: mobile-analytics
 description: Add crash reporting and event tracking to a React Native/Expo or Flutter app. Covers Sentry, Firebase Crashlytics, PostHog, source map upload, user identification, session recording, and GDPR compliance. Use when the user wants visibility into crashes, user behavior, or app performance in production.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Analytics

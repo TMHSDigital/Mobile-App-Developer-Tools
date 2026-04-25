@@ -1,7 +1,7 @@
 ---
 name: mobile-state-management
 description: Choose and implement state management for a React Native/Expo app. Covers React state, Zustand, Jotai, and React Query with guidance on when to use each. Use when the user needs to manage global state, server state, or form state.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile State Management

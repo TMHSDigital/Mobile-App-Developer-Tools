@@ -1,7 +1,7 @@
 ---
 name: mobile-security
 description: Harden a React Native/Expo or Flutter app against common mobile security threats. Covers SSL pinning, certificate transparency, code obfuscation (ProGuard/R8, Hermes bytecode), jailbreak and root detection, secure key storage, runtime tamper detection, and data-at-rest encryption. Use when the user needs to protect API traffic, prevent reverse engineering, detect compromised devices, or store sensitive data securely.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Security

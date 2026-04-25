@@ -1,7 +1,7 @@
 ---
 name: mobile-component-patterns
 description: Build reusable, maintainable React Native components. Covers compound components, custom hooks, style patterns (StyleSheet vs NativeWind), screen vs component separation, and testing with React Native Testing Library. Use when the user needs component architecture guidance.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Component Patterns
