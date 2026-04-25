@@ -1,7 +1,7 @@
 ---
 name: mobile-testing
 description: Set up unit and integration testing for React Native/Expo or Flutter apps. Covers Jest, React Native Testing Library, flutter_test, snapshot testing, mocking native modules, and test organization. Use when the user wants to add or improve tests for components, hooks, or business logic.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Testing

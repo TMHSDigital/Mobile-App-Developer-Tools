@@ -1,7 +1,7 @@
 ---
 name: mobile-ci-cd
 description: Set up CI/CD pipelines for React Native/Expo or Flutter apps. Covers GitHub Actions workflows, EAS Build integration, build caching, code signing in CI, secrets management, PR preview builds, and conditional platform builds. Use when the user wants automated builds, tests, or deployments on push or pull request.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile CI/CD

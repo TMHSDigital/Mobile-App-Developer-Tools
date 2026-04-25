@@ -2,7 +2,7 @@
 description: Flag deprecated native APIs, bridge-only module patterns, and New Architecture incompatibilities
 globs: ["*.ts", "*.tsx", "*.dart"]
 alwaysApply: false
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Native Compatibility

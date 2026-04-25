@@ -1,7 +1,7 @@
 ---
 name: mobile-animations
 description: Add animations to a React Native/Expo or Flutter app. Covers Reanimated 3 (shared values, worklets, gesture-driven), Lottie and Rive for vector animations, implicit and explicit Flutter animations, Hero transitions, and performance best practices. Use when the user wants smooth UI transitions, loading animations, or gesture-driven motion.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Animations

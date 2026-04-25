@@ -1,7 +1,7 @@
 ---
 name: mobile-native-modules
 description: Building native modules with Expo Modules API, Turbo Modules, JSI bridging, and Flutter platform plugins
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Native Modules

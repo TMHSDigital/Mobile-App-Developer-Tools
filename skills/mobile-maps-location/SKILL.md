@@ -1,7 +1,7 @@
 ---
 name: mobile-maps-location
 description: Add maps and geolocation to a React Native/Expo or Flutter app. Covers react-native-maps, google_maps_flutter, expo-location, geofencing, background location tracking, marker clustering, and permission flows. Use when the user wants to display a map, track user location, or build location-aware features.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Maps and Location

@@ -1,7 +1,7 @@
 ---
 name: mobile-theming
 description: Design tokens, dark mode, and dynamic theming for React Native/Expo and Flutter apps
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Theming & Dark Mode

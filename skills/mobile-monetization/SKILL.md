@@ -1,7 +1,7 @@
 ---
 name: mobile-monetization
 description: Add in-app purchases, subscriptions, or one-time payments to a React Native/Expo or Flutter app. Covers RevenueCat, StoreKit 2, Google Play Billing, receipt validation, sandbox testing, and subscription lifecycle. Use when the user wants to charge money inside their app.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Monetization

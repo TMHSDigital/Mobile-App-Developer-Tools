@@ -1,7 +1,7 @@
 ---
 name: mobile-push-notifications
 description: Add push notifications to an Expo app using expo-notifications and EAS Push. Covers permission requests, token registration, local/remote notifications, foreground/background handlers, Android channels, and deep linking from notifications. Use when the user wants push notifications.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Push Notifications

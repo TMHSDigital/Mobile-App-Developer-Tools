@@ -1,7 +1,7 @@
 ---
 name: mobile-permissions
 description: Handle runtime permissions in a React Native/Expo app. Covers camera, location, contacts, media library, notifications, and microphone with iOS rationale strings and Android manifest config. Use when the user needs to request device permissions.
-standards-version: 1.6.3
+standards-version: 1.7.0
 ---
 
 # Mobile Permissions
