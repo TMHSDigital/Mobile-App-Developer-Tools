@@ -1,7 +1,7 @@
 ---
 name: mobile-deep-links
 description: Set up universal links (iOS), app links (Android), URL schemes, and deferred deep links in a React Native/Expo or Flutter app. Covers AASA hosting, assetlinks.json, Expo Linking API, link-to-screen routing, and install attribution. Use when the user wants URLs to open specific screens in their app.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Deep Links

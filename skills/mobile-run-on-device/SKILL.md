@@ -1,7 +1,7 @@
 ---
 name: mobile-run-on-device
 description: Run an Expo/React Native app on a physical phone or tablet. Use when the user wants to test on a real device, is having trouble connecting, or needs to switch from simulator to physical hardware.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Run on Device

@@ -1,7 +1,7 @@
 ---
 name: mobile-accessibility-testing
 description: Automated and manual accessibility auditing, WCAG compliance, and screen reader testing for mobile apps
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Accessibility Testing

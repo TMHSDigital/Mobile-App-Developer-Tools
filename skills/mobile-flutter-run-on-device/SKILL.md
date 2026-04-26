@@ -1,7 +1,7 @@
 ---
 name: mobile-flutter-run-on-device
 description: Run a Flutter app on a physical phone or tablet. Covers USB and wireless debugging, hot reload vs hot restart, build modes, common connection issues, and platform-specific setup. Use when the user wants to test on real hardware.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Flutter Run on Device

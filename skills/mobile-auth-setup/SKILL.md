@@ -1,7 +1,7 @@
 ---
 name: mobile-auth-setup
 description: Add authentication to a React Native/Expo app using Supabase, Firebase, or Clerk. Covers email/password, OAuth, token storage with expo-secure-store, protected routes, and session management. Use when the user needs user sign-in or sign-up.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Auth Setup

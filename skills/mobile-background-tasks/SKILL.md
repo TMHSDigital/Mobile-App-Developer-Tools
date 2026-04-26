@@ -1,7 +1,7 @@
 ---
 name: mobile-background-tasks
 description: Schedule and manage background tasks in React Native/Expo and Flutter apps. Covers expo-task-manager and expo-background-fetch for React Native, WorkManager (Android) and BGTaskScheduler (iOS) for native scheduling, headless JS, and Flutter Workmanager. Includes OS-imposed constraints, battery optimization, retry policies, minimum intervals, and testing background execution. Use when the user needs background data sync, periodic fetches, background location, or scheduled maintenance tasks.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Background Tasks

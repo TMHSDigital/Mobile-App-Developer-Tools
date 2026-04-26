@@ -1,7 +1,7 @@
 ---
 name: mobile-api-integration
 description: Integrate REST and GraphQL APIs into a React Native/Expo app. Covers fetch, Axios, React Query, urql, auth headers, retry logic, offline queuing, and optimistic updates. Use when the user needs to connect their app to a backend API.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile API Integration

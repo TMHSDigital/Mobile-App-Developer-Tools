@@ -1,7 +1,7 @@
 ---
 name: mobile-flutter-state-management
 description: Choose and implement state management in a Flutter app. Covers Riverpod (recommended), Bloc, Provider, and setState. Patterns for async data, code generation, and testing. Use when the user needs to manage state beyond simple widget-local state.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Flutter State Management

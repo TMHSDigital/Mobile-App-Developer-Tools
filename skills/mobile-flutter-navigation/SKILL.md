@@ -1,7 +1,7 @@
 ---
 name: mobile-flutter-navigation
 description: Set up navigation in a Flutter app using GoRouter. Covers declarative routing, route guards, shell routes for tabs, typed routes, deep linking, and platform-adaptive transitions. Use when the user wants to add screens or navigation flows in Flutter.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Flutter Navigation

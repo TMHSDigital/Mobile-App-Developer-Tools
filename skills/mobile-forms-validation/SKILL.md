@@ -1,7 +1,7 @@
 ---
 name: mobile-forms-validation
 description: Build validated forms in a React Native/Expo or Flutter app. Covers React Hook Form with Zod, TextFormField with validators, keyboard avoidance, multi-step wizard forms, accessible error messages, and field-level vs form-level validation. Use when the user needs a login form, registration form, checkout flow, or any data entry screen.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Forms and Validation

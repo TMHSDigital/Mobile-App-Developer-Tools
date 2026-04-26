@@ -1,7 +1,7 @@
 ---
 name: mobile-app-monitoring
 description: Add production application performance monitoring (APM) to a React Native/Expo or Flutter app. Covers Sentry Performance, Datadog RUM, and Instabug for error tracking, performance tracing, session replay, and release health. Includes OpenTelemetry spans, cold/warm start metrics, Apdex scoring, alerting, dashboards, and user impact analysis. Use when the user needs to monitor production errors, track app performance, measure launch times, or set up alerting.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile App Monitoring
