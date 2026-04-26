@@ -1,7 +1,7 @@
 ---
 name: mobile-local-storage
 description: Persist data locally in a React Native/Expo app. Covers AsyncStorage for key-value, expo-sqlite for relational data, expo-secure-store for sensitive tokens, and react-native-mmkv for fast synchronous reads. Use when the user needs to store data on the device.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Local Storage

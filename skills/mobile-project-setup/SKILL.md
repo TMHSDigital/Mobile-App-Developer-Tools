@@ -1,7 +1,7 @@
 ---
 name: mobile-project-setup
 description: Create a new Expo (React Native) project with TypeScript, file-based routing, and opinionated defaults. Use when the user wants to start a new mobile app or needs help choosing project configuration.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Project Setup

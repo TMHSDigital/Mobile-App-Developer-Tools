@@ -1,7 +1,7 @@
 ---
 name: mobile-camera-integration
 description: Add camera functionality to an Expo app using expo-camera. Covers permissions, photo capture, barcode scanning, video recording, and saving to the camera roll. Use when the user wants to take photos, scan barcodes, or record video.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Camera Integration

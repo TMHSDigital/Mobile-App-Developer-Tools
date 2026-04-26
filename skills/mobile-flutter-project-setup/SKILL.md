@@ -1,7 +1,7 @@
 ---
 name: mobile-flutter-project-setup
 description: Create a new Flutter project with recommended structure, linting, and packages. Covers flutter create, directory conventions, analysis_options.yaml, pubspec.yaml management, and flavors. Use when the user wants to start a new Flutter app.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Flutter Project Setup

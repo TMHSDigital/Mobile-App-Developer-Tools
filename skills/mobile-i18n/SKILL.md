@@ -1,7 +1,7 @@
 ---
 name: mobile-i18n
 description: Add internationalization (i18n) to a React Native/Expo or Flutter app. Covers i18next, react-intl, flutter_localizations, locale detection, RTL layout, pluralization, date/number formatting, translation file structure, and CI string extraction. Use when the user wants to support multiple languages or localize the app for different markets.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile Internationalization

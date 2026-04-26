@@ -1,7 +1,7 @@
 ---
 name: mobile-ios-submission
 description: Submit an Expo/React Native app to the iOS App Store. Covers Apple Developer account, certificates, provisioning profiles, EAS Build and Submit, TestFlight, build versioning, and common rejection reasons. Use when the user wants to publish to the App Store.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # iOS App Store Submission

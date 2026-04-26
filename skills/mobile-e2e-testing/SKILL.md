@@ -1,7 +1,7 @@
 ---
 name: mobile-e2e-testing
 description: Set up end-to-end testing for React Native/Expo or Flutter apps. Covers Detox, Maestro, Patrol, device farm integration, CI pipeline setup, and flaky test mitigation. Use when the user wants automated tests that run on a real device or emulator and verify full user flows.
-standards-version: 1.7.0
+standards-version: 1.9.0
 ---
 
 # Mobile E2E Testing
