@@ -125,3 +125,40 @@ jobs:
           rule_count=$(ls rules/*.mdc 2>/dev/null | wc -l)
           echo "Skills: $skill_count"
           echo "Rules: $rule_count"
+
+  validate-counts:
+    name: Validate content counts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Check content counts match README
+        run: |
+          python3 << 'PYEOF'
+          import os, sys
+
+          errors = []
+
+          skill_count = len([
+              d for d in os.listdir('skills')
+              if os.path.isdir(os.path.join('skills', d))
+              and os.path.exists(os.path.join('skills', d, 'SKILL.md'))
+          ])
+          rule_count = len([
+              f for f in os.listdir('rules')
+              if f.endswith('.mdc')
+          ])
+
+          readme = open('README.md').read()
+          if f'{skill_count} skills' not in readme:
+              errors.append(f'README skill count mismatch (expected "{skill_count} skills")')
+          if f'{rule_count} rules' not in readme:
+              errors.append(f'README rule count mismatch (expected "{rule_count} rules")')
+
+          if errors:
+              for e in errors:
+                  print(f'::error::{e}', file=sys.stderr)
+              sys.exit(1)
+
+          print(f'Counts verified: {skill_count} skills, {rule_count} rules')
+          PYEOF
