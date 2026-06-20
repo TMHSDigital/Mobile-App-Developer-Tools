@@ -14,7 +14,7 @@ jobs:
       run:
         working-directory: mcp-server
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -42,7 +42,7 @@ jobs:
       run:
         working-directory: packages/mobile-dev-tools
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
